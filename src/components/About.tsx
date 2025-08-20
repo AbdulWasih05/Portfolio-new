@@ -5,7 +5,7 @@ const About: React.FC = () => {
   return (
     <section
       id="about"
-      className="bg-white text-black px-6 py-16 md:px-20 md:py-24"
+      className=" text-black px-6 py-16 md:px-20 md:py-24"
     >
       {/* Section Title */}
       <motion.h3

@@ -43,12 +43,6 @@ const Hero = () => {
   }, [text, isDeleting, index, speed]);
 
 
-  const stats = [
-    { number: '5+', label: 'Years Exp' },
-    { number: '200+', label: 'Projects' },
-    { number: '50+', label: 'Clients' }
-  ];
-
   return (
     <section id="hero" className="hero">
       <div className="container">

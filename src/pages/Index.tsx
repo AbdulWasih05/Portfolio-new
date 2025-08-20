@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import SEO from '@/components/SEO';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import LogoCarousel from '@/components/LogoCarousel';
+
 
 // Lazy load non-critical components for performance
 const Services = lazy(() => import('@/components/Services'));
@@ -34,7 +36,8 @@ const Index = () => {
         <main>
           {/* Hero Section - Above the fold, no lazy loading */}
           <Hero />
-          
+          <LogoCarousel />
+
           <Suspense fallback={<SectionLoader />}>
             <About />
           </Suspense>
