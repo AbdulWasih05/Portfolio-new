@@ -3,8 +3,8 @@ import profilePhoto from '@/assets/profile-photo.jpg';
 import { useState, useEffect } from 'react';
 
 const Hero = () => {
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
+  const scrollToProjects = () => {
+    const element = document.getElementById('Projects');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -85,7 +85,7 @@ const Hero = () => {
             </motion.p>
 
             <motion.button
-              onClick={scrollToContact}
+              onClick={scrollToProjects}
               className="bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg px-6 py-3 mt-6 transition-colors duration-200 brand-name"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -94,7 +94,7 @@ const Hero = () => {
               whileTap={{ scale: 0.98 }}
               aria-label="Contact me"
             >
-              Contact Me
+              See my works
             </motion.button>
           </motion.div>
 

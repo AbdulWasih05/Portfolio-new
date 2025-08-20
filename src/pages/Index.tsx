@@ -35,13 +35,13 @@ const Index = () => {
           {/* Hero Section - Above the fold, no lazy loading */}
           <Hero />
           
-          {/* Lazy loaded sections with Suspense for code splitting */}
-          <Suspense fallback={<SectionLoader />}>
-            <Projects />
-          </Suspense>
-
           <Suspense fallback={<SectionLoader />}>
             <About />
+          </Suspense>
+          {/* Lazy loaded sections with Suspense for code splitting */}
+
+          <Suspense fallback={<SectionLoader />}>
+            <Projects />
           </Suspense>
 
           <Suspense fallback={<SectionLoader />}>
