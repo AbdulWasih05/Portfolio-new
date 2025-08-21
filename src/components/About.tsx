@@ -34,7 +34,7 @@ const About: React.FC = () => {
             {" "}
             <span className="text-red-600">polished product</span>.
             <br />
-            From crafting sleek <span className="text-red-600">user interfaces</span> to{" "}
+            From crafting sleek <span className="text-red-600">UI</span> to{" "}
             <span className="text-red-600">integrating APIs.</span>
           </motion.h1>
 
