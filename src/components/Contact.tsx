@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiMail, FiLinkedin, FiDribbble, FiInstagram } from 'react-icons/fi';
+import { FiMail, FiLinkedin, FiGithub, FiInstagram } from 'react-icons/fi';
 import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
@@ -39,26 +39,20 @@ const Contact = () => {
     {
       name: 'Email',
       icon: FiMail,
-      url: 'mailto:Wasih@example.com',
+      url: 'mailto:abdlwasih4life@gmail.com',
       label: 'Send me an email'
     },
     {
       name: 'LinkedIn',
       icon: FiLinkedin,
-      url: 'https://linkedin.com/in/Abdul Wasih',
+      url: 'https://www.linkedin.com/in/abdul-wasih-977a702b9/',
       label: 'Connect on LinkedIn'
     },
     {
-      name: 'Dribbble',
-      icon: FiDribbble,
-      url: 'https://dribbble.com/Abdul Wasih',
-      label: 'View my Dribbble profile'
-    },
-    {
-      name: 'Instagram',
-      icon: FiInstagram,
-      url: 'https://instagram.com/Abdul Wasih',
-      label: 'Follow me on Instagram'
+      name: 'Github',
+      icon: FiGithub,
+      url: 'https://github.com/AbdulWasih05',
+      label: 'View my Github profile'
     }
   ];
 
@@ -66,7 +60,7 @@ const Contact = () => {
     <section id="contact" className="contact">
       <div className="container">
         <motion.h2 
-          className="section-heading text-white"
+          className="section-heading text-white playfair"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -76,7 +70,7 @@ const Contact = () => {
         </motion.h2>
         
         <motion.p 
-          className="text-xl mb-12 max-w-2xl mx-auto opacity-90 text-center"
+          className="text-xl mb-12 max-w-2xl mx-auto opacity-90 text-center playfair text-white/30"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -97,7 +91,7 @@ const Contact = () => {
         >
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="name" className="sr-only">Name</label>
+              <label htmlFor="name" className="sr-only ">Name</label>
               <input
                 type="text"
                 id="name"
@@ -144,7 +138,7 @@ const Contact = () => {
           <motion.button
             type="submit"
             disabled={isSubmitting}
-            className="hero-cta disabled:opacity-50 disabled:cursor-not-allowed"
+            className="hero-cta disabled:opacity-50 disabled:cursor-not-allowed playfair"
             whileHover={!isSubmitting ? { scale: 1.05 } : {}}
             whileTap={!isSubmitting ? { scale: 0.98 } : {}}
           >

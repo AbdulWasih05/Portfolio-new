@@ -46,6 +46,7 @@ const Index = () => {
           <Suspense fallback={<SectionLoader />}>
             <Projects />
           </Suspense>
+          
 
           <Suspense fallback={<SectionLoader />}>
             <Services />

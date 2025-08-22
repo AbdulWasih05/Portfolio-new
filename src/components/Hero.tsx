@@ -30,7 +30,7 @@ const Hero = () => {
     }
 
     if (!isDeleting && text === current) {
-      setTimeout(() => setIsDeleting(true), 1000); // pause before deleting
+      setTimeout(() => setIsDeleting(true), 1000); 
     } else if (isDeleting && text === "") {
       setIsDeleting(false);
       setIndex((prev) => (prev + 1) % roles.length);
@@ -44,9 +44,9 @@ const Hero = () => {
 
 
   return (
-    <section id="hero" className="hero">
+    <section id="hero" className="hero ">
       <div className="container">
-        <div className="hero-grid">
+        <div className="hero-grid ">
           {/* Left: Text Content */}
           <motion.div
             className="hero-text"
@@ -57,14 +57,14 @@ const Hero = () => {
 
 
             <motion.h1
-              className="hero-title brand-name"
+              className="hero-title brand-name  text-[#757575]"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {text}{" "},I'm <span className='text-red-600'>Wasih</span>
+              {text}{" "},I'm <span className='text-black font-bold '>Wasih</span>
               <span className="blinking-cursor"></span>
-              <h4 className="hero-subtitle leading-tight">A <span className='text-red-600 font-bold'>Full Stack</span> Developer</h4>
+              <h4 className="hero-subtitle leading-tight text-2xl text-[#757575]">A <span className='text-black '>Full Stack</span> Developer</h4>
             </motion.h1>
 
             <motion.p
@@ -74,13 +74,12 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.8 }}
             >
               My craft includes turning vague ideas into slightly less vague realities, debugging issues that mysteriously appear when I code at 3 AM, and occasionally converting caffeine into code.
-
               Intrigued? Good. My inbox is surprisingly well-behaved.
             </motion.p>
 
             <motion.button
               onClick={scrollToProjects}
-              className="bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg px-6 py-3 mt-6 transition-colors duration-200 brand-name"
+              className="bg-[#757575] hover:bg-black hover:scale-105 text-white font-medium rounded-lg px-6 py-3 mt-6 transition-colors duration-200 brand-name"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.0 }}
@@ -107,26 +106,6 @@ const Hero = () => {
               transition={{ type: "spring", stiffness: 300, damping: 10 }}
             />
 
-            {/* Stats Overlay
-            <motion.div
-              className="hero-stats"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-            >
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  className="stat-item"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 1.4 + index * 0.1 }}
-                >
-                  <span className="stat-number">{stat.number}</span>
-                  <span className="stat-label">{stat.label}</span>
-                </motion.div>
-              ))}
-            </motion.div> */}
           </motion.div>
         </div>
       </div>
