@@ -61,6 +61,9 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				zinc: {
+					900: '#18181B',
 				}
 			},
 			borderRadius: {
@@ -89,7 +92,10 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+			},
+			fontFamily: {
+				sans: ['Satoshi', 'sans-serif'],
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

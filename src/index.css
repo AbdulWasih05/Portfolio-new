@@ -2,9 +2,15 @@
 /* index.css */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
 
 .oswald {
   font-family: 'Oswald', sans-serif;
+}
+
+.playfair {
+  font-family: 'Playfair Display', serif;
 }
 
 
@@ -12,6 +18,22 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+
+.editorial-new {
+  font-family: 'Satoshi', sans-serif;
+}
+
+.title-large {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+.description {
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  line-height: 1.5;
+  color: #666;
+}
 
 @tailwind base;
 @tailwind components;
