@@ -1,0 +1,56 @@
+
+    .skill-card {
+        opacity: 0;
+        transform: translateY(-100px) translateZ(0px);
+        animation: fadeInUp 0.6s forwards;
+        animation-delay: calc(var(--delay) * 0.2s);
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .card-content {
+        backdrop-filter: blur(16px) saturate(180%);
+        background-color: rgba(17, 25, 40, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.125);
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-content::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(225deg, 
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.05) 100%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .skill-card.active {
+        transform: translateY(-10px) translateZ(20px);
+        z-index: 10;
+    }
+
+    .skill-card.active .card-content {
+        backdrop-filter: blur(20px) saturate(200%);
+    }
+
+    .skill-card.active .card-content::before {
+        opacity: 1;
+    }
+
+    .card-1.active .card-content { background-color: rgba(103, 58, 183, 0.85); }
+    .card-2.active .card-content { background-color: rgba(233, 30, 99, 0.85); }
+    .card-3.active .card-content { background-color: rgba(0, 150, 136, 0.85); }
+    .card-4.active .card-content { background-color: rgba(255, 152, 0, 0.85); }
+
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0) translateZ(0px);
+        }
+    }
