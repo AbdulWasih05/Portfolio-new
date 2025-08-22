@@ -1,52 +1,6 @@
-// Services.tsx
-import React, { useState, useEffect } from 'react';
 import './Services.css'; 
-import { FaLaptopCode, FaBrain, FaSitemap, FaCloud, FaDesktop, FaCode, FaServer, FaRobot } from 'react-icons/fa';
+import {  FaCloud, FaDesktop, FaCode, FaServer,  } from 'react-icons/fa';
 
-// Define the structure for a skill card, now with an active color
-interface Skill {
-    id: string;
-    icon: React.ReactNode;
-    title: string;
-    description: string;
-    activeColor: string;
-}
-
-// Data for the skill cards, now including the active color
-const skills: Skill[] = [
-    {
-        id: 'web-dev',
-        icon: <FaLaptopCode />,
-        title: 'Web Development',
-        description: 'React, Node.js, Express, HTML5, CSS3, JavaScript, MongoDB, REST APIs',
-        activeColor: 'rgba(103, 58, 183, 0.85)'
-    },
-    {
-        id: 'ml',
-        icon: <FaBrain />,
-        title: 'Machine Learning',
-        description: 'Python (Pandas, NumPy, Scikit-learn), TensorFlow, Data Analysis, Model Building',
-        activeColor: 'rgba(233, 30, 99, 0.85)'
-    },
-    {
-        id: 'software-design',
-        icon: <FaSitemap />,
-        title: 'Software Design',
-        description: 'Object-Oriented Programming (OOP), Data Structures & Algorithms, Clean Code, Agile',
-        activeColor: 'rgba(0, 150, 136, 0.85)'
-    },
-    {
-        id: 'cloud-devops',
-        icon: <FaCloud />,
-        title: 'Cloud & DevOps',
-        description: 'Docker, AWS (EC2, S3), Git, CI/CD, Linux, Shell Scripting',
-        activeColor: 'rgba(255, 152, 0, 0.85)'
-    }
-];
-
-const isTouchDevice = () =>
-  typeof window !== 'undefined' &&
-  ('ontouchstart' in window || navigator.maxTouchPoints > 0);
 
 // Define the structure for "What I do" services
 interface WhatIDoService {
@@ -77,18 +31,15 @@ const whatIDoServices: WhatIDoService[] = [
         description: 'Designing scalable APIs and server-side logic with Node.js, Express, and MongoDB.'
     },
     {
-        id: 'ml-ai',
-        icon: <FaRobot />,
-        title: 'ML & AI Solutions',
-        description: 'Creating intelligent systems and data-driven applications using Python and TensorFlow.'
+        id: 'cloud-devops',
+        icon: <FaCloud />,
+        title: 'Cloud & DevOps',
+        description: 'Docker, Git, Github, Netlify, Linux, Shell Scripting',
     }
 ];
 
 export const Services: React.FC = () => {
-    const [activeCard, setActiveCard] = useState<string | null>(null);
-    const [isTouch, setIsTouch] = useState(false);
 
-   
     return (
         <section className="bg-black py-24 px-6 md:px-12">
 
