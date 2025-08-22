@@ -170,7 +170,10 @@ export default function Projects() {
             className="group inline-flex items-center gap-2 px-6 py-3 bg-black/80 hover:bg-gray-800 text-white rounded-lg transition-all duration-300 hover:shadow-xl"
           >
             <FaGithub className="text-xl group-hover:scale-110 transition-transform" />
-            <span className="brand-name">View Other Projects</span>
+            <div className="flex items-center gap-2">
+            <span className="brand-name flex-shrink-0">View Other Projects</span>
+                <div className='h-0.5 w-full bg-white/10'></div>
+            </div>
             <svg
               className="w-4 h-4 group-hover:translate-x-1 transition-transform"
               fill="none"
