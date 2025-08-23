@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
-import profilePhoto from '@/assets/profile-photo.jpg';
 import { useState, useEffect } from 'react';
+import ProfileCard from './ProfileCard'
+
 
 const Hero = () => {
   const scrollToProjects = () => {
@@ -30,7 +31,7 @@ const Hero = () => {
     }
 
     if (!isDeleting && text === current) {
-      setTimeout(() => setIsDeleting(true), 1000); 
+      setTimeout(() => setIsDeleting(true), 1000);
     } else if (isDeleting && text === "") {
       setIsDeleting(false);
       setIndex((prev) => (prev + 1) % roles.length);
@@ -93,18 +94,24 @@ const Hero = () => {
 
           {/* Right: Portrait Photo with Stats */}
           <motion.div
-            className="hero-image"
+            className="hero-image flex justify-center md:justify-end"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <motion.img
-              src="penguin-img.jpeg"
-              alt="Abdul Wasih - Full Stack Developer"
-              className="hero-portrait"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300, damping: 10 }}
-            />
+
+            <ProfileCard
+              name="Abdul Wasih"
+              title="FullStack Developer"
+              handle="Wasih"
+              status="Online"
+              contactText="Contact Me"
+              avatarUrl="wasih-img.jpeg"
+              showUserInfo={true}
+              enableTilt={true}
+              enableMobileTilt={false}
+              onContactClick={() => console.log('Contact clicked')}
+              />
 
           </motion.div>
         </div>

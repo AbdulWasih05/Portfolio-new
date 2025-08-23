@@ -43,7 +43,6 @@ export const Services: React.FC = () => {
     return (
         <section className="bg-black py-24 px-6 md:px-12" id='Skills'>
 
-
             {/* What I Do Section - Updated styling */}
             <div className="max-w-[1000px] mx-auto mt-32">
                 <div className='flex items-center gap-2 mb-24'>
