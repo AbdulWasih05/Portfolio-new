@@ -75,10 +75,14 @@ export default function Projects() {
   return (
     <section id="Projects" className="bg-[#FDFCFB]] py-20 ">
       <div className="max-w-7xl mx-auto px-4 mt-10">
-        <h2 className="text-4xl font-black text-center mb-2 text-gray-900 oswald">
-          Featured Projects
+        <div className="flex items-center gap-2">
+
+        <h2 className="text-4xl font-black text-left mb-2 text-gray-900 playfair flex-shrink-0">
+          Projects
         </h2>
-        <h4 className="text-xl  text-center mb-8 text-black/20 oswald ">
+        <div className="bg-[#757575] w-full h-0.5 "></div>
+        </div>
+        <h4 className="text-xl  text-left mb-8 text-black/20 oswald ">
           Checkout some of my recent work in Modern Web Development
         </h4>
 
