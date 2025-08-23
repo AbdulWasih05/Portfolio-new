@@ -274,7 +274,7 @@ export default function Projects() {
         )}
 
       </div>
-        <hr className="border-t border-black my-8 w-3/4 mx-auto" />
+        
 
     </section>
   );

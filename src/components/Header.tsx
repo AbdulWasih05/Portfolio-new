@@ -46,10 +46,10 @@ const Header = () => {
 
   const navigationItems = [
     { name: 'Home', id: 'hero' },
-    { name: 'Project', id: 'Projects' }, 
     { name: 'About', id: 'about' },
-    { name: 'Contact', id: 'contact' },
-    { name: 'Article', id: 'article' }
+    { name: 'Project', id: 'Projects' }, 
+    { name: 'Expertise', id: 'Skills' },
+    { name: 'Contact', id: 'contact' }
   ];
 
   return (

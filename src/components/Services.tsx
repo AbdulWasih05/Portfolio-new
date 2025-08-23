@@ -41,7 +41,7 @@ const whatIDoServices: WhatIDoService[] = [
 export const Services: React.FC = () => {
 
     return (
-        <section className="bg-black py-24 px-6 md:px-12">
+        <section className="bg-black py-24 px-6 md:px-12" id='Skills'>
 
 
             {/* What I Do Section - Updated styling */}
