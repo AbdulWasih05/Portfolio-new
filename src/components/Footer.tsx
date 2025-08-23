@@ -40,7 +40,6 @@ const Footer = () => {
               </div>
               <span className="text-xl font-semibold playfair text-gray-300">Abdul Wasih</span>
             </div>
-            <span className="text-sm text-gray-400 ml-16">{currentYear}</span>
           </div>
 
           {/* Scroll to Top Button */}
@@ -83,9 +82,10 @@ const Footer = () => {
 
 
           <div className="flex md:flex-row items-center space-y-1 md:space-y-0 md:space-x-4 text-sm">
-            <span>Crafted with Modern Web Technologies</span>
+            <span>@{currentYear} Abdul Wasih</span>
 
             </div>
+            <div className='flex justify-end'>Crafted with Modern Web Technologies</div>
         </motion.div>
       </div>
     </footer>

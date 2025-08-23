@@ -54,7 +54,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#EDEDED]
         ${isVisible ? 'translate-y-0' : '-translate-y-full'}
         ${isScrolled ? ' backdrop-blur-sm' : 'bg-[#EDEDED]'}`}
     >
