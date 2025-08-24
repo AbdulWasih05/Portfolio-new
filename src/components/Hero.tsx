@@ -10,6 +10,12 @@ const Hero = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+  const scrolltocontact = () => {
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   const roles = [
     "Hi",
     "नमस्ते",
@@ -110,7 +116,7 @@ const Hero = () => {
               showUserInfo={true}
               enableTilt={true}
               enableMobileTilt={false}
-              onContactClick={() => console.log('Contact clicked')}
+              onContactClick={scrolltocontact}
               />
 
           </motion.div>
