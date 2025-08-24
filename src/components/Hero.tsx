@@ -71,7 +71,8 @@ const Hero = () => {
             >
               {text}{" "},I'm <span className='text-black font-bold '>Wasih</span>
               <span className="blinking-cursor"></span>
-              <h4 className="hero-subtitle leading-tight text-2xl text-[#757575]">A <span className='text-black '>Full Stack</span> Developer</h4>
+              <br />
+              <span className="hero-subtitle leading-tight text-2xl text-[#757575]">A <span className='text-black '>Full Stack</span> Developer</span>
             </motion.h1>
 
             <motion.p
