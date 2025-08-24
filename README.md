@@ -16,8 +16,8 @@ The design focuses on **monochrome aesthetics**, typography, and minimal distrac
 
 ## 🛠 Tech Stack
 - **Frontend:** React + Vite
-- **Styling:** Tailwind CSS (or your chosen CSS framework)
-- **Deployment:** Netlify / Vercel / GitHub Pages
+- **Styling:** Tailwind CSS 
+- **Deployment:** Netlify 
 
 ---
 
