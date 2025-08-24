@@ -21,6 +21,9 @@
   transform: translate3d(0, 0, 0.1px);
   position: relative;
   touch-action: none;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .pc-card-wrapper::before {
@@ -49,8 +52,10 @@
 }
 
 .pc-card {
-  height: 80svh;
-  max-height: 540px;
+  width: 100%;
+  height: clamp(350px, 75vh, 650px);
+  max-height: 650px;
+  min-height: 350px;
   display: grid;
   aspect-ratio: 0.718;
   border-radius: var(--card-radius);
@@ -87,18 +92,7 @@
   background-color: rgba(0, 0, 0, 0.9);
   transform: translate3d(0, 0, 0.01px);
 }
-
-.pc-shine {
-  mask-image: var(--icon);
-  mask-mode: luminance;
-  mask-repeat: repeat;
-  mask-size: 150%;
-  mask-position: top calc(200% - (var(--background-y) * 5)) left calc(100% - var(--background-x));
-  transition: filter 0.6s ease;
-  filter: brightness(0.66) contrast(1.33) saturate(0.33) opacity(0.5);
-  animation: holo-bg 18s linear infinite;
-  mix-blend-mode: color-dodge;
-}
+/*  */
 
 .pc-shine,
 .pc-shine::after {
@@ -282,36 +276,42 @@
 .pc-details {
   width: 100%;
   position: absolute;
-  top: 3em;
+  top: clamp(1.5em, 4vh, 3em);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
 }
 
 .pc-details h3 {
   font-weight: 600;
   margin: 0;
-  font-size: min(5svh, 3em);
+  font-size: clamp(1.5rem, 4vw, 3rem);
   margin: 0;
   background-image: linear-gradient(to bottom, #fff, #6f6fbe);
   background-size: 1em 1.5em;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .pc-details p {
   font-weight: 600;
   position: relative;
-  top: -12px;
+  top: -8px;
   white-space: nowrap;
-  font-size: 16px;
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
   margin: 0 auto;
+  margin-top: 8px;
   width: min-content;
   background-image: linear-gradient(to bottom, #fff, #4a4ac0);
   background-size: 1em 1.5em;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
+  text-align: center;
 }
 
 @keyframes glow-bg {
@@ -334,48 +334,80 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  .pc-card-wrapper {
+    max-width: 350px;
+  }
+  
   .pc-card {
-    height: 70svh;
-    max-height: 450px;
+    height: clamp(320px, 65vh, 580px);
+    min-height: 320px;
   }
-
+  
   .pc-details {
-    top: 2em;
+    top: clamp(1.2em, 3.5vh, 2.5em);
   }
-
+  
   .pc-details h3 {
-    font-size: min(4svh, 2.5em);
+    font-size: clamp(1.25rem, 3.5vw, 2.5rem);
   }
-
+  
   .pc-details p {
-    font-size: 14px;
+    font-size: clamp(0.8rem, 2.2vw, 0.9rem);
+    top: -6px;
+    margin-top: 6px;
   }
+}
 
+@media (max-width: 768px) {
+  .pc-card-wrapper {
+    max-width: 320px;
+  }
+  
+  .pc-card {
+    height: clamp(300px, 55vh, 500px);
+    min-height: 300px;
+    border-radius: 25px;
+  }
+  
+  .pc-details {
+    top: clamp(1em, 3vh, 2em);
+  }
+  
+  .pc-details h3 {
+    font-size: clamp(1.1rem, 3vw, 2rem);
+  }
+  
+  .pc-details p {
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
+    top: -4px;
+    margin-top: 4px;
+  }
+  
   .pc-user-info {
     bottom: 15px;
     left: 15px;
     right: 15px;
     padding: 10px 12px;
   }
-
+  
   .pc-mini-avatar {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
   }
-
+  
   .pc-user-details {
     gap: 10px;
   }
-
+  
   .pc-handle {
-    font-size: 13px;
+    font-size: 12px;
   }
-
+  
   .pc-status {
     font-size: 10px;
   }
-
+  
   .pc-contact-btn {
     padding: 6px 12px;
     font-size: 11px;
@@ -383,95 +415,172 @@
 }
 
 @media (max-width: 480px) {
+  .pc-card-wrapper {
+    max-width: 280px;
+  }
+  
   .pc-card {
-    height: 60svh;
-    max-height: 380px;
+    height: clamp(280px, 50vh, 450px);
+    min-height: 280px;
+    border-radius: 20px;
   }
-
+  
   .pc-details {
-    top: 1.5em;
+    top: clamp(0.8em, 2.5vh, 1.5em);
   }
-
+  
   .pc-details h3 {
-    font-size: min(3.5svh, 2em);
+    font-size: clamp(1rem, 2.8vw, 1.5rem);
   }
-
+  
   .pc-details p {
-    font-size: 12px;
-    top: -8px;
+    font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+    top: -2px;
+    margin-top: 3px;
   }
-
+  
   .pc-user-info {
     bottom: 12px;
     left: 12px;
     right: 12px;
     padding: 8px 10px;
-    border-radius: 50px;
+    border-radius: 12px;
   }
+  
+  .pc-mini-avatar {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .pc-user-details {
+    gap: 8px;
+  }
+  
+  .pc-handle {
+    font-size: 11px;
+  }
+  
+  .pc-status {
+    font-size: 9px;
+  }
+  
+  .pc-contact-btn {
+    padding: 5px 10px;
+    font-size: 10px;
+    border-radius: 8px;
+  }
+}
 
+@media (max-width: 375px) {
+  .pc-card-wrapper {
+    max-width: 260px;
+  }
+  
+  .pc-card {
+    height: clamp(250px, 45vh, 400px);
+    min-height: 250px;
+    border-radius: 18px;
+  }
+  
+  .pc-details {
+    top: clamp(0.6em, 2vh, 1.2em);
+  }
+  
+  .pc-details h3 {
+    font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+  }
+  
+  .pc-details p {
+    font-size: clamp(0.65rem, 1.6vw, 0.75rem);
+    top: -1px;
+    margin-top: 2px;
+  }
+  
+  .pc-user-info {
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 6px 8px;
+    border-radius: 10px;
+  }
+  
   .pc-mini-avatar {
     width: 24px;
     height: 24px;
   }
-
+  
   .pc-user-details {
-    gap: 8px;
+    gap: 6px;
   }
-
+  
   .pc-handle {
-    font-size: 12px;
-  }
-
-  .pc-status {
-    font-size: 9px;
-  }
-
-  .pc-contact-btn {
-    padding: 5px 10px;
     font-size: 10px;
-    border-radius: 50px;
+  }
+  
+  .pc-status {
+    font-size: 8px;
+  }
+  
+  .pc-contact-btn {
+    padding: 4px 8px;
+    font-size: 9px;
+    border-radius: 6px;
   }
 }
 
 @media (max-width: 320px) {
+  .pc-card-wrapper {
+    max-width: 240px;
+  }
+  
   .pc-card {
-    height: 55svh;
-    max-height: 320px;
+    height: clamp(220px, 40vh, 350px);
+    min-height: 220px;
+    border-radius: 16px;
   }
-
+  
+  .pc-details {
+    top: clamp(0.5em, 1.8vh, 1em);
+  }
+  
   .pc-details h3 {
-    font-size: min(3svh, 1.5em);
+    font-size: clamp(0.8rem, 2.2vw, 1.1rem);
   }
-
+  
   .pc-details p {
-    font-size: 11px;
+    font-size: clamp(0.6rem, 1.4vw, 0.7rem);
+    top: 0px;
+    margin-top: 2px;
   }
-
+  
   .pc-user-info {
-    padding: 6px 8px;
-    border-radius: 50px;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    padding: 5px 6px;
+    border-radius: 8px;
   }
-
+  
   .pc-mini-avatar {
     width: 20px;
     height: 20px;
   }
-
+  
   .pc-user-details {
-    gap: 6px;
+    gap: 5px;
   }
-
+  
   .pc-handle {
-    font-size: 11px;
-  }
-
-  .pc-status {
-    font-size: 8px;
-  }
-
-  .pc-contact-btn {
-    padding: 4px 8px;
     font-size: 9px;
-    border-radius: 50px;
+  }
+  
+  .pc-status {
+    font-size: 7px;
+  }
+  
+  .pc-contact-btn {
+    padding: 3px 6px;
+    font-size: 8px;
+    border-radius: 5px;
   }
 }
