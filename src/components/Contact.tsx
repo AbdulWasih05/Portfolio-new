@@ -57,10 +57,10 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="contact">
-      <div className="container">
+    <section id="contact" className="bg-white py-20 scroll-mt-20">
+      <div className="max-w-4xl mx-auto px-4">
         <motion.h2 
-          className="section-heading text-white playfair"
+          className="text-3xl font-semibold text-gray-900 text-center mb-4 brand-name"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -70,7 +70,7 @@ const Contact = () => {
         </motion.h2>
         
         <motion.p 
-          className="text-xl mb-12 max-w-2xl mx-auto opacity-90 text-center playfair text-white/30"
+          className="text-base md:text-lg text-gray-700 leading-relaxed mb-12 max-w-2xl mx-auto text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -83,7 +83,7 @@ const Contact = () => {
         {/* Contact Form */}
         <motion.form 
           onSubmit={handleSubmit}
-          className="contact-form space-y-6 mb-12"
+          className="space-y-6 mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -91,7 +91,7 @@ const Contact = () => {
         >
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="name" className="sr-only ">Name</label>
+              <label htmlFor="name" className="sr-only">Full Name</label>
               <input
                 type="text"
                 id="name"
@@ -100,7 +100,7 @@ const Contact = () => {
                 onChange={handleInputChange}
                 placeholder="Your Name"
                 required
-                className="w-full"
+                className="border border-gray-300 focus:border-black focus:ring-2 focus:ring-black rounded-lg px-4 py-3 w-full transition-colors duration-200 outline-none"
                 aria-label="Your name"
               />
             </div>
@@ -114,7 +114,7 @@ const Contact = () => {
                 onChange={handleInputChange}
                 placeholder="your.email@example.com"
                 required
-                className="w-full"
+                className="border border-gray-300 focus:border-black focus:ring-2 focus:ring-black rounded-lg px-4 py-3 w-full transition-colors duration-200 outline-none"
                 aria-label="Your email address"
               />
             </div>
@@ -130,7 +130,7 @@ const Contact = () => {
               placeholder="Tell me about your project..."
               rows={6}
               required
-              className="w-full resize-none"
+              className="border border-gray-300 focus:border-black focus:ring-2 focus:ring-black rounded-lg px-4 py-3 w-full resize-none transition-colors duration-200 outline-none"
               aria-label="Your message"
             />
           </div>
@@ -138,7 +138,7 @@ const Contact = () => {
           <motion.button
             type="submit"
             disabled={isSubmitting}
-            className="hero-cta disabled:opacity-50 disabled:cursor-not-allowed playfair"
+            className="w-full bg-black text-white px-8 py-4 rounded-lg hover:bg-gray-800 hover:scale-105 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none brand-name"
             whileHover={!isSubmitting ? { scale: 1.05 } : {}}
             whileTap={!isSubmitting ? { scale: 0.98 } : {}}
           >
@@ -160,7 +160,7 @@ const Contact = () => {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-colors p-2"
+              className="text-black hover:opacity-70 transition-opacity p-2 focus:outline-none focus:ring-2 focus:ring-black rounded"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}

@@ -33,7 +33,7 @@ const Index = () => {
         <Header />
         
         {/* Main Content */}
-        <main>
+        <main id="main-content">
           {/* Hero Section - Above the fold, no lazy loading */}
           <Hero />
           <LogoCarousel />

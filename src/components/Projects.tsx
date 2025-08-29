@@ -11,7 +11,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     link: "#",
     githubUrl: "https://github.com/AbdulWasih05",
-    websiteUrl: "https://demo-ecommerce.vercel.app",
+    websiteUrl: "https://www.amazon.com/",
     goal: "The goal was to create a seamless shopping experience with secure payments, inventory management, and an intuitive admin interface.",
     features: [
       "Smart Inventory Management with real-time stock tracking and automatic alerts",
@@ -116,7 +116,7 @@ interface Project {
   githubUrl?: string;
   websiteUrl?: string;
   goal: string;
-  processAndLearning: string;
+
   features: string[];
 }
 
@@ -124,40 +124,44 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="Projects" className="bg-[#FDFCFB] py-20">
+    <section id="projects" className="bg-gray-50 py-20 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 mt-10">
         <div className="flex items-center gap-2">
-          <h2 className="text-4xl font-black text-left mb-2 text-gray-900 playfair flex-shrink-0">
+          <h2 className="text-3xl font-semibold text-left mb-2 text-gray-900 brand-name flex-shrink-0">
             Projects
           </h2>
-          <div className="bg-[#757575] w-full h-0.5"></div>
+          <div className="bg-gray-300 w-full h-0.5"></div>
         </div>
-        <h4 className="text-xl text-left mb-12 text-black/60 oswald">
+        <h4 className="text-base md:text-lg text-left mb-12 text-gray-700 leading-relaxed oswald">
           Explore some of my recent projects and see how I bring ideas to life
         </h4>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
           {projects.map((project, idx) => (
             <motion.div
               key={idx}
-              className="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer"
+              className="rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 bg-white group cursor-pointer relative overflow-hidden"
               whileHover={{
                 y: -8,
                 transition: { duration: 0.3 }
               }}
               onClick={() => setSelectedProject(project)}
             >
+              {/* Hover overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 max-w-full"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               </div>
 
               {/* Card Content */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent"></div>
               <div className="p-6">
                 {/* Title */}
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
@@ -184,6 +188,24 @@ export default function Projects() {
                       +{project.tech.length - 3} more
                     </span>
                   )}
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-2">
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      onClick={(e) => e.stopPropagation()}
+                      className="flex items-center gap-1 px-3 py-1.5 border border-gray-300 text-gray-700 text-xs rounded-lg hover:bg-gray-50 transition-colors"
+                      aria-label={`View ${project.title} source code on GitHub`}
+                    >
+                      <FaGithub size={12} />
+                      Code
+                    </a>
+                  )}
+                  <button className="px-3 py-1.5 bg-black text-white text-xs rounded-lg hover:bg-gray-800 hover:scale-105 hover:shadow-lg transition-all duration-300">
+                    View Details
+                  </button>
                 </div>
               </div>
             </motion.div>

@@ -5,7 +5,7 @@ const About: React.FC = () => {
   return (
     <section
       id="about"
-      className=" text-black px-6 py-16 md:px-20 md:py-24"
+      className="bg-white text-black px-6 py-16 md:px-20 md:py-24 scroll-mt-20"
     >
       {/* Section Title */}
       <motion.h3
@@ -26,7 +26,7 @@ const About: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-3xl md:text-4xl font-bold leading-snug mb-6 text-[#757575]"
+            className="text-3xl font-semibold text-gray-900 leading-snug mb-6"
           >
             I'm a Enthusiastic Coder who can {" "}
             <span className="text-black">Brainstorm ideas,</span>{" "}
@@ -46,7 +46,7 @@ const About: React.FC = () => {
             className="mt-8"
           >
             <a
-              href="resume.pdf" // 
+              href="resume.pdf"
               download="Wasih_Resume.pdf"
               className="inline-flex items-center px-6 py-3 bg-[#757575] hover:bg-black text-white font-medium rounded-lg transition-colors duration-200"
             >
@@ -106,7 +106,7 @@ const About: React.FC = () => {
       </div>
 
       {/* Closing Line */}
-      <motion.h2
+      {/* <motion.h2
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.8 }}
@@ -116,7 +116,7 @@ const About: React.FC = () => {
         <span className="text-black">scalable & innovative solutions</span>{" "}
         that bridge technology with real-world needs
         <span className="text-black">●</span>
-      </motion.h2>
+      </motion.h2> */}
     </section>
   );
 };

@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import ProfileCard from './ProfileCard'
+import LanyardBadge from './LanyardBadge';
 
 
 const Hero = () => {
   const scrollToProjects = () => {
-    const element = document.getElementById('Projects');
+    const element = document.getElementById('projects');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -51,75 +51,167 @@ const Hero = () => {
 
 
   return (
-    <section id="hero" className="hero ">
-      <div className="container">
-        <div className="hero-grid ">
+    <section id="hero" className="min-h-screen bg-gray-50 pt-24 scroll-mt-20 relative overflow-hidden">
+
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 min-h-[calc(100vh-6rem)]">
           {/* Left: Text Content */}
           <motion.div
-            className="hero-text"
+            className="flex flex-col justify-center py-20 lg:py-0"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-
-
-            <motion.h1
-              className="hero-title brand-name  text-[#757575]"
+            {/* Main Title - Stack Layout like "Thoughts Code Coffee" */}
+            <motion.div
+              className="mb-8"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
-              {text}{" "},I'm <span className='text-black font-bold '>Wasih</span>
-              <span className="blinking-cursor"></span>
-              <br />
-              <span className="hero-subtitle leading-tight text-2xl text-[#757575]">A <span className='text-black '>Full Stack</span> Developer</span>
-            </motion.h1>
+              {/* Grid Background Effect - Right Side Only */}
+              <div className="absolute inset-0 opacity-30 pointer-events-none">
+                {/* Main Grid Pattern */}
+                <div className="absolute inset-0" style={{
+                  backgroundImage: `
+                  linear-gradient(rgba(0,0,0,0.0) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)
+                `,
+                  backgroundSize: '40px 40px'
+                }}></div>
 
-            <motion.p
-              className="hero-subtitle inter"
+                {/* Secondary smaller grid */}
+                <div className="absolute inset-0" style={{
+                  backgroundImage: `
+                  linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px)
+                `,
+                  backgroundSize: '10px 10px'
+                }}></div>
+
+                {/* Gradient overlays for depth */}
+                <div className="absolute inset-0 bg-gradient-to-tl from-white/20 via-transparent to-gray-100/30"></div>
+
+                {/* right side div pattern */}
+                {/* <div className="absolute inset-0 bg-gradient-to-tl from-gray-200/10 via-transparent to-white/15"></div> */}
+
+                {/* Floating White Boxes */}
+                <div className="absolute top-20 left-1/4 w-16 h-16 bg-white/60 rounded-lg shadow-sm transform rotate-12 animate-float backdrop-blur-sm"></div>
+                <div className="absolute top-40 right-1/3 w-12 h-12 bg-white/40 rounded-lg shadow-sm transform -rotate-6 animate-float-slow backdrop-blur-sm"></div>
+                <div className="absolute top-35 right-1/3 w-12 h-12 bg-white/35 rounded-lg shadow-sm transform -rotate-6 animate-float-slow backdrop-blur-sm"></div>
+                <div className="absolute top-60 left-1/6 w-20 h-8 bg-white/50 rounded-lg shadow-sm transform rotate-3 animate-float-slow backdrop-blur-sm"></div>
+                <div className="absolute top-80 right-1/4 w-14 h-14 bg-white/30 rounded-lg shadow-sm transform -rotate-12 animate-float backdrop-blur-sm"></div>
+                <div className="absolute bottom-40 left-1/3 w-18 h-10 bg-white/45 rounded-lg shadow-sm transform rotate-8 animate-float-reverse backdrop-blur-sm"></div>
+                <div className="absolute bottom-60 right-1/6 w-16 h-12 bg-white/35 rounded-lg shadow-sm transform -rotate-4 animate-float-slow backdrop-blur-sm"></div>
+
+                {/* Additional decorative elements */}
+                <div className="absolute top-1/4 left-1/2 w-2 h-2 bg-gray-400/20 rounded-full animate-pulse"></div>
+                <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-gray-500/25 rounded-full animate-pulse delay-1000"></div>
+                <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-gray-300/15 rounded-full animate-pulse delay-500"></div>
+              </div>
+
+
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-black leading-none tracking-tight playfair">
+                <div className="block">Thoughts</div>
+                <div className="block">Code</div>
+                <div className="block">Coffee</div>
+              </h1>
+            </motion.div>
+
+            {/* Greeting with Animation */}
+            <motion.div
+              className="mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <p className="text-lg text-gray-600 font-medium">
+                {text} ,I'm <span className="text-black font-semibold">Wasih</span>
+                <span className="blinking-cursor ml-1">|</span>
+              </p>
+            </motion.div>            {/* Description */}
+            <motion.div
+              className="mb-8 space-y-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              My craft includes turning vague ideas into slightly less vague realities, debugging issues that mysteriously appear when I code at 3 AM, and occasionally converting caffeine into code.
-              Intrigued? Good. My inbox is surprisingly well-behaved.
-            </motion.p>
+              <p className="text-lg text-gray-700 font-medium leading-relaxed max-w-lg">
+                Not a wizard, but can craft fast, secure, and scalable web apps. Dedicated to crafting clean code, seamless UI, and efficient systems.
+              </p>
+              
+            </motion.div>
 
-            <motion.button
-              onClick={scrollToProjects}
-              className="bg-[#757575] hover:bg-black hover:scale-105 text-white font-medium rounded-lg px-6 py-3 mt-6 transition-colors duration-200 brand-name"
+            {/* CTA Button */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.0 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              aria-label="Contact me"
             >
-              See my works
-            </motion.button>
+              <button
+                onClick={scrollToProjects}
+                className="inline-flex items-center px-4 py-2 text-lg font-medium text-black border border-gray-200 rounded hover:bg-black hover:text-white transition-colors group cursor-pointer"
+              >
+                View My Work
+                <svg
+                  className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </button>
+            </motion.div>
           </motion.div>
 
-          {/* Right: Portrait Photo with Stats */}
+          {/* Right: ID Badge with Grid Background */}
           <motion.div
-            className="hero-image flex justify-center md:justify-end"
+            className="hidden lg:flex flex-col justify-center py-20 relative"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
+            {/* Grid Background Effect - Right Side Only */}
+            <div className="absolute inset-0 opacity-30 pointer-events-none">
+              {/* Main Grid Pattern */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)
+                `,
+                backgroundSize: '40px 40px'
+              }}></div>
 
-            <ProfileCard
-              name="Abdul Wasih"
-              title="FullStack Developer"
-              handle="Wasih"
-              status="Online"
-              contactText="Contact Me"
-              avatarUrl="wasih-img.jpeg"
-              showUserInfo={true}
-              enableTilt={true}
-              enableMobileTilt={false}
-              onContactClick={scrolltocontact}
-              />
+              {/* Secondary smaller grid */}
+              <div className="absolute inset-0 pointer-events-none" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px)
+                `,
+                backgroundSize: '10px 10px'
+              }}></div>
 
+              {/* Gradient overlays for depth */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-gray-100/30"></div>
+              <div className="absolute inset-0 bg-gradient-to-tl from-gray-200/10 via-transparent to-white/15"></div>
+
+              {/* Floating White Boxes */}
+              <div className="absolute top-20 left-1/4 w-16 h-16 bg-white/60 rounded-lg shadow-sm transform rotate-12 animate-float backdrop-blur-sm"></div>
+              <div className="absolute top-40 right-1/3 w-12 h-12 bg-white/40 rounded-lg shadow-sm transform -rotate-6 animate-float-reverse backdrop-blur-sm"></div>
+              <div className="absolute top-60 left-1/6 w-20 h-8 bg-white/50 rounded-lg shadow-sm transform rotate-3 animate-float-slow backdrop-blur-sm"></div>
+              <div className="absolute top-80 right-1/4 w-14 h-14 bg-white/30 rounded-lg shadow-sm transform -rotate-12 animate-float backdrop-blur-sm"></div>
+              <div className="absolute bottom-40 left-1/3 w-18 h-10 bg-white/45 rounded-lg shadow-sm transform rotate-8 animate-float-reverse backdrop-blur-sm"></div>
+              <div className="absolute bottom-60 right-1/6 w-16 h-12 bg-white/35 rounded-lg shadow-sm transform -rotate-4 animate-float-slow backdrop-blur-sm"></div>
+
+              {/* Additional decorative elements */}
+              <div className="absolute top-1/4 left-1/2 w-2 h-2 bg-gray-400/20 rounded-full animate-pulse"></div>
+              <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-gray-500/25 rounded-full animate-pulse delay-1000"></div>
+              <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-gray-300/15 rounded-full animate-pulse delay-500"></div>
+            </div>
+
+            {/* ID Badge Component - Positioned at top right */}
+            <LanyardBadge />
           </motion.div>
         </div>
       </div>

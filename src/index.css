@@ -5,6 +5,167 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
 
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Blinking cursor animation */
+.blinking-cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Floating animation for background elements */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% { 
+    transform: translateY(-10px) rotate(2deg);
+  }
+  66% { 
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+@keyframes floatReverse {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% { 
+    transform: translateY(8px) rotate(-2deg);
+  }
+  66% { 
+    transform: translateY(-6px) rotate(1deg);
+  }
+}
+
+/* Apply floating animations to boxes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 8s ease-in-out infinite;
+}
+
+/* Lanyard Badge Animations */
+@keyframes subtle-sway {
+  0%, 100% { 
+    transform: translateX(-50%) rotate(1deg);
+  }
+  50% { 
+    transform: translateX(-50%) rotate(-0.5deg);
+  }
+}
+
+@keyframes gentle-bounce {
+  0%, 100% { 
+    transform: translateX(-50%) rotate(1deg) translateY(0px);
+  }
+  50% { 
+    transform: translateX(-50%) rotate(1deg) translateY(-2px);
+  }
+}
+
+@keyframes gentle-swing {
+  0%, 100% { 
+    transform: translateX(-50%) rotate(1deg);
+  }
+  25% { 
+    transform: translateX(-50%) rotate(-1deg);
+  }
+  75% { 
+    transform: translateX(-50%) rotate(2deg);
+  }
+}
+
+@keyframes shadow-shift {
+  0%, 100% { 
+    transform: translate(1px, 1px);
+  }
+  50% { 
+    transform: translate(2px, 2px);
+  }
+}
+
+.animate-subtle-sway {
+  animation: subtle-sway 4s ease-in-out infinite;
+}
+
+.animate-gentle-bounce {
+  animation: gentle-bounce 3s ease-in-out infinite;
+}
+
+.animate-gentle-swing {
+  animation: gentle-swing 6s ease-in-out infinite;
+}
+
+.animate-shadow-shift {
+  animation: shadow-shift 5s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 8s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 10s ease-in-out infinite;
+}
+
+/* Section fade-in animations */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Button hover animations */
+.btn-hover {
+  transition: all 0.3s ease;
+}
+
+.btn-hover:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive text sizes */
+.heading-responsive {
+  font-size: clamp(1.25rem, 2vw + 1rem, 2rem);
+}
+
+/* Focus styles for accessibility */
+.focus-ring:focus {
+  outline: 2px solid black;
+  outline-offset: 2px;
+}
+
+/* Image responsive max-width */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure minimum contrast ratios */
+.text-contrast {
+  color: #1a1a1a; /* Ensures 4.5:1 contrast on white background */
+}
+
+.text-contrast-light {
+  color: #4a4a4a; /* Ensures 4.5:1 contrast on light gray */
+}
+
 .inter {
   font-family: 'Source Sans 3', sans-serif;
 }
@@ -16,11 +177,9 @@
   font-family: 'Playfair Display', serif;
 }
 
-
 .brand-name {
   font-family: 'Montserrat', sans-serif;
 }
-
 
 .editorial-new {
   font-family: 'Satoshi', sans-serif;

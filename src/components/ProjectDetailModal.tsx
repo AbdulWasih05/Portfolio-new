@@ -10,7 +10,6 @@ interface Project {
   githubUrl?: string;
   websiteUrl?: string;
   goal: string;
-  processAndLearning: string;
   features: string[];
 }
 

@@ -19,7 +19,7 @@ const Footer = () => {
       {/* Glow effect overlay */}
       <div className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, transparent 0%, transparent 85%, rgba(255, 255, 255, 0.03) 100%)',
+          background: 'linear-gradient(to bottom, transparent 0%, transparent 95%, rgba(255, 255, 255, 0.03) 100%)',
           boxShadow: '0 -20px 40px -10px rgba(255, 255, 255, 0.05) inset, 0 20px 40px -10px rgba(255, 255, 255, 0.08)'
         }}>
       </div>
