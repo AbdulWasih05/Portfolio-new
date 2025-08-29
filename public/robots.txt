@@ -1,14 +1,19 @@
 User-agent: Googlebot
 Allow: /
+Sitemap: https://wasih.netlify.app/sitemap.xml
 
 User-agent: Bingbot
 Allow: /
+Sitemap: https://wasih.netlify.app/sitemap.xml
 
 User-agent: Twitterbot
 Allow: /
+Sitemap: https://wasih.netlify.app/sitemap.xml
 
 User-agent: facebookexternalhit
 Allow: /
+Sitemap: https://wasih.netlify.app/sitemap.xml
 
 User-agent: *
 Allow: /
+Sitemap: https://wasih.netlify.app/sitemap.xml
