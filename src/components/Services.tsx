@@ -56,7 +56,7 @@ export const Services: React.FC = () => {
                             key={service.id}
                             className="group relative min-h-[280px] p-8 rounded-xl 
                                 bg-black hover:bg-[#222222]
-                                transition-all duration-300 cursor-pointer
+                                transition-all duration-300 
                                 flex flex-col items-center justify-center text-center"
                         >
                             <div className="mb-8">

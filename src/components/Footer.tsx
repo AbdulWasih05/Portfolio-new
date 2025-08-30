@@ -73,7 +73,7 @@ const Footer = () => {
 
         {/* Bottom Section - Copyright and Contact */}
         <motion.div
-          className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0"
+          className="flex flex-col  items-center space-y-2 md:space-y-0"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -81,11 +81,12 @@ const Footer = () => {
         >
 
 
-          <div className="flex md:flex-row items-center space-y-1 md:space-y-0 md:space-x-4 text-sm">
+          <div className="  space-y-1 md:space-y-0 md:space-x-4 text-sm">
             <span>@{currentYear} Abdul Wasih</span>
 
             </div>
-            <div className='flex justify-end'>Crafted with Modern Web Technologies</div>
+            <br />
+            <div className='justify-end'>Built using React with TypeScript.</div>
         </motion.div>
       </div>
     </footer>
