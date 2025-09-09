@@ -47,7 +47,8 @@ const About: React.FC = () => {
           >
             <a
               href="resume.pdf"
-              download="Wasih_Resume.pdf"
+              // download="Wasih_Resume.pdf"
+              onClick={(e) => {alert("Resume download is currently disabled. Currently modifying the resume."); e.preventDefault();}}
               className="inline-flex items-center px-6 py-3 bg-[#757575] hover:bg-black text-white font-medium rounded-lg transition-colors duration-200"
             >
               <span>Download Resume</span>
