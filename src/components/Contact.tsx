@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiMail, FiLinkedin, FiGithub, FiInstagram } from 'react-icons/fi';
+import { FiMail, FiLinkedin, FiGithub } from 'react-icons/fi';
 import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const access_key = import.meta.env.VITE_ACCESS_KEY;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -20,19 +22,79 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    // Debug: Check if access key is loaded
+    console.log('Access key:', access_key ? 'Found' : 'Not found');
+    
+    if (!access_key) {
       toast({
-        title: "Message sent successfully!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+        title: "❌ Configuration Error",
+        description: "API key not found. Please check environment variables.",
       });
-      setFormData({ name: '', email: '', message: '' });
       setIsSubmitting(false);
-    }, 1000);
+      return;
+    }
+
+    try {
+      const requestBody = {
+        access_key: access_key,
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        from_name: formData.name,
+        subject: `New Contact Form Message from ${formData.name}`
+      };
+
+      console.log('Submitting form with data:', { ...requestBody, access_key: 'HIDDEN' });
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(requestBody)
+      });
+
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Response error:', errorText);
+        throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+      }
+
+      const data = await response.json();
+      console.log('Response data:', data);
+
+      if (data.success) {
+        toast({
+          title: "✅ Message sent successfully!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+      } else {
+        console.error('API returned error:', data);
+        throw new Error(data.message || "Failed to send message");
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      
+      toast({
+        title: "❌ Error sending message",
+        description: "Please try again or contact me directly via email.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socialLinks = [
@@ -55,6 +117,8 @@ const Contact = () => {
       label: 'View my Github profile'
     }
   ];
+
+
 
   return (
     <section id="contact" className="bg-white py-20 scroll-mt-20">

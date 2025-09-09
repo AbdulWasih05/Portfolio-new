@@ -2,8 +2,24 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaGithub } from 'react-icons/fa';
 import ProjectDetailModal from "./ProjectDetailModal";
-
+import Port from '../assets/Portfolio-thumbnail.png'
 const projects = [
+  {
+    title: "Portfolio Website",
+    description: "A modern, responsive portfolio website built with React and Framer Motion. Features smooth animations, contact form, and SEO optimization for better visibility.",
+    tech: ["React", "Framer Motion", "Tailwind CSS", "Netlify"],
+    image: Port,
+    link: "",
+    githubUrl: "https://github.com/AbdulWasih05",
+    websiteUrl: "https://wasih.netlify.app",
+    goal: "Designed a modern portfolio website to showcase professional work and skills effectively. The goal was to create an engaging, responsive platform that highlights projects and provides easy contact methods for potential clients.",
+    features: [
+      "Minimilistic and Clean Design with white and black theme",
+      "Scroll-Triggered Animations for enhanced user engagement",
+      "Optimized for Performance and SEO best practices",
+      "Responsive Layout across all device types"
+    ]
+  },
   {
     title: "E-Commerce Platform",
     description: "A modern full-stack e-commerce platform built with Next.js and Node.js.",
@@ -52,23 +68,6 @@ const projects = [
       "Custom AI Personality Builder for specialized knowledge domains",
       "Real-Time Code Execution with live debugging capabilities",
       "Conversation Memory & Context across multiple sessions"
-    ]
-  },
-  {
-    title: "Portfolio Website",
-    description: "A modern, responsive portfolio website built with React and Framer Motion. Features smooth animations, dark/light mode, contact form, and SEO optimization for better visibility.",
-    tech: ["React", "Framer Motion", "Tailwind CSS", "EmailJS", "Vercel"],
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80",
-    link: "#",
-    githubUrl: "https://github.com/AbdulWasih05",
-    websiteUrl: "https://portfolio-demo.vercel.app",
-    goal: "Designed a modern portfolio website to showcase professional work and skills effectively. The goal was to create an engaging, responsive platform that highlights projects and provides easy contact methods for potential clients.",
-    processAndLearning: "This project reinforced my understanding of modern React patterns and performance optimization. I learned to implement smooth animations without compromising performance, optimize images and assets, and create accessible user interfaces. The challenge of creating engaging animations was solved by using Framer Motion's optimized animation system.",
-    features: [
-      "Interactive Project Showcase with 3D gallery and live previews",
-      "Dynamic Skill Visualization with animated skill tree",
-      "AI-Powered Contact Assistant for visitor engagement",
-      "Real-Time Portfolio Analytics with engagement metrics"
     ]
   },
   {
