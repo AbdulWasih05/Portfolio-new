@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { FaGithub } from 'react-icons/fa';
 import ProjectDetailModal from "./ProjectDetailModal";
 import Port from '../assets/Portfolio-thumbnail.png'
+import real from '../assets/RealestateX-thumbnail.png'
 const projects = [
   {
     title: "Portfolio Website",
@@ -21,31 +22,30 @@ const projects = [
     ]
   },
   {
-    title: "E-Commerce Platform",
-    description: "A modern full-stack e-commerce platform built with Next.js and Node.js.",
-    tech: ["Next.js", "Node.js", "MongoDB", "Stripe", "Tailwind CSS"],
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+    title: "Real Estate Dashboard",
+    description: "A modern full-stack real estate dashboard built with React.js and Node.js.",
+    tech: ["React.js", "Node.js", "MySQL", "Express.js", "Tailwind CSS"],
+    image: real,
     link: "#",
     githubUrl: "https://github.com/AbdulWasih05",
-    websiteUrl: "https://www.amazon.com/",
-    goal: "The goal was to create a seamless shopping experience with secure payments, inventory management, and an intuitive admin interface.",
+    websiteUrl: "https://github.com/AbdulWasih05",
+    goal: "The goal was to create a seamless real estate management experience with property listings, user authentication, and an intuitive admin interface.",
     features: [
-      "Smart Inventory Management with real-time stock tracking and automatic alerts",
-      "AI-Powered Product Recommendations based on user behavior",
+      "Smart Property Management with real-time listing updates and automatic alerts",
+      "AI-Powered Property Recommendations based on user behavior",
       "Advanced Analytics Dashboard with predictive insights",
       "Multi-Vendor Support with individual storefronts"
     ]
   },
   {
-    title: "Task Management App",
-    description: "A collaborative task management application with real-time updates, drag-and-drop functionality, team chat, and file sharing.",
-    tech: ["React", "Firebase", "TypeScript", "Material-UI", "Framer Motion"],
+    title: "Personal Expense Management",
+    description: "A personal expense tracking application to help users manage their finances effectively. Built using React for frontend, Node.js for backend, and MySQL as Database hosted on Docker.",
+    tech: ["React", "MySQL", "TypeScript", "Node.js", "Express", "Docker"],
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     link: "#",
     githubUrl: "https://github.com/AbdulWasih05",
     websiteUrl: "https://task-manager-demo.vercel.app",
-    goal: "Built a collaborative task management system to solve team coordination challenges. The goal was to create a real-time platform where teams could organize tasks, track progress, and communicate effectively in one centralized location.",
-    processAndLearning: "Working with real-time data was a significant learning experience. I gained deep understanding of Firebase's real-time capabilities and learned to handle concurrent user interactions. The challenge of maintaining data consistency across multiple users was solved by implementing proper conflict resolution strategies.",
+    goal: "Built a personal expense management application. The goal was to understand the crud operations and implement backend functionality.",
     features: [
       "Intelligent Task Prioritization with AI-driven ranking",
       "Voice Command Integration for hands-free task management",
@@ -53,57 +53,57 @@ const projects = [
       "Smart Notifications that adapt to user behavior"
     ]
   },
-  {
-    title: "AI Chat Application",
-    description: "An intelligent chat application powered by OpenAI's GPT-4. Features include conversation history, multiple AI personalities, code generation, and real-time responses with streaming.",
-    tech: ["React", "OpenAI API", "Node.js", "Socket.io", "PostgreSQL"],
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-    link: "#",
-    githubUrl: "https://github.com/AbdulWasih05",
-    websiteUrl: "https://ai-chat-demo.vercel.app",
-    goal: "Created an intelligent chat interface to demonstrate AI integration capabilities. The goal was to build a conversational AI platform that could assist users with various tasks, from answering questions to generating code and content.",
-    processAndLearning: "This project expanded my knowledge of API integration and asynchronous programming. I learned to handle streaming responses, manage conversation context, and implement proper error handling for AI services. The challenge of managing API rate limits was solved by implementing request queuing and caching.",
-    features: [
-      "Multi-Modal AI Responses supporting text, code, and images",
-      "Custom AI Personality Builder for specialized knowledge domains",
-      "Real-Time Code Execution with live debugging capabilities",
-      "Conversation Memory & Context across multiple sessions"
-    ]
-  },
-  {
-    title: "Weather Dashboard",
-    description: "A comprehensive weather dashboard with real-time data, 7-day forecasts, interactive maps, and location-based weather alerts. Integrates with multiple weather APIs for accurate data.",
-    tech: ["React", "OpenWeather API", "Chart.js", "Leaflet Maps", "PWA"],
-    image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-    link: "#",
-    githubUrl: "https://github.com/AbdulWasih05",
-    websiteUrl: "https://weather-dashboard.vercel.app",
-    goal: "Developed a comprehensive weather application to provide users with detailed weather information and forecasts. The goal was to create an intuitive dashboard that displays weather data in an easily digestible format with interactive maps.",
-    processAndLearning: "Working with external APIs and data visualization was incredibly educational. I learned to handle API failures gracefully, implement proper error boundaries, and create meaningful data visualizations. The challenge of managing multiple API calls was solved by implementing request caching and debouncing.",
-    features: [
-      "Predictive Weather Modeling with 95% accuracy algorithms",
-      "Personalized Weather Alerts based on user preferences",
-      "Climate Change Tracking with historical trend analysis",
-      "Weather-Based Recommendations for activities and travel"
-    ]
-  },
-  {
-    title: "Social Media Clone",
-    description: "A social media platform clone with features like user profiles, posts, comments, likes, real-time notifications, and direct messaging. Built with modern web technologies.",
-    tech: ["React", "Node.js", "Socket.io", "AWS S3", "Redis"],
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-    link: "#",
-    githubUrl: "https://github.com/AbdulWasih05",
-    websiteUrl: "https://social-media-demo.vercel.app",
-    goal: "Built a social media platform to demonstrate full-stack development skills and real-time features. The goal was to create a feature-rich social network with user profiles, content sharing, and real-time interactions.",
-    processAndLearning: "Building a real-time social platform taught me about WebSocket connections, real-time data synchronization, and handling high-frequency updates. I learned to implement proper user authentication, manage file uploads, and create responsive social features. The challenge of real-time notifications was solved by implementing efficient event-driven architecture.",
-    features: [
-      "Content Moderation AI with automated filtering system",
-      "Real-Time Live Streaming with interactive features",
-      "Advanced Privacy Controls with granular settings",
-      "Social Commerce Integration with seamless shopping"
-    ]
-  },
+  // {
+  //   title: "AI Chat Application",
+  //   description: "An intelligent chat application powered by OpenAI's GPT-4. Features include conversation history, multiple AI personalities, code generation, and real-time responses with streaming.",
+  //   tech: ["React", "OpenAI API", "Node.js", "Socket.io", "PostgreSQL"],
+  //   image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+  //   link: "#",
+  //   githubUrl: "https://github.com/AbdulWasih05",
+  //   websiteUrl: "https://ai-chat-demo.vercel.app",
+  //   goal: "Created an intelligent chat interface to demonstrate AI integration capabilities. The goal was to build a conversational AI platform that could assist users with various tasks, from answering questions to generating code and content.",
+  //   processAndLearning: "This project expanded my knowledge of API integration and asynchronous programming. I learned to handle streaming responses, manage conversation context, and implement proper error handling for AI services. The challenge of managing API rate limits was solved by implementing request queuing and caching.",
+  //   features: [
+  //     "Multi-Modal AI Responses supporting text, code, and images",
+  //     "Custom AI Personality Builder for specialized knowledge domains",
+  //     "Real-Time Code Execution with live debugging capabilities",
+  //     "Conversation Memory & Context across multiple sessions"
+  //   ]
+  // },
+  // {
+  //   title: "Weather Dashboard",
+  //   description: "A comprehensive weather dashboard with real-time data, 7-day forecasts, interactive maps, and location-based weather alerts. Integrates with multiple weather APIs for accurate data.",
+  //   tech: ["React", "OpenWeather API", "Chart.js", "Leaflet Maps", "PWA"],
+  //   image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+  //   link: "#",
+  //   githubUrl: "https://github.com/AbdulWasih05",
+  //   websiteUrl: "https://weather-dashboard.vercel.app",
+  //   goal: "Developed a comprehensive weather application to provide users with detailed weather information and forecasts. The goal was to create an intuitive dashboard that displays weather data in an easily digestible format with interactive maps.",
+  //   processAndLearning: "Working with external APIs and data visualization was incredibly educational. I learned to handle API failures gracefully, implement proper error boundaries, and create meaningful data visualizations. The challenge of managing multiple API calls was solved by implementing request caching and debouncing.",
+  //   features: [
+  //     "Predictive Weather Modeling with 95% accuracy algorithms",
+  //     "Personalized Weather Alerts based on user preferences",
+  //     "Climate Change Tracking with historical trend analysis",
+  //     "Weather-Based Recommendations for activities and travel"
+  //   ]
+  // },
+  // {
+  //   title: "Social Media Clone",
+  //   description: "A social media platform clone with features like user profiles, posts, comments, likes, real-time notifications, and direct messaging. Built with modern web technologies.",
+  //   tech: ["React", "Node.js", "Socket.io", "AWS S3", "Redis"],
+  //   image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+  //   link: "#",
+  //   githubUrl: "https://github.com/AbdulWasih05",
+  //   websiteUrl: "https://social-media-demo.vercel.app",
+  //   goal: "Built a social media platform to demonstrate full-stack development skills and real-time features. The goal was to create a feature-rich social network with user profiles, content sharing, and real-time interactions.",
+  //   processAndLearning: "Building a real-time social platform taught me about WebSocket connections, real-time data synchronization, and handling high-frequency updates. I learned to implement proper user authentication, manage file uploads, and create responsive social features. The challenge of real-time notifications was solved by implementing efficient event-driven architecture.",
+  //   features: [
+  //     "Content Moderation AI with automated filtering system",
+  //     "Real-Time Live Streaming with interactive features",
+  //     "Advanced Privacy Controls with granular settings",
+  //     "Social Commerce Integration with seamless shopping"
+  //   ]
+  // },
 ];
 
 interface Project {
@@ -156,7 +156,7 @@ export default function Projects() {
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 max-w-full"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
               </div>
 
               {/* Card Content */}
