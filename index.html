@@ -2,25 +2,35 @@
 <html lang="en">
   <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Resource Hints for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+  <!-- Preload critical assets -->
+  <link rel="preload" href="/wasih-img.webp" as="image" type="image/webp" fetchpriority="high" />
+  <link rel="modulepreload" href="/src/main.tsx" />
 
   <title>Abdul Wasih | Portfolio</title>
   <meta name="description" content="Portfolio of Abdul Wasih. Projects, skills, and contact." />
-  <link rel="canonical" href="https://wasih.netlify.app/" />
+  <link rel="canonical" href="https://wasih.tech/" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Abdul Wasih | Portfolio" />
   <meta property="og:description" content="Projects, skills, and contact." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://wasih.netlify.app/" />
-  <meta property="og:image" content="/og-image.jpg" />
+  <meta property="og:url" content="https://wasih.tech/" />
+  <meta property="og:image" content="/og-image.webp" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Abdul Wasih | Portfolio" />
   <meta name="twitter:description" content="Projects, skills, and contact." />
-  <meta name="twitter:image" content="/og-image.jpg" />
+  <meta name="twitter:image" content="/og-image.webp" />
 </head>
 
 
