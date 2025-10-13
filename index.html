@@ -15,6 +15,11 @@
   <!-- Preload critical assets -->
   <link rel="preload" href="/wasih-img.webp" as="image" type="image/webp" fetchpriority="high" />
 
+  <!-- Preload critical JS chunks -->
+  <link rel="modulepreload" href="/src/main.tsx" />
+  <link rel="modulepreload" href="/src/pages/Index.tsx" />
+  <link rel="modulepreload" href="/src/components/Hero.tsx" />
+
   <!-- Async font loading - reduced variants for performance -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Playfair+Display:wght@400;600;700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Playfair+Display:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />

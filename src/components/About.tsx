@@ -49,7 +49,7 @@ const About: React.FC = () => {
               href="resume.pdf"
               // download="Wasih_Resume.pdf"
               onClick={(e) => {alert("Resume download is currently disabled. Currently modifying the resume."); e.preventDefault();}}
-              className="inline-flex items-center px-6 py-3 bg-[#757575] hover:bg-black text-white font-medium rounded-lg transition-colors duration-200"
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-br from-slate-50 to-slate-100 text-black border border-gray-200 rounded hover:bg-black hover:text-white transition-colors font-semibold tracking-wide duration-200"
             >
               <span>Download Resume</span>
               <svg 

@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { useState, useEffect, memo } from 'react';
 import LanyardBadge from './LanyardBadge';
 
@@ -56,19 +55,9 @@ const Hero = memo(() => {
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 min-h-[calc(100vh-6rem)]">
           {/* Left: Text Content */}
-          <motion.div
-            className="flex flex-col justify-center py-20 lg:py-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
+          <div className="flex flex-col justify-center py-20 lg:py-0 animate-fade-in">
             {/* Main Title - Stack Layout like "Thoughts Code Coffee" */}
-            <motion.div
-              className="mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-            >
+            <div className="mb-8 animate-fade-in-up">
               {/* Grid Background Effect - Right Side Only */}
               <div className="absolute inset-0 opacity-30 pointer-events-none">
                 {/* Main Grid Pattern */}
@@ -116,38 +105,25 @@ const Hero = memo(() => {
                 <div className="block">Code</div>
                 <div className="block">Coffee</div>
               </h1>
-            </motion.div>
+            </div>
 
             {/* Greeting with Animation */}
-            <motion.div
-              className="mb-6"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
-            >
+            <div className="mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <p className="text-lg text-gray-600 font-medium">
                 {text} ,I'm <span className="text-black font-semibold">Wasih</span>
                 <span className="blinking-cursor ml-1">|</span>
               </p>
-            </motion.div>            {/* Description */}
-            <motion.div
-              className="mb-8 space-y-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-            >
+            </div>
+
+            {/* Description */}
+            <div className="mb-8 space-y-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <p className="text-lg text-gray-700 font-medium leading-relaxed max-w-lg">
                 Not a wizard, but can craft fast, secure, and scalable web apps. Dedicated to crafting clean code, seamless UI, and efficient systems.
               </p>
-
-            </motion.div>
+            </div>
 
             {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
-            >
+            <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
               <button
                 onClick={scrollToProjects}
                 className="inline-flex items-center px-4 py-2 text-lg font-medium text-black border border-gray-200 rounded hover:bg-black hover:text-white transition-colors group cursor-pointer"
@@ -162,16 +138,11 @@ const Hero = memo(() => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </button>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Right: ID Badge with Grid Background */}
-          <motion.div
-            className="hidden lg:flex flex-col justify-center py-20 relative"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
+          <div className="hidden lg:flex flex-col justify-center py-20 relative animate-fade-in" style={{ animationDelay: '0.2s' }}>
             {/* Grid Background Effect - Right Side Only */}
             <div className="absolute inset-0 opacity-30 pointer-events-none">
               {/* Main Grid Pattern */}
@@ -212,7 +183,7 @@ const Hero = memo(() => {
 
             {/* ID Badge Component - Positioned at top right */}
             <LanyardBadge />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

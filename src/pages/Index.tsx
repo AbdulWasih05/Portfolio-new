@@ -1,5 +1,4 @@
 import { Suspense, lazy } from 'react';
-import { motion } from 'framer-motion';
 import SEO from '@/components/SEO';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
@@ -13,14 +12,10 @@ const Projects = lazy(() => import('@/components/Projects'));
 const Contact = lazy(() => import('@/components/Contact'));
 const Footer = lazy(() => import('@/components/Footer'));
 
-// Loading component for Suspense fallback
+// Loading component for Suspense fallback - Using CSS animation instead of Framer Motion
 const SectionLoader = () => (
   <div className="flex items-center justify-center py-20">
-    <motion.div
-      className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full"
-      animate={{ rotate: 360 }}
-      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-    />
+    <div className="w-8 h-8 border-2 border-gray-300 border-t-black rounded-full animate-spin" />
   </div>
 );
 

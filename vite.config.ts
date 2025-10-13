@@ -51,35 +51,35 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         // Manual chunk splitting for better caching and parallel loading
-        manualChunks: {
-          // React core
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          // Framer Motion - heavy animation library
-          'framer-motion': ['framer-motion'],
-          // Radix UI components
-          'radix-ui': [
-            '@radix-ui/react-accordion',
-            '@radix-ui/react-alert-dialog',
-            '@radix-ui/react-avatar',
-            '@radix-ui/react-dialog',
-            '@radix-ui/react-dropdown-menu',
-            '@radix-ui/react-label',
-            '@radix-ui/react-popover',
-            '@radix-ui/react-progress',
-            '@radix-ui/react-scroll-area',
-            '@radix-ui/react-select',
-            '@radix-ui/react-separator',
-            '@radix-ui/react-slider',
-            '@radix-ui/react-tabs',
-            '@radix-ui/react-toast',
-            '@radix-ui/react-tooltip',
-          ],
-          // Icons - separate chunk
-          'icons': ['react-icons', 'lucide-react'],
-          // Form handling
-          'forms': ['react-hook-form'],
+        manualChunks: (id) => {
+          // Vendor chunk for core React
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'react-core';
+          }
+          // Router in separate chunk
+          if (id.includes('node_modules/react-router-dom')) {
+            return 'react-router';
+          }
+          // Framer Motion - lazy loaded for below-fold
+          if (id.includes('node_modules/framer-motion')) {
+            return 'framer-motion';
+          }
+          // Radix UI components - lazy loaded
+          if (id.includes('node_modules/@radix-ui')) {
+            return 'radix-ui';
+          }
+          // Icons - lazy loaded
+          if (id.includes('node_modules/react-icons') || id.includes('node_modules/lucide-react')) {
+            return 'icons';
+          }
           // Query client
-          'query': ['@tanstack/react-query'],
+          if (id.includes('node_modules/@tanstack/react-query')) {
+            return 'query';
+          }
+          // Other node_modules
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
         },
         // Optimize chunk naming for better caching
         chunkFileNames: (chunkInfo) => {
