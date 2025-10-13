@@ -8,11 +8,11 @@ interface SEOProps {
   type?: string;
 }
 
-const SEO = ({ 
-  title = "Abdul Wasih - Full Stack Developer Portfolio",
-  description = "Creative UI/UX and brand designer specializing in meaningful digital experiences. Crafting intuitive interfaces and strategic design solutions for modern brands.",
-  url = "https://Abdul Wasih.design",
-  image = "https://Abdul Wasih.design/og-image.jpg",
+const SEO = ({
+  title = "Abdul Wasih - Full Stack Engineer | React, Node.js & Cloud Solutions",
+  description = "Enthusiastic Full Stack Engineer crafting scalable web applications with React.js, Next.js, Node.js. Specializing in responsive UI, API integration and Docker containerization.",
+  url = "https://wasih.tech",
+  image = "https://wasih.tech/og-image.webp",
   type = "website"
 }: SEOProps) => {
   // JSON-LD Structured Data
@@ -20,32 +20,56 @@ const SEO = ({
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Abdul Wasih",
-    "jobTitle": "Full Stack Developer",
+    "jobTitle": "Full Stack Engineer",
     "description": description,
     "url": url,
     "image": image,
     "sameAs": [
-      "https://linkedin.com/in/Abdul Wasih",
-      "https://dribbble.com/Abdul Wasih",
-      "https://instagram.com/Abdul Wasih"
+      "https://github.com/AbdulWasih05",
+      "https://www.linkedin.com/in/abdul-wasih-977a702b9/"
     ],
     "worksFor": {
       "@type": "Organization",
-      "name": "Freelance Designer"
+      "name": "Freelance Developer"
     },
     "knowsAbout": [
-      "UI/UX Design",
-      "Brand Design", 
-      "Web Design",
-      "User Experience",
-      "Visual Design",
-      "Design Strategy",
-      "Creative Direction"
+      "React.js",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "JavaScript",
+      "TypeScript",
+      "MySQL",
+      "Docker",
+      "Git",
+      "Frontend Development",
+      "Backend Development",
+      "Full Stack Development",
+      "API Integration",
+      "DevOps",
+      "Data Structures",
+      "Algorithms",
+      "Object-Oriented Programming",
+      "Web Development",
+      "Responsive Web Design",
+      "REST APIs"
     ],
-    "alumniOf": {
-      "@type": "EducationalOrganization",
-      "name": "Design Institute"
-    }
+    "skills": [
+      "React.js",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "MySQL",
+      "Docker",
+      "Git",
+      "JavaScript",
+      "TypeScript",
+      "HTML5",
+      "CSS3",
+      "Responsive Design",
+      "API Development"
+    ]
   };
 
   return (
@@ -54,37 +78,37 @@ const SEO = ({
       <title>{title}</title>
       <meta name="title" content={title} />
       <meta name="description" content={description} />
-      <meta name="author" content="Alex Johnson" />
+      <meta name="author" content="Abdul Wasih" />
       <meta name="robots" content="index, follow" />
       <meta name="language" content="English" />
       <meta name="theme-color" content="#000000" />
-      
+
       {/* Canonical URL */}
       <link rel="canonical" href={url} />
-      
+
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="Alex Johnson Portfolio" />
+      <meta property="og:image:width" content="1024" />
+      <meta property="og:image:height" content="1024" />
+      <meta property="og:site_name" content="Abdul Wasih - Full Stack Engineer Portfolio" />
       <meta property="og:locale" content="en_US" />
-      
+
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={url} />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={image} />
-      <meta property="twitter:creator" content="@alexjohnson" />
-      
+      <meta property="twitter:creator" content="@abdulwasih" />
+
       {/* Additional Meta Tags */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-      <meta name="keywords" content="Alex Johnson, Full-Stack Developer, React Developer, TypeScript, JavaScript, Web Development, Portfolio, Freelance Developer, Frontend Developer, Backend Developer" />
+      <meta name="keywords" content="Abdul Wasih, Full Stack Engineer, React Developer, Node.js Developer, Next.js, TypeScript, JavaScript, MongoDB, MySQL, Docker, Git, Web Development, Portfolio, API Development, Frontend Developer, Backend Developer, Cloud Computing, DevOps, Responsive Web Design, REST API" />
       
       {/* Preconnect to external domains for performance */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
