@@ -13,6 +13,13 @@
 /*.mjs
   Content-Type: text/javascript; charset=utf-8
 
+# TypeScript files (shouldn't be in build, but as fallback)
+/*.tsx
+  Content-Type: text/javascript; charset=utf-8
+
+/*.ts
+  Content-Type: text/javascript; charset=utf-8
+
 # CSS files
 /*.css
   Content-Type: text/css; charset=utf-8
