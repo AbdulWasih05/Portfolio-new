@@ -25,6 +25,9 @@ dist-ssr
 
 public/*.
 wasihimg.jpeg
+wasihimg.webp
 
 .env
+
+settings.local.json
 
