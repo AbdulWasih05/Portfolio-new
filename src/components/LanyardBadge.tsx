@@ -64,23 +64,28 @@ export default function LanyardBadge() {
           >
             {/* Photo with realistic border */}
             <div className="p-4">
-              <div 
+              <div
                 className="relative overflow-hidden hover:scale-105 transition-transform duration-500"
                 style={{
                   borderRadius: '4px',
                   border: '1px solid #e5e7eb'
                 }}
               >
-                <img
-                  src="wasih-img.jpeg"
-                  alt="Profile ID"
-                  className="w-full h-80 object-cover"
-                  style={{
-                    filter: 'contrast(1.05) brightness(1.02)'
-                  }}
-                />
+                <picture>
+                  <source srcSet="wasih-img.webp" type="image/webp" />
+                  <img
+                    src="wasih-img.jpeg"
+                    alt="Profile ID"
+                    className="w-full h-80 object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    style={{
+                      filter: 'contrast(1.05) brightness(1.02)'
+                    }}
+                  />
+                </picture>
                 {/* Photo corner shadow */}
-                <div 
+                <div
                   className="absolute top-0 right-0 w-4 h-4 pointer-events-none"
                   style={{
                     background: 'linear-gradient(-45deg, transparent 40%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0.1) 60%)'

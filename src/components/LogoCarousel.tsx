@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { memo } from "react";
 import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaNodeJs, FaDocker, FaGitAlt } from "react-icons/fa";
 import { SiMysql } from "react-icons/si";
 
@@ -13,7 +14,7 @@ const techStack = [
   { name: "MySQL", icon: <SiMysql className="text-black text-2xl" /> },
 ];
 
-export default function LogoCarousel() {
+const LogoCarousel = memo(() => {
   return (
     <div className="relative md:w-2/4 overflow-hidden  py-6 px-4 md:mx-auto" 
     style={{
@@ -47,4 +48,8 @@ export default function LogoCarousel() {
       </motion.div>
     </div>
   );
-}
+});
+
+LogoCarousel.displayName = 'LogoCarousel';
+
+export default LogoCarousel;

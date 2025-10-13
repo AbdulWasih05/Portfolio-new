@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import LanyardBadge from './LanyardBadge';
 
 
-const Hero = () => {
+const Hero = memo(() => {
   const scrollToProjects = () => {
     const element = document.getElementById('projects');
     if (element) {
@@ -217,6 +217,8 @@ const Hero = () => {
       </div>
     </section>
   );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;

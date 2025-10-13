@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { MotionConfig } from "framer-motion";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -26,12 +27,14 @@ const router = createBrowserRouter(
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <RouterProvider router={router}
-        future={{ v7_startTransition: true }as any} />
-      </TooltipProvider>
+      <MotionConfig reducedMotion="user">
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <RouterProvider router={router}
+          future={{ v7_startTransition: true }as any} />
+        </TooltipProvider>
+      </MotionConfig>
     </QueryClientProvider>
   </HelmetProvider>
 );

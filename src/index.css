@@ -5,6 +5,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
 
+/* Performance optimizations */
+* {
+  /* Use GPU acceleration for animations */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Only animate transform and opacity for better performance */
+.animate-float,
+.animate-float-reverse,
+.animate-float-slow,
+.animate-subtle-sway,
+.animate-gentle-bounce,
+.animate-gentle-swing {
+  will-change: transform;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
