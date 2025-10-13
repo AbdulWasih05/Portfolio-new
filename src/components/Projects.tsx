@@ -126,12 +126,12 @@ export default function Projects() {
     <section id="projects" className="bg-gray-50 py-20 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 mt-10">
         <div className="flex items-center gap-2">
-          <h2 className="text-3xl font-semibold text-left mb-2 text-gray-900 brand-name flex-shrink-0">
+          <h2 className="text-3xl font-semibold text-left mb-2 text-gray-900 playfair flex-shrink-0">
             Projects
           </h2>
           <div className="bg-gray-300 w-full h-0.5"></div>
         </div>
-        <h4 className="text-base md:text-lg text-left mb-12 text-gray-700 leading-relaxed oswald">
+        <h4 className="text-base md:text-lg text-left mb-12 text-gray-700 leading-relaxed playfair">
           Explore some of my recent projects and see how I bring ideas to life
         </h4>
 
@@ -163,7 +163,7 @@ export default function Projects() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent"></div>
               <div className="p-6">
                 {/* Title */}
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="text-xl font-semibold tracking-wide text-gray-900 mb-3 playfair">
                   {project.title}
                 </h3>
 
@@ -225,7 +225,7 @@ export default function Projects() {
             className="group inline-flex items-center gap-3 px-8 py-4 bg-gray-900 hover:bg-gray-800 text-white rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105"
           >
             <FaGithub className="text-xl group-hover:scale-110 transition-transform" />
-            <span className="brand-name font-semibold">View All Projects</span>
+            <span className="playfair tracking-wider font-semibold">View All Projects</span>
             <svg
               className="w-5 h-5 group-hover:translate-x-1 transition-transform"
               fill="none"

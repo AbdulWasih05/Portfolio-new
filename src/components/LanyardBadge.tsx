@@ -77,7 +77,7 @@ export default function LanyardBadge() {
                     src="wasih-img.jpeg"
                     alt="Profile ID"
                     className="w-full h-80 object-cover"
-                    loading="lazy"
+                    loading="eager"
                     decoding="async"
                     style={{
                       filter: 'contrast(1.05) brightness(1.02)'

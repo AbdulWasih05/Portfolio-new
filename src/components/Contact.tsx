@@ -248,7 +248,7 @@ const Contact = () => {
     <section id="contact" className="bg-white py-20 scroll-mt-20">
       <div className="max-w-4xl mx-auto px-4">
         <motion.h2
-          className="text-3xl font-semibold text-gray-900 text-center mb-4 brand-name"
+          className="text-3xl font-semibold text-gray-900 text-center mb-4 playfair"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -364,7 +364,7 @@ const Contact = () => {
           <motion.button
             type="submit"
             disabled={isSubmitting || isLimitReached}
-            className="w-full bg-black text-white px-8 py-4 rounded-lg hover:bg-gray-800 hover:scale-105 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none brand-name"
+            className="w-full bg-black text-white px-8 py-4 rounded-lg hover:bg-gray-800 hover:scale-105 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none playfair"
             whileHover={!isSubmitting && !isLimitReached ? { scale: 1.05 } : {}}
             whileTap={!isSubmitting && !isLimitReached ? { scale: 0.98 } : {}}
           >

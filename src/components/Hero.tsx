@@ -58,16 +58,16 @@ const Hero = memo(() => {
           {/* Left: Text Content */}
           <motion.div
             className="flex flex-col justify-center py-20 lg:py-0"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
           >
             {/* Main Title - Stack Layout like "Thoughts Code Coffee" */}
             <motion.div
               className="mb-8"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
             >
               {/* Grid Background Effect - Right Side Only */}
               <div className="absolute inset-0 opacity-30 pointer-events-none">
@@ -121,9 +121,9 @@ const Hero = memo(() => {
             {/* Greeting with Animation */}
             <motion.div
               className="mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
             >
               <p className="text-lg text-gray-600 font-medium">
                 {text} ,I'm <span className="text-black font-semibold">Wasih</span>
@@ -132,21 +132,21 @@ const Hero = memo(() => {
             </motion.div>            {/* Description */}
             <motion.div
               className="mb-8 space-y-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
             >
               <p className="text-lg text-gray-700 font-medium leading-relaxed max-w-lg">
                 Not a wizard, but can craft fast, secure, and scalable web apps. Dedicated to crafting clean code, seamless UI, and efficient systems.
               </p>
-              
+
             </motion.div>
 
             {/* CTA Button */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
             >
               <button
                 onClick={scrollToProjects}
@@ -168,9 +168,9 @@ const Hero = memo(() => {
           {/* Right: ID Badge with Grid Background */}
           <motion.div
             className="hidden lg:flex flex-col justify-center py-20 relative"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             {/* Grid Background Effect - Right Side Only */}
             <div className="absolute inset-0 opacity-30 pointer-events-none">
