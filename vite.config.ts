@@ -61,13 +61,12 @@ export default defineConfig(({ mode }) => ({
         },
         // Manual chunk splitting for better caching and parallel loading
         manualChunks: (id) => {
-          // Vendor chunk for core React
-          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
-            return 'react-core';
-          }
-          // Router in separate chunk
-          if (id.includes('node_modules/react-router-dom')) {
-            return 'react-router';
+          // Core React dependencies - keep together with router
+          if (id.includes('node_modules/react') ||
+              id.includes('node_modules/react-dom') ||
+              id.includes('node_modules/react-router-dom') ||
+              id.includes('node_modules/scheduler')) {
+            return 'react-vendor';
           }
           // Framer Motion - lazy loaded for below-fold
           if (id.includes('node_modules/framer-motion')) {
