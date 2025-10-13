@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { FaGithub } from 'react-icons/fa';
-import ProjectDetailModal from "./ProjectDetailModal";
-import Port from '../assets/Portfolio-thumbnail.png'
-import real from '../assets/RealestateX-thumbnail.png'
+import PortWebP from '../assets/Portfolio-thumbnail.webp'
+import PortPNG from '../assets/Portfolio-thumbnail.png'
+import RealWebP from '../assets/RealestateX-thumbnail.webp'
+import RealPNG from '../assets/RealestateX-thumbnail.png'
+
+const ProjectDetailModal = lazy(() => import("./ProjectDetailModal"));
 const projects = [
   {
     title: "Portfolio Website",
     description: "A modern, responsive portfolio website built with React and Framer Motion. Features smooth animations, contact form, and SEO optimization for better visibility.",
     tech: ["React", "Framer Motion", "Tailwind CSS", "Netlify"],
-    image: Port,
+    imageWebP: PortWebP,
+    imageFallback: PortPNG,
     link: "",
     githubUrl: "https://github.com/AbdulWasih05",
     websiteUrl: "https://wasih.netlify.app",
@@ -25,7 +29,8 @@ const projects = [
     title: "Real Estate Dashboard",
     description: "A modern full-stack real estate dashboard built with React.js and Node.js.",
     tech: ["React.js", "Node.js", "MySQL", "Express.js", "Tailwind CSS"],
-    image: real,
+    imageWebP: RealWebP,
+    imageFallback: RealPNG,
     link: "#",
     githubUrl: "https://github.com/AbdulWasih05",
     websiteUrl: "https://github.com/AbdulWasih05",
@@ -110,12 +115,13 @@ interface Project {
   title: string;
   description: string;
   tech: string[];
-  image: string;
+  imageWebP?: string;
+  imageFallback?: string;
+  image?: string;
   link: string;
   githubUrl?: string;
   websiteUrl?: string;
   goal: string;
-
   features: string[];
 }
 
@@ -151,11 +157,17 @@ export default function Projects() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 max-w-full"
-                />
+                <picture>
+                  {project.imageWebP && (
+                    <source srcSet={project.imageWebP} type="image/webp" />
+                  )}
+                  <img
+                    src={project.imageFallback || project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 max-w-full"
+                  />
+                </picture>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
               </div>
 
@@ -244,10 +256,12 @@ export default function Projects() {
 
         {/* Render the modal component only if a project is selected */}
         {selectedProject && (
-          <ProjectDetailModal
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
+          <Suspense fallback={<div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+            <ProjectDetailModal
+              project={selectedProject}
+              onClose={() => setSelectedProject(null)}
+            />
+          </Suspense>
         )}
       </div>
     </section>
