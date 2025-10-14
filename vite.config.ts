@@ -97,7 +97,8 @@ export default defineConfig(({ mode }) => ({
       }
     },
     // Source maps only in dev
-    sourcemap: mode === 'development',
+    // sourcemap: mode === 'development',
+    sourcemap: mode === 'production' ? true : true,
   },
   // Optimize dependencies
   optimizeDeps: {
