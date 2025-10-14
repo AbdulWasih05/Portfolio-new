@@ -6,19 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Resource Hints for Performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-  <link rel="dns-prefetch" href="https://api.fontshare.com" />
 
   <!-- Preload critical assets -->
   <!-- Note: Image preload removed - only preload above-the-fold images that are actually in the HTML -->
 
-  <!-- Async font loading - reduced variants for performance -->
+  <!-- Async font loading with font-display swap -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Playfair+Display:wght@400;600;700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Playfair+Display:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Playfair+Display:wght@400;600;700&display=swap"></noscript>
+
+  <!-- Preload LCP image -->
+  <link rel="preload" href="/wasih-img.webp" as="image" type="image/webp" fetchpriority="high" />
 
   <title>Abdul Wasih | Portfolio</title>
   <meta name="description" content="Portfolio of Abdul Wasih. Projects, skills, and contact." />

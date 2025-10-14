@@ -42,7 +42,7 @@ const projects = [
     title: "Personal Expense Management",
     description: "A personal expense tracking application to help users manage their finances effectively. Built using React for frontend, Node.js for backend, and MySQL as Database hosted on Docker.",
     tech: ["React", "MySQL", "TypeScript", "Node.js", "Express", "Docker"],
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
     link: "#",
     githubUrl: "https://github.com/AbdulWasih05",
     websiteUrl: "https://task-manager-demo.vercel.app",

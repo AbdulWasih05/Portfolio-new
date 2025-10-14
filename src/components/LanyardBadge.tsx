@@ -71,19 +71,18 @@ export default function LanyardBadge() {
                   border: '1px solid #e5e7eb'
                 }}
               >
-                <picture>
-                  <source srcSet="wasih-img.webp" type="image/webp" />
-                  <img
-                    src="wasih-img.jpeg"
-                    alt="Profile ID"
-                    className="w-full h-80 object-cover"
-                    loading="eager"
-                    decoding="async"
-                    style={{
-                      filter: 'contrast(1.05) brightness(1.02)'
-                    }}
-                  />
-                </picture>
+                <img
+                  src="wasih-img.webp"
+                  alt="Profile ID"
+                  width="400"
+                  height="570"
+                  className="w-full h-80 object-cover"
+                  loading="eager"
+                  decoding="async"
+                  style={{
+                    filter: 'contrast(1.05) brightness(1.02)'
+                  }}
+                />
                 {/* Photo corner shadow */}
                 <div
                   className="absolute top-0 right-0 w-4 h-4 pointer-events-none"
