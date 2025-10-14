@@ -62,10 +62,34 @@ const Footer = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           viewport={{ once: true }}
         >
-          <a className="hover:text-white transition-colors" onClick={() => scrollToSection('about')}>About</a>
-          <a className="hover:text-white transition-colors" onClick={() => scrollToSection('Projects')}>Projects</a>
-          <a className="hover:text-white transition-colors" onClick={() => scrollToSection('Skills')}>Expertise</a>
-          <a className="hover:text-white transition-colors" onClick={() => scrollToSection('contact')}>Contact</a>
+          <a
+            href="#about"
+            className="hover:text-white transition-colors cursor-pointer"
+            onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}
+          >
+            About
+          </a>
+          <a
+            href="#projects"
+            className="hover:text-white transition-colors cursor-pointer"
+            onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}
+          >
+            Projects
+          </a>
+          <a
+            href="#skills"
+            className="hover:text-white transition-colors cursor-pointer"
+            onClick={(e) => { e.preventDefault(); scrollToSection('Skills'); }}
+          >
+            Expertise
+          </a>
+          <a
+            href="#contact"
+            className="hover:text-white transition-colors cursor-pointer"
+            onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}
+          >
+            Contact
+          </a>
         </motion.div>
 
         {/* Separator Line */}
