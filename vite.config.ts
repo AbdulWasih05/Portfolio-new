@@ -61,11 +61,16 @@ export default defineConfig(({ mode }) => ({
         },
         // Manual chunk splitting for better caching and parallel loading
         manualChunks: (id) => {
-          // Core React dependencies - keep together with router
+          // Core React and React-dependent libraries that use React APIs
+          // These MUST load together to avoid "createContext undefined" errors
           if (id.includes('node_modules/react') ||
               id.includes('node_modules/react-dom') ||
               id.includes('node_modules/react-router-dom') ||
-              id.includes('node_modules/scheduler')) {
+              id.includes('node_modules/scheduler') ||
+              id.includes('node_modules/next-themes') ||
+              id.includes('node_modules/react-helmet-async') ||
+              id.includes('node_modules/vaul') ||
+              id.includes('node_modules/sonner')) {
             return 'react-vendor';
           }
           // Framer Motion - lazy loaded for below-fold
