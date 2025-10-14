@@ -2,9 +2,7 @@ import { useState, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { FaGithub } from 'react-icons/fa';
 import PortWebP from '../assets/Portfolio-thumbnail.webp'
-import PortPNG from '../assets/Portfolio-thumbnail.png'
 import RealWebP from '../assets/RealestateX-thumbnail.webp'
-import RealPNG from '../assets/RealestateX-thumbnail.png'
 
 const ProjectDetailModal = lazy(() => import("./ProjectDetailModal"));
 const projects = [
@@ -13,10 +11,9 @@ const projects = [
     description: "A modern, responsive portfolio website built with React and Framer Motion. Features smooth animations, contact form, and SEO optimization for better visibility.",
     tech: ["React", "Framer Motion", "Tailwind CSS", "Netlify"],
     imageWebP: PortWebP,
-    imageFallback: PortPNG,
     link: "",
     githubUrl: "https://github.com/AbdulWasih05",
-    websiteUrl: "https://wasih.netlify.app",
+    websiteUrl: "https://wasih.tech",
     goal: "Designed a modern portfolio website to showcase professional work and skills effectively. The goal was to create an engaging, responsive platform that highlights projects and provides easy contact methods for potential clients.",
     features: [
       "Minimilistic and Clean Design with white and black theme",
@@ -30,7 +27,6 @@ const projects = [
     description: "A modern full-stack real estate dashboard built with React.js and Node.js.",
     tech: ["React.js", "Node.js", "MySQL", "Express.js", "Tailwind CSS"],
     imageWebP: RealWebP,
-    imageFallback: RealPNG,
     link: "#",
     githubUrl: "https://github.com/AbdulWasih05",
     websiteUrl: "https://github.com/AbdulWasih05",
@@ -157,17 +153,14 @@ export default function Projects() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
-                <picture>
-                  {project.imageWebP && (
-                    <source srcSet={project.imageWebP} type="image/webp" />
-                  )}
-                  <img
-                    src={project.imageFallback || project.image}
-                    alt={project.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 max-w-full"
-                  />
-                </picture>
+                <img
+                  src={project.imageWebP || project.image}
+                  alt={project.title}
+                  loading="lazy"
+                  width="800"
+                  height="400"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
               </div>
 
