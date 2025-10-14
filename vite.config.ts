@@ -77,8 +77,8 @@ export default defineConfig(({ mode }) => ({
           if (id.includes('node_modules/framer-motion')) {
             return 'framer-motion';
           }
-          // Radix UI components - lazy loaded
-          if (id.includes('node_modules/@radix-ui')) {
+          // Radix UI and floating-ui (they depend on each other)
+          if (id.includes('node_modules/@radix-ui') || id.includes('node_modules/@floating-ui')) {
             return 'radix-ui';
           }
           // Icons - lazy loaded
