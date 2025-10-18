@@ -1,14 +1,5 @@
 /* Fonts loaded async in index.html - removed render-blocking @imports */
 
-/* Performance optimizations */
-* {
-  /* Use GPU acceleration for animations */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
 /* Only animate transform and opacity for better performance */
 .animate-float,
 .animate-float-reverse,
@@ -827,4 +818,210 @@ img {
       margin-top: var(--space-6);
     }
   }
+
+/* Custom Scrollbar Styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Hide scrollbar arrows */
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(80, 80, 80, 0.6);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(60, 60, 60, 0.8);
+}
+
+/* Firefox scrollbar styles */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(80, 80, 80, 0.6) rgba(0, 0, 0, 0.1);
+}
+
+/* Glassmorphism Styles */
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  will-change: transform, opacity;
+}
+
+.glass-backdrop {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Gradient Animations */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Section Divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.15) 50%, transparent);
+  margin: 1.5rem 0;
+}
+
+/* Carousel Animations */
+@keyframes scroll-carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes carousel-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes carousel-glow {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 rgba(0, 0, 0, 0);
+  }
+  50% {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), 0 0 20px rgba(59, 130, 246, 0.2);
+  }
+}
+
+/* Carousel Container */
+.carousel-track {
+  display: flex;
+  gap: 2rem;
+  animation: scroll-carousel 15s linear infinite;
+  will-change: transform;
+}
+
+/* Tech Category Colors */
+.tech-frontend {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.tech-backend {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.tech-devops {
+  background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.tech-tools {
+  background: linear-gradient(135deg, #fed7aa 0%, #fde68a 100%);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.tech-database {
+  background: linear-gradient(135deg, #cffafe 0%, #a5f3fc 100%);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* Carousel Card Styles */
+.carousel-card {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  will-change: transform, box-shadow;
+}
+
+.carousel-card:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  animation: carousel-glow 2s ease-in-out infinite;
+}
+
+.carousel-card svg {
+  font-size: 1.5rem;
+  display: block;
+  overflow: visible;
+}
+
+
+/* Carousel Mask for Edge Fade Effect */
+.carousel-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 12.5%,
+    black 87.5%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 12.5%,
+    black 87.5%,
+    transparent 100%
+  );
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+}
+
+/* Responsive adjustments for carousel */
+@media (max-width: 768px) {
+  .carousel-track {
+    gap: 0.75rem;
+    animation-duration: 12s;
+  }
+
+  .carousel-card {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .carousel-card svg {
+    font-size: 1.5rem;
+  }
+}
+
+/* Footer Custom Patterns */
+.footer-dot-pattern {
+  background-image: radial-gradient(circle, white 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.footer-glow {
+  background: radial-gradient(ellipse at center top, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+}
 }
