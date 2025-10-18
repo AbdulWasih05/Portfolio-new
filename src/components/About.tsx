@@ -47,9 +47,9 @@ const About: React.FC = () => {
           >
             <a
               href="resume.pdf"
-              // download="Wasih_Resume.pdf"
-              onClick={(e) => {alert("Resume download is currently disabled. Currently modifying the resume."); e.preventDefault();}}
-              className="inline-flex items-center px-6 py-3 bg-gradient-to-br from-slate-50 to-slate-100 text-black border border-gray-200 rounded hover:bg-black hover:text-white transition-colors font-semibold tracking-wide duration-200"
+              download="Wasih_Resume.pdf"
+              // onClick={(e) => {alert("Resume download is currently disabled. Currently modifying the resume."); e.preventDefault();}}
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-br from-slate-50 to-slate-100 text-black border border-gray-200 rounded hover:from-black hover:to-gray-800 hover:text-white transition-colors font-semibold tracking-wide duration-200"
             >
               <span>Download Resume</span>
               <svg 
@@ -106,18 +106,6 @@ const About: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Closing Line */}
-      {/* <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 0.8 }}
-        className="text-2xl md:text-3xl font-bold mt-12"
-      >
-        My goal is to craft{" "}
-        <span className="text-black">scalable & innovative solutions</span>{" "}
-        that bridge technology with real-world needs
-        <span className="text-black">●</span>
-      </motion.h2> */}
     </section>
   );
 };
