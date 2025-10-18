@@ -85,10 +85,6 @@ export default defineConfig(({ mode }) => ({
           if (id.includes('node_modules/react-icons') || id.includes('node_modules/lucide-react')) {
             return 'icons';
           }
-          // Query client
-          if (id.includes('node_modules/@tanstack/react-query')) {
-            return 'query';
-          }
           // Other node_modules
           if (id.includes('node_modules')) {
             return 'vendor';
@@ -107,7 +103,6 @@ export default defineConfig(({ mode }) => ({
       'react-dom',
       'react-router-dom',
       'framer-motion',
-      '@tanstack/react-query'
     ],
   },
 }));

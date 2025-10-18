@@ -73,12 +73,15 @@ export default function LanyardBadge() {
               >
                 <img
                   src="wasih-img.webp"
+                  srcSet="wasih-img-400w.webp 400w, wasih-img-800w.webp 800w, wasih-img-1200w.webp 1200w"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 400px, 260px"
                   alt="Profile ID"
                   width="400"
                   height="570"
                   className="w-full h-80 object-cover"
                   loading="eager"
                   decoding="async"
+                  fetchpriority="high"
                   style={{
                     filter: 'contrast(1.05) brightness(1.02)'
                   }}
