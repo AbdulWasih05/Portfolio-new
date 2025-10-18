@@ -7,19 +7,19 @@ import RealWebP from '../assets/RealestateX-thumbnail.webp'
 const ProjectDetailModal = lazy(() => import("./ProjectDetailModal"));
 const projects = [
   {
-    title: "Portfolio Website",
-    description: "A modern, responsive portfolio website built with React and Framer Motion. Features smooth animations, contact form, and SEO optimization for better visibility.",
-    tech: ["React", "Framer Motion", "Tailwind CSS", "Netlify"],
+    title: "Fake Review Detector",
+    description: "An intelligent Chrome extension that leverages cutting-edge machine learning to instantly expose fake and AI-generated reviews across 10+ major e-commerce and review platforms.",
+    tech: ["React", "TypeScript", "TensorFlow.js", "ONNX Runtime", "Vite", "DistilBert"],
     imageWebP: PortWebP,
     link: "",
     githubUrl: "https://github.com/AbdulWasih05",
-    websiteUrl: "https://wasih.tech",
-    goal: "Designed a modern portfolio website to showcase professional work and skills effectively. The goal was to create an engaging, responsive platform that highlights projects and provides easy contact methods for potential clients.",
+    websiteUrl: "https://github.com/AbdulWasih05",
+    goal: "Engineered a breakthrough browser extension to combat the growing epidemic of fake reviews in online shopping. The mission was to create an intelligent, real-time detection system that seamlessly integrates with popular e-commerce platforms, helping millions of shoppers distinguish authentic feedback from fraudulent content with blazing-fast AI analysis.",
     features: [
-      "Minimilistic and Clean Design with white and black theme",
-      "Scroll-Triggered Animations for enhanced user engagement",
-      "Optimized for Performance and SEO best practices",
-      "Responsive Layout across all device types"
+      "Dual-Engine AI Detection: Hybrid local (TensorFlow.js/ONNX) and backend analysis for maximum accuracy and speed",
+      "Lightning-Fast Performance: Optimized with Vite bundling, lazy loading, and efficient DOM manipulation for zero lag",
+      "Customizable Experience: Dark/light themes, adjustable highlight colors, auto-analyze mode, and granular privacy settings",
+      "Enterprise-Grade Security: Client-side processing option for privacy-conscious users with optional backend enhancement",
     ]
   },
   {
@@ -38,73 +38,26 @@ const projects = [
       "Multi-Vendor Support with individual storefronts"
     ]
   },
-  {
-    title: "Personal Expense Management",
-    description: "A personal expense tracking application to help users manage their finances effectively. Built using React for frontend, Node.js for backend, and MySQL as Database hosted on Docker.",
-    tech: ["React", "MySQL", "TypeScript", "Node.js", "Express", "Docker"],
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+ {
+    title: "Retro Wallet - Expense Tracker",
+    description: "A full-stack expense management platform that transforms mundane financial tracking into an electrifying retro gaming experience! Featuring vaporwave aesthetics, real-time analytics, and seamless CRUD operations - all powered by React, Node.js, and MySQL running on Docker.",
+    tech: ["React", "MySQL", "TypeScript", "Node.js", "Express.js", "Docker", "Sequelize ORM", "JWT", "Tailwind CSS"],
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",       
     link: "#",
-    githubUrl: "https://github.com/AbdulWasih05",
-    websiteUrl: "https://task-manager-demo.vercel.app",
-    goal: "Built a personal expense management application. The goal was to understand the crud operations and implement backend functionality.",
+    githubUrl: "https://github.com/AbdulWasih05/Retro-Wallet",
+    websiteUrl: "https://github.com/AbdulWasih05",
+    goal: "Built a production-ready expense tracking application with a stunning retro-gaming interface. Mastered full-stack CRUD operations, JWT authentication, RESTful API design, and Docker containerization while implementing real-time financial analytics.",
     features: [
-      "Intelligent Task Prioritization with AI-driven ranking",
-      "Voice Command Integration for hands-free task management",
-      "Time Tracking with detailed productivity analytics",
-      "Smart Notifications that adapt to user behavior"
+      "Immersive Retro Gaming UI with vaporwave neon aesthetics and pixel-perfect animations",
+      "Complete Expense Management with real-time CRUD operations and instant total calculations",
+      "Secure JWT Authentication with bcrypt password hashing and Guest Mode for demos",
+      "Advanced Analytics with category-based filtering, date range selection, and visual expense breakdown",
+      "Containerized Deployment with Docker Compose for MySQL, backend, and frontend services",
+      "Lightning-Fast Performance using React 18, Vite bundling, and Sequelize ORM optimization",
+      "Fully Responsive Design with mobile-first Tailwind CSS and seamless cross-device experience",
+      "State Management with React Context API for global expense and authentication states"
     ]
   },
-  // {
-  //   title: "AI Chat Application",
-  //   description: "An intelligent chat application powered by OpenAI's GPT-4. Features include conversation history, multiple AI personalities, code generation, and real-time responses with streaming.",
-  //   tech: ["React", "OpenAI API", "Node.js", "Socket.io", "PostgreSQL"],
-  //   image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-  //   link: "#",
-  //   githubUrl: "https://github.com/AbdulWasih05",
-  //   websiteUrl: "https://ai-chat-demo.vercel.app",
-  //   goal: "Created an intelligent chat interface to demonstrate AI integration capabilities. The goal was to build a conversational AI platform that could assist users with various tasks, from answering questions to generating code and content.",
-  //   processAndLearning: "This project expanded my knowledge of API integration and asynchronous programming. I learned to handle streaming responses, manage conversation context, and implement proper error handling for AI services. The challenge of managing API rate limits was solved by implementing request queuing and caching.",
-  //   features: [
-  //     "Multi-Modal AI Responses supporting text, code, and images",
-  //     "Custom AI Personality Builder for specialized knowledge domains",
-  //     "Real-Time Code Execution with live debugging capabilities",
-  //     "Conversation Memory & Context across multiple sessions"
-  //   ]
-  // },
-  // {
-  //   title: "Weather Dashboard",
-  //   description: "A comprehensive weather dashboard with real-time data, 7-day forecasts, interactive maps, and location-based weather alerts. Integrates with multiple weather APIs for accurate data.",
-  //   tech: ["React", "OpenWeather API", "Chart.js", "Leaflet Maps", "PWA"],
-  //   image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-  //   link: "#",
-  //   githubUrl: "https://github.com/AbdulWasih05",
-  //   websiteUrl: "https://weather-dashboard.vercel.app",
-  //   goal: "Developed a comprehensive weather application to provide users with detailed weather information and forecasts. The goal was to create an intuitive dashboard that displays weather data in an easily digestible format with interactive maps.",
-  //   processAndLearning: "Working with external APIs and data visualization was incredibly educational. I learned to handle API failures gracefully, implement proper error boundaries, and create meaningful data visualizations. The challenge of managing multiple API calls was solved by implementing request caching and debouncing.",
-  //   features: [
-  //     "Predictive Weather Modeling with 95% accuracy algorithms",
-  //     "Personalized Weather Alerts based on user preferences",
-  //     "Climate Change Tracking with historical trend analysis",
-  //     "Weather-Based Recommendations for activities and travel"
-  //   ]
-  // },
-  // {
-  //   title: "Social Media Clone",
-  //   description: "A social media platform clone with features like user profiles, posts, comments, likes, real-time notifications, and direct messaging. Built with modern web technologies.",
-  //   tech: ["React", "Node.js", "Socket.io", "AWS S3", "Redis"],
-  //   image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-  //   link: "#",
-  //   githubUrl: "https://github.com/AbdulWasih05",
-  //   websiteUrl: "https://social-media-demo.vercel.app",
-  //   goal: "Built a social media platform to demonstrate full-stack development skills and real-time features. The goal was to create a feature-rich social network with user profiles, content sharing, and real-time interactions.",
-  //   processAndLearning: "Building a real-time social platform taught me about WebSocket connections, real-time data synchronization, and handling high-frequency updates. I learned to implement proper user authentication, manage file uploads, and create responsive social features. The challenge of real-time notifications was solved by implementing efficient event-driven architecture.",
-  //   features: [
-  //     "Content Moderation AI with automated filtering system",
-  //     "Real-Time Live Streaming with interactive features",
-  //     "Advanced Privacy Controls with granular settings",
-  //     "Social Commerce Integration with seamless shopping"
-  //   ]
-  // },
 ];
 
 interface Project {
@@ -150,7 +103,7 @@ export default function Projects() {
               onClick={() => setSelectedProject(project)}
             >
               {/* Hover overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
                 <img
