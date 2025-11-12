@@ -120,7 +120,7 @@ const Footer = memo(() => {
           >
             {/* GitHub */}
             <motion.a
-              href="https://github.com/yourusername"
+              href="https://github.com/AbdulWasih05"
               target="_blank"
               rel="noopener noreferrer"
               className="group"

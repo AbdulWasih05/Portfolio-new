@@ -1,15 +1,23 @@
 import { useState, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
-import { FaGithub } from 'react-icons/fa';
-import PortWebP from '../assets/Portfolio-thumbnail.webp'
-import RealWebP from '../assets/RealestateX-thumbnail.webp'
+import { FaGithub } from "react-icons/fa";
+import PortWebP from "../assets/Portfolio-thumbnail.webp";
+import RealWebP from "../assets/RealestateX-thumbnail.webp";
 
 const ProjectDetailModal = lazy(() => import("./ProjectDetailModal"));
 const projects = [
   {
     title: "Fake Review Detector",
-    description: "An intelligent Chrome extension that leverages cutting-edge machine learning to instantly expose fake and AI-generated reviews across 10+ major e-commerce and review platforms.",
-    tech: ["React", "TypeScript", "TensorFlow.js", "ONNX Runtime", "Vite", "DistilBert"],
+    description:
+      "An intelligent Chrome extension that leverages cutting-edge machine learning to instantly expose fake and AI-generated reviews across 10+ major e-commerce and review platforms.",
+    tech: [
+      "React",
+      "TypeScript",
+      "TensorFlow.js",
+      "ONNX Runtime",
+      "Vite",
+      "DistilBert",
+    ],
     imageWebP: PortWebP,
     link: "",
     githubUrl: "https://github.com/AbdulWasih05",
@@ -20,29 +28,55 @@ const projects = [
       "Lightning-Fast Performance: Optimized with Vite bundling, lazy loading, and efficient DOM manipulation for zero lag",
       "Customizable Experience: Dark/light themes, adjustable highlight colors, auto-analyze mode, and granular privacy settings",
       "Enterprise-Grade Security: Client-side processing option for privacy-conscious users with optional backend enhancement",
-    ]
+    ],
   },
   {
-    title: "Real Estate Dashboard",
-    description: "A modern full-stack real estate dashboard built with React.js and Node.js.",
-    tech: ["React.js", "Node.js", "MySQL", "Express.js", "Tailwind CSS"],
+    title: "Real Estate Platform",
+    description:
+      "A comprehensive full-stack real estate ecosystem with cross-platform mobile apps (iOS/Android), admin dashboard, and intelligent property management featuring real-time auctions, AI price predictions.",
+    tech: [
+      "React.js",
+      "React Native",
+      "Node.js",
+      "MySQL",
+      "Express.js",
+      "Socket.IO",
+      "Docker",
+      "Tailwind CSS",
+      "JWT",
+    ],
     imageWebP: RealWebP,
     link: "#",
     githubUrl: "https://github.com/AbdulWasih05",
     websiteUrl: "https://github.com/AbdulWasih05",
-    goal: "The goal was to create a seamless real estate management experience with property listings, user authentication, and an intuitive admin interface.",
+    goal: "Architected a production-grade real estate platform with cross-platform mobile applications, web-based admin dashboard, and RESTful backend. Built 70+ API endpoints with JWT authentication, role-based access control, and Docker containerization, serving properties with real-time synchronization across iOS, Android, and web platforms.",
     features: [
-      "Smart Property Management with real-time listing updates and automatic alerts",
-      "AI-Powered Property Recommendations based on user behavior",
-      "Advanced Analytics Dashboard with predictive insights",
-      "Multi-Vendor Support with individual storefronts"
-    ]
+      "Real-Time Auction Bidding System using Socket.IO with live countdown timers and WebSocket connections for instant bid updates",
+      "AI/ML-Powered Price Prediction generating 10-year market forecasts with confidence scoring and trend analysis",
+      "Natural Language Search Processing for intelligent property queries and advanced multi-criteria filtering",
+      "10+ Business-Critical Modules including property management, NOC verification, favorites system, geolocation services, and persistent chat messaging",
+      "Cross-Platform Synchronization with real-time data updates across iOS, Android, and web applications",
+      "Enterprise Security with JWT authentication, role-based access control, and comprehensive input validation",
+      "Dockerized Architecture ensuring scalable deployment and seamless container orchestration",
+    ],
   },
- {
+  {
     title: "Retro Wallet - Expense Tracker",
-    description: "A full-stack expense management platform that transforms mundane financial tracking into an electrifying retro gaming experience! Featuring vaporwave aesthetics, real-time analytics, and seamless CRUD operations - all powered by React, Node.js, and MySQL running on Docker.",
-    tech: ["React", "MySQL", "TypeScript", "Node.js", "Express.js", "Docker", "Sequelize ORM", "JWT", "Tailwind CSS"],
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",       
+    description:
+      "A full-stack expense management platform that transforms mundane financial tracking into an electrifying retro gaming experience! Featuring vaporwave aesthetics, real-time analytics, and seamless CRUD operations - all powered by React, Node.js, and MySQL running on Docker.",
+    tech: [
+      "React",
+      "MySQL",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "Docker",
+      "Sequelize ORM",
+      "JWT",
+      "Tailwind CSS",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
     link: "#",
     githubUrl: "https://github.com/AbdulWasih05/Retro-Wallet",
     websiteUrl: "https://github.com/AbdulWasih05",
@@ -55,8 +89,8 @@ const projects = [
       "Containerized Deployment with Docker Compose for MySQL, backend, and frontend services",
       "Lightning-Fast Performance using React 18, Vite bundling, and Sequelize ORM optimization",
       "Fully Responsive Design with mobile-first Tailwind CSS and seamless cross-device experience",
-      "State Management with React Context API for global expense and authentication states"
-    ]
+      "State Management with React Context API for global expense and authentication states",
+    ],
   },
 ];
 
@@ -91,14 +125,13 @@ export default function Projects() {
         </h4>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
           {projects.map((project, idx) => (
             <motion.div
               key={idx}
               className="rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 bg-white group cursor-pointer relative overflow-hidden"
               whileHover={{
                 y: -8,
-                transition: { duration: 0.3 }
+                transition: { duration: 0.3 },
               }}
               onClick={() => setSelectedProject(project)}
             >
@@ -183,7 +216,9 @@ export default function Projects() {
             className="group inline-flex items-center gap-3 px-8 py-4 bg-gray-900 hover:bg-gray-800 text-white rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105"
           >
             <FaGithub className="text-xl group-hover:scale-110 transition-transform" />
-            <span className="playfair tracking-wider font-semibold">View All Projects</span>
+            <span className="playfair tracking-wider font-semibold">
+              View All Projects
+            </span>
             <svg
               className="w-5 h-5 group-hover:translate-x-1 transition-transform"
               fill="none"
@@ -202,7 +237,13 @@ export default function Projects() {
 
         {/* Render the modal component only if a project is selected */}
         {selectedProject && (
-          <Suspense fallback={<div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+          <Suspense
+            fallback={
+              <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+                <div className="text-white">Loading...</div>
+              </div>
+            }
+          >
             <ProjectDetailModal
               project={selectedProject}
               onClose={() => setSelectedProject(null)}

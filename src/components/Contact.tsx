@@ -227,13 +227,13 @@ const Contact = () => {
     {
       name: "Email",
       icon: FiMail,
-      url: "mailto:abdlwasih4life@gmail.com",
+      url: "mailto:buildwithwasih@gmail.com",
       label: "Send me an email",
     },
     {
       name: "LinkedIn",
       icon: FiLinkedin,
-      url: "https://www.linkedin.com/in/abdul-wasih-977a702b9/",
+      url: "https://www.linkedin.com/in/iamwasih",
       label: "Connect on LinkedIn",
     },
     {

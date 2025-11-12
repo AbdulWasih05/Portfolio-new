@@ -28,13 +28,13 @@ const whatIDoServices: WhatIDoService[] = [
         id: 'backend',
         icon: <FaServer />,
         title: 'Backend Development',
-        description: 'Designing scalable APIs and server-side logic with Node.js, Express, and MongoDB.'
+        description: 'Designing scalable APIs and server-side logic with Node.js, Express, and MySQL.'
     },
     {
         id: 'cloud-devops',
         icon: <FaCloud />,
         title: 'Cloud & DevOps',
-        description: 'Docker, Git, Github, Netlify, Linux, Shell Scripting',
+        description: 'Dockerizing applications, version control with Git/GitHub, cloud deployment on Netlify,',
     }
 ];
 

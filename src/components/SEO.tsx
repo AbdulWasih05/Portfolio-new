@@ -9,7 +9,7 @@ interface SEOProps {
 }
 
 const SEO = ({
-  title = "Abdul Wasih - Full Stack Engineer | React, Node.js & Cloud Solutions",
+  title = "Abdul Wasih - Full Stack Engineer | React, Node.js Specialist",
   description = "Enthusiastic Full Stack Engineer crafting scalable web applications with React.js, Next.js, Node.js. Specializing in responsive UI, API integration and Docker containerization.",
   url = "https://wasih.tech",
   image = "https://wasih.tech/og-image.webp",
@@ -26,7 +26,7 @@ const SEO = ({
     "image": image,
     "sameAs": [
       "https://github.com/AbdulWasih05",
-      "https://www.linkedin.com/in/abdul-wasih-977a702b9/"
+      "https://www.linkedin.com/in/iamwasih"
     ],
     "worksFor": {
       "@type": "Organization",

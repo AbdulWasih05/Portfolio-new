@@ -59,12 +59,12 @@ const Hero = memo(() => {
             {/* Main Title - Stack Layout like "Thoughts Code Coffee" */}
             <div className="mb-8 animate-fade-in-up">
               {/* Grid Background Effect - Right Side Only */}
-              <div className="absolute inset-0 opacity-30 pointer-events-none">
+              <div className="absolute inset-0 opacity-40 pointer-events-none">
                 {/* Main Grid Pattern */}
                 <div className="absolute inset-0" style={{
                   backgroundImage: `
-                  linear-gradient(rgba(0,0,0,0.0) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)
+                  linear-gradient(rgba(0,0,0,0.0.2) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)
                 `,
                   backgroundSize: '40px 40px'
                 }}></div>
@@ -72,8 +72,8 @@ const Hero = memo(() => {
                 {/* Secondary smaller grid */}
                 <div className="absolute inset-0" style={{
                   backgroundImage: `
-                  linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px)
+                  linear-gradient(rgba(0,0,0,0.030) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(0,0,0,0.030) 1px, transparent 1px)
                 `,
                   backgroundSize: '10px 10px'
                 }}></div>
@@ -144,12 +144,12 @@ const Hero = memo(() => {
           {/* Right: ID Badge with Grid Background */}
           <div className="hidden lg:flex flex-col justify-center py-20 relative animate-fade-in" style={{ animationDelay: '0.2s' }}>
             {/* Grid Background Effect - Right Side Only */}
-            <div className="absolute inset-0 opacity-30 pointer-events-none">
+            <div className="absolute inset-0 opacity-40 pointer-events-none">
               {/* Main Grid Pattern */}
               <div className="absolute inset-0" style={{
                 backgroundImage: `
-                  linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)
+                  linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)
                 `,
                 backgroundSize: '40px 40px'
               }}></div>
@@ -157,8 +157,8 @@ const Hero = memo(() => {
               {/* Secondary smaller grid */}
               <div className="absolute inset-0 pointer-events-none" style={{
                 backgroundImage: `
-                  linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px)
+                  linear-gradient(rgba(0,0,0,0.030) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(0,0,0,0.030) 1px, transparent 1px)
                 `,
                 backgroundSize: '10px 10px'
               }}></div>
