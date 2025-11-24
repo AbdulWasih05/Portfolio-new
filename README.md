@@ -35,16 +35,6 @@ A high-performance personal portfolio website built with modern web technologies
 - Custom domain support
 - Security headers and robots.txt
 
-## Project Structure
-
-```
-src/
-├── components/     # Reusable UI components
-├── pages/         # Page-level components
-├── hooks/         # Custom React hooks
-├── lib/           # Utility functions
-└── assets/        # Static assets
-
 ## SEO Features
 
 - Dynamic meta tags for social sharing
