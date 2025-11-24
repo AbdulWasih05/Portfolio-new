@@ -55,7 +55,7 @@ const Hero = memo(() => {
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 min-h-[calc(100vh-6rem)]">
           {/* Left: Text Content */}
-          <div className="flex flex-col justify-center py-20 lg:py-0 animate-fade-in">
+          <div className="flex flex-col justify-center py-20 lg:pt-8 lg:pb-0 animate-fade-in">
             {/* Main Title - Stack Layout like "Thoughts Code Coffee" */}
             <div className="mb-8 animate-fade-in-up">
               {/* Grid Background Effect - Right Side Only */}
