@@ -43,7 +43,7 @@ export default defineConfig(({ mode }) => ({
       compress: {
         drop_console: mode === 'production',
         drop_debugger: mode === 'production',
-        pure_funcs: mode === 'production' ? ['console.log', 'console.info', 'console.debug'] : []
+        pure_funcs: mode === 'production' ? ['console.log', 'console.info', 'console.debug', 'console.warn'] : []
       }
     },
     // Optimize chunk size

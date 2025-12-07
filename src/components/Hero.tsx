@@ -100,7 +100,7 @@ const Hero = memo(() => {
               </div>
 
 
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-black leading-none tracking-tight playfair">
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-500 leading-none tracking-tight playfair">
                 <div className="block">Thoughts</div>
                 <div className="block">Code</div>
                 <div className="block">Coffee</div>

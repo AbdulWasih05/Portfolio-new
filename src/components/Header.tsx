@@ -102,17 +102,16 @@ const Header = () => {
           <div className="md:hidden flex justify-between items-center mb-6">
             <button
               onClick={() => scrollToSection('hero')}
-              className="flex items-center text-xl font-semibold focus:outline-none focus:ring-2 focus:ring-black rounded playfair tracking-wide"
+              className="flex items-center gap-2 text-xl font-semibold focus:outline-none focus:ring-2 focus:ring-black rounded playfair tracking-wide"
               aria-label="Go to top"
             >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 100 100"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="50" cy="50" r="30" fill="black" />
-              </svg>
+              <img
+                src="/favicon.ico"
+                alt="AK Logo"
+                width="28"
+                height="28"
+                className="rounded-full"
+              />
               Abdul Wasih
             </button>
 
@@ -138,19 +137,18 @@ const Header = () => {
               className="flex items-center gap-2 text-xl font-bold focus:outline-none focus:ring-2 focus:ring-black rounded playfair tracking-wider"
               aria-label="Go to top"
             >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 100 100"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="50" cy="50" r="30" fill="black" />
-              </svg>
+              <img
+                src="/favicon.ico"
+                alt="AK Logo"
+                width="28"
+                height="28"
+                className="rounded-full"
+              />
               <span>Abdul Wasih</span>
             </button>
 
             <nav className="border border-gray-200 rounded-lg px-6 py-2 bg-gray-50/50">
-              <div className="flex items-center justify-center space-x-12">
+              <div className="flex items-center justify-center space-x-12 playfair">
                 {navigationItems.map((item) => (
                   <button
                     key={item.name}

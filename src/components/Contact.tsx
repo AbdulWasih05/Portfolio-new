@@ -245,10 +245,15 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="bg-white py-20 scroll-mt-20">
+    <section id="contact" className="bg-gray-50 py-20 scroll-mt-20 relative">
+      {/* Section Divider */}
+      <div className="absolute top-0 left-0 w-full flex justify-center">
+        <div className="w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+      </div>
+
       <div className="max-w-4xl mx-auto px-4">
         <motion.h2
-          className="text-3xl font-semibold text-gray-900 text-center mb-4 playfair"
+          className="relative text-3xl font-semibold text-gray-900 text-center mb-4 playfair"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -258,7 +263,7 @@ const Contact = () => {
         </motion.h2>
 
         <motion.p
-          className="text-base md:text-lg text-gray-700 leading-relaxed mb-8 max-w-2xl mx-auto text-center"
+          className="relative text-base md:text-lg text-gray-700 leading-relaxed mb-8 max-w-2xl mx-auto text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -285,7 +290,7 @@ const Contact = () => {
         {/* Contact Form */}
         <motion.form
           onSubmit={handleSubmit}
-          className="space-y-6 mb-12"
+          className="relative space-y-6 mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -306,7 +311,7 @@ const Contact = () => {
                 required
                 maxLength={50}
                 disabled={isLimitReached}
-                className="border border-gray-300 focus:border-black focus:ring-2 focus:ring-black rounded-lg px-4 py-3 w-full transition-colors duration-200 outline-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+                className="bg-white border border-gray-300 focus:border-black focus:ring-2 focus:ring-black rounded-lg px-4 py-3 w-full transition-colors duration-200 outline-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                 aria-label="Your name"
               />
             </div>
@@ -323,7 +328,7 @@ const Contact = () => {
                 placeholder="your.email@example.com"
                 required
                 disabled={isLimitReached}
-                className="border border-gray-300 focus:border-black focus:ring-2 focus:ring-black rounded-lg px-4 py-3 w-full transition-colors duration-200 outline-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+                className="bg-white border border-gray-300 focus:border-black focus:ring-2 focus:ring-black rounded-lg px-4 py-3 w-full transition-colors duration-200 outline-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                 aria-label="Your email address"
               />
             </div>
@@ -353,7 +358,7 @@ const Contact = () => {
               minLength={10}
               maxLength={1000}
               disabled={isLimitReached}
-              className="border border-gray-300 focus:border-black focus:ring-2 focus:ring-black rounded-lg px-4 py-3 w-full resize-none transition-colors duration-200 outline-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+              className="bg-white border border-gray-300 focus:border-black focus:ring-2 focus:ring-black rounded-lg px-4 py-3 w-full resize-none transition-colors duration-200 outline-none disabled:bg-gray-100 disabled:cursor-not-allowed"
               aria-label="Your message"
             />
             <div className="mt-1 text-right text-xs text-gray-500">
