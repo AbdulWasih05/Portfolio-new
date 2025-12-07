@@ -161,7 +161,7 @@ const About: React.FC = () => {
                   role="Web Developer"
                   company="Pearl Modern"
                   period="2025 - Present"
-                  description="Redesigned and developed the School website using React and Tailwind CSS according to latest design trends, improving user engagement by 25%."
+                  description="Redesigned the school website with React, Tailwind CSS, and modern design trends—delivering responsive, trend-forward UI/UX , improving user engagement by 25%."
                 />
                 <ExperienceItem
                   role="Freelance Web Developer"
