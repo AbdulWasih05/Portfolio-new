@@ -12,7 +12,7 @@ const SEO = ({
   title = "Abdul Wasih - Full Stack Engineer | React, Node.js Specialist",
   description = "Enthusiastic Full Stack Engineer crafting scalable web applications with React.js, Next.js, Node.js. Specializing in responsive UI, API integration and Docker containerization.",
   url = "https://wasih.tech",
-  image = "https://wasih.tech/og-image.webp",
+  image = "https://wasih.tech/og-image.jpg",
   type = "website"
 }: SEOProps) => {
   // JSON-LD Structured Data

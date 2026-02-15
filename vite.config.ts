@@ -36,7 +36,7 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     // Target modern browsers for better optimization
-    target: 'es2015',
+    target: 'es2020',
     // Enable minification
     minify: 'terser',
     terserOptions: {
@@ -69,8 +69,7 @@ export default defineConfig(({ mode }) => ({
               id.includes('node_modules/scheduler') ||
               id.includes('node_modules/next-themes') ||
               id.includes('node_modules/react-helmet-async') ||
-              id.includes('node_modules/vaul') ||
-              id.includes('node_modules/sonner')) {
+              id.includes('node_modules/vaul')) {
             return 'react-vendor';
           }
           // Framer Motion - lazy loaded for below-fold
@@ -93,8 +92,7 @@ export default defineConfig(({ mode }) => ({
       }
     },
     // Source maps only in dev
-    // sourcemap: mode === 'development',
-    sourcemap: mode === 'production' ? true : true,
+    sourcemap: mode === 'development',
   },
   // Optimize dependencies
   optimizeDeps: {
