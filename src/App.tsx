@@ -1,11 +1,9 @@
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { MotionConfig } from "framer-motion";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import ProjectsPage from "./pages/ProjectsPage";
 
 // implemented createBrowserrouter+router instead of traditional browserrouter+route for v7 react-router upgrade
 const router = createBrowserRouter(
@@ -13,6 +11,10 @@ const router = createBrowserRouter(
     {
       path: "/",
       element: <Index />,
+    },
+    {
+      path: "/projects",
+      element: <ProjectsPage />,
     },
     {
       path: "*",
@@ -24,14 +26,9 @@ const router = createBrowserRouter(
 
 const App = () => (
   <HelmetProvider>
-    <MotionConfig reducedMotion="user">
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <RouterProvider router={router}
-        future={{ v7_startTransition: true }as any} />
-      </TooltipProvider>
-    </MotionConfig>
+    <Toaster />
+    <RouterProvider router={router}
+    future={{ v7_startTransition: true }as any} />
   </HelmetProvider>
 );
 
