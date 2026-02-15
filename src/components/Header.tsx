@@ -1,14 +1,28 @@
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ forceHidden = false }: { forceHidden?: boolean }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const location = useLocation();
+  const navigate = useNavigate();
 
-
-  let timeoutId: NodeJS.Timeout;
+  useEffect(() => {
+    // If we navigated here with a state carrying a targetId, scroll to it
+    if (location.state && location.state.targetId) {
+      const element = document.getElementById(location.state.targetId);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100); // Small delay to ensuring DOM is ready
+      }
+      // Clear state so it doesn't persist on refresh
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -33,8 +47,17 @@ const Header = () => {
       }, 1000);
     };
 
-    // Track active section
+    // Set active section based on route
+    if (location.pathname === '/projects') {
+      setActiveSection('projects');
+    } else if (location.pathname === '/' && activeSection === 'projects' && window.scrollY < 100) {
+      setActiveSection('hero');
+    }
+
+    // Track active section only on home page
     const trackActiveSection = () => {
+      if (location.pathname !== '/') return;
+
       const sections = ['hero', 'about', 'projects', 'Skills', 'contact'];
       const scrollPosition = window.scrollY + 100; // Offset for header height
 
@@ -50,22 +73,33 @@ const Header = () => {
       }
     };
 
+    let ticking = false;
     const handleScroll = () => {
-      controlNavbar();
-      trackActiveSection();
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          controlNavbar();
+          trackActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [lastScrollY]);
+  }, [lastScrollY, location.pathname]);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleNavigation = (id: string) => {
+    if (location.pathname !== '/') {
+        navigate('/', { state: { targetId: id } });
+    } else {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
     }
     setIsMobileMenuOpen(false);
   };
@@ -94,14 +128,14 @@ const Header = () => {
 
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 
-          ${isVisible ? 'translate-y-0' : '-translate-y-full'}
+          ${isVisible && !forceHidden ? 'translate-y-0' : '-translate-y-full'}
           ${isScrolled ? 'bg-white/90 backdrop-blur-sm shadow-sm' : 'bg-white'}`}
       >
         <div className="max-w-7xl mx-auto px-4 py-6">
           {/* Mobile Header */}
           <div className="md:hidden flex justify-between items-center mb-6">
             <button
-              onClick={() => scrollToSection('hero')}
+              onClick={() => handleNavigation('hero')}
               className="flex items-center gap-2 text-xl font-semibold focus:outline-none focus:ring-2 focus:ring-black rounded playfair tracking-wide"
               aria-label="Go to top"
             >
@@ -133,7 +167,7 @@ const Header = () => {
           {/* Desktop Header */}
           <div className="hidden md:flex flex-col items-center space-y-2">
             <button
-              onClick={() => scrollToSection('hero')}
+              onClick={() => handleNavigation('hero')}
               className="flex items-center gap-2 text-xl font-bold focus:outline-none focus:ring-2 focus:ring-black rounded playfair tracking-wider"
               aria-label="Go to top"
             >
@@ -152,7 +186,7 @@ const Header = () => {
                 {navigationItems.map((item) => (
                   <button
                     key={item.name}
-                    onClick={() => scrollToSection(item.id)}
+                    onClick={() => handleNavigation(item.id)}
                     className={`text-sm transition-all duration-300 relative group focus:outline-none focus:ring-2 focus:ring-black rounded px-2 py-1 ${activeSection === item.id
                         ? 'text-black border-b-2 border-black'
                         : 'text-gray-700 hover:text-black'
@@ -175,7 +209,7 @@ const Header = () => {
             {navigationItems.map((item) => (
               <button
                 key={item.name}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleNavigation(item.id)}
                 className={`text-left px-4 py-2 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-black ${activeSection === item.id
                     ? 'text-black bg-gray-100 border-l-2 border-black'
                     : 'text-gray-700 hover:text-black hover:bg-gray-50'

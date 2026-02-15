@@ -1,39 +1,68 @@
 import { memo } from "react";
-import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaNodeJs, FaDocker, FaGitAlt } from "react-icons/fa";
-import { SiMysql } from "react-icons/si";
 
-// Define tech stack with categories for color coding
+// Define tech stack (names only for text marquee)
 const techStack = [
-  { name: "HTML", icon: <FaHtml5 className="text-black/80 flex-shrink-0" />, category: "frontend" },
-  { name: "CSS", icon: <FaCss3Alt className="text-black/80 flex-shrink-0" />, category: "frontend" },
-  { name: "JavaScript", icon: <FaJsSquare className="text-black/80 flex-shrink-0" />, category: "frontend" },
-  { name: "React", icon: <FaReact className="text-black/80 flex-shrink-0" />, category: "frontend" },
-  { name: "Node.js", icon: <FaNodeJs className="text-black/80 flex-shrink-0" />, category: "backend" },
-  { name: "Docker", icon: <FaDocker className="text-black/80 flex-shrink-0" />, category: "devops" },
-  { name: "Git", icon: <FaGitAlt className="text-black/80 flex-shrink-0" />, category: "tools" },
-  { name: "MySQL", icon: <SiMysql className="text-black/80 flex-shrink-0" />, category: "database" },
+    "HTML", "CSS", "JavaScript", "React", "Node.js",
+    "Docker", "Git", "Python","Typescript", "Next.js", "Tailwind CSS", "Vite","POSTGRESQL", "Express.js", "Redux"
 ];
 
 const LogoCarousel = memo(() => {
-  return (
-    <div className="relative w-full py-8 bg-gradient-to-b from-gray-50 to-white ">
-      <div className="carousel-mask relative md:w-2/4 mx-auto overflow-hidden">
-        {/* Scrolling Track - Tripled for truly seamless infinite scroll */}
-        <div className="carousel-track p-2 shadow-lg ">
-          {[...techStack, ...techStack, ...techStack].map((tech, i) => (
-            <div
-              key={i}
-              className={`carousel-card tech-${tech.category}`}
-              aria-label={`${tech.name} technology`}
-            >
-              {tech.icon}
-              <span className="font-medium">{tech.name}</span>
+    // Triple the array to ensure seamless looping for wider screens
+    const loopStack = [...techStack, ...techStack, ...techStack];
+
+    return (
+        <section className="relative w-full py-16 overflow-hidden bg-gray-50">
+            {/* Background elements for depth */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-100 via-transparent to-transparent opacity-40 pointer-events-none" />
+
+            <div className="relative w-full max-w-6xl mx-auto flex flex-col gap-8">
+                {/* Gradient Masks (Fade edges) */}
+                <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 z-10 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 z-10 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none" />
+
+                {/* Row 1: Left Movement */}
+                <div className="flex overflow-hidden relative z-0">
+                <div
+                    className="flex whitespace-nowrap carousel-scroll-left"
+                    style={{ width: "fit-content" }}
+                >
+                    {loopStack.map((tech, i) => (
+                        <div
+                            key={`row1-${tech}-${i}`}
+                            className="flex items-center mx-8 group cursor-default"
+                        >
+                            <span className="text-xl md:text-2xl font-mono font-bold text-gray-300 uppercase group-hover:text-gray-900 transition-colors duration-300">
+                                {tech}
+                            </span>
+                            <span className="ml-8 text-gray-200 text-sm font-mono">///</span>
+                        </div>
+                    ))}
+                </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+
+            {/* Row 2: Right Movement */}
+            <div className="flex overflow-hidden relative z-0">
+                <div
+                    className="flex whitespace-nowrap carousel-scroll-right"
+                    style={{ width: "fit-content" }}
+                >
+                    {loopStack.map((tech, i) => (
+                        <div
+                            key={`row2-${tech}-${i}`}
+                            className="flex items-center mx-8 group cursor-default"
+                        >
+                            <span className="text-xl md:text-2xl font-mono font-bold text-gray-300 uppercase group-hover:text-gray-900 transition-colors duration-300">
+                                {tech}
+                            </span>
+
+                             <span className="ml-8 text-gray-200 text-sm font-mono">///</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            </div>
+        </section>
+    );
 });
 
 LogoCarousel.displayName = 'LogoCarousel';

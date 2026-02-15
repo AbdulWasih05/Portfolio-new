@@ -92,9 +92,17 @@ const About: React.FC = () => {
                 <a
                   href="resume.pdf"
                   download="Wasih_Resume.pdf"
-                  className="inline-flex items-center px-8 py-3 bg-gray-900 text-white rounded-xl text-sm font-medium hover:bg-black transition-all hover:scale-105 shadow-lg hover:shadow-xl"
+                  className="inline-flex items-center px-4 py-2 text-md font-medium text-black border border-gray-300 rounded hover:bg-black hover:text-white transition-colors group cursor-pointer"
                 >
                   Download Resume
+                  <svg
+                    className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </a>
               </motion.div>
             )}
@@ -156,18 +164,39 @@ const About: React.FC = () => {
                 transition={{ duration: 0.4 }}
                 className="max-w-3xl mx-auto space-y-8"
               >
-                
                 <ExperienceItem
-                  role="Web Developer"
-                  company="Pearl Modern"
-                  period="2025 - Present"
-                  description="Redesigned the school website with React, Tailwind CSS, and modern design trends—delivering responsive, trend-forward UI/UX , improving user engagement by 25%."
+                  role="SDE Intern"
+                  company="Saarthi"
+                  period="Dec 2025 - Present"
+                  description={
+                    <ul className="list-disc ml-4 space-y-2">
+                      <li>
+                        Architected a secure end-to-end payment processing
+                        engine integrating Dodo Payments; implemented
+                        webhook-driven event handling and idempotent API logic
+                        to ensure 100% transaction consistency across
+                        distributed systems.
+                      </li>
+                      <li>
+                        Engineered a UX-optimized multi-step checkout interface
+                        using React, reducing cart abandonment by 22% through
+                        real-time field validation and proactive error handling
+                        for failed payment attempts.
+                      </li>
+                      <li>
+                        Refactored high-traffic Jobs and Drives pages from
+                        Client-Side Rendering (CSR) to Server-Side Rendering
+                        (SSR), boosting SEO visibility and search engine
+                        indexation while reducing initial page load time by 35%.
+                      </li>
+                    </ul>
+                  }
                 />
                 <ExperienceItem
                   role="Freelance Web Developer"
-                  company="Self-Employed"
+                  company="Various Projects"
                   period="2024 - Present"
-                  description="Built responsive user interfaces for local startups. Digitalized client businesses, enhancing their online presence and customer reach."
+                  description="Spearheaded digital transformation for diverse clients, including Pearl Modern and local startups; delivered high-performance web applications by blending experimental UI design with scalable architecture, resulting in improved user engagement and modern digital presences."
                 />
               </motion.div>
             )}
@@ -205,7 +234,7 @@ const ExperienceItem = ({
   role: string;
   company: string;
   period: string;
-  description: string;
+  description: string | React.ReactNode;
 }) => (
   <div className="relative pl-8 border-l-2 border-gray-100 hover:border-gray-300 transition-colors duration-300">
     <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-2 border-gray-300" />
@@ -216,7 +245,7 @@ const ExperienceItem = ({
       </span>
     </div>
     <p className="text-gray-800 font-medium mb-2">{company}</p>
-    <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
+    <div className="text-gray-600 text-sm leading-relaxed">{description}</div>
   </div>
 );
 

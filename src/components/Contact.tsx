@@ -259,7 +259,7 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          Let's Create Something Amazing
+          Seems Like i Have Caught Your Attention, Connect?
         </motion.h2>
 
         <motion.p
@@ -269,8 +269,7 @@ const Contact = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          Ready to bring your vision to life? Let's discuss your project and
-          explore how great design can elevate your brand.
+          Whether you have a project in mind, want to collaborate, or just want to ask me what i had for breakfast, feel free to reach out!
         </motion.p>
 
         {/* Rate Limit Status */}
@@ -307,7 +306,7 @@ const Contact = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                placeholder="Your Name"
+                placeholder="Drop a name"
                 required
                 maxLength={50}
                 disabled={isLimitReached}
@@ -325,7 +324,7 @@ const Contact = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                placeholder="your.email@example.com"
+                placeholder="Wanna hear back? Drop your email"
                 required
                 disabled={isLimitReached}
                 className="bg-white border border-gray-300 focus:border-black focus:ring-2 focus:ring-black rounded-lg px-4 py-3 w-full transition-colors duration-200 outline-none disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -352,7 +351,7 @@ const Contact = () => {
                   }
                 }
               }}
-              placeholder="Tell me about your project... (10-1000 characters)"
+              placeholder="spill tea or code dreams"
               rows={6}
               required
               minLength={10}

@@ -85,13 +85,13 @@ const Hero = memo(() => {
                 {/* <div className="absolute inset-0 bg-gradient-to-tl from-gray-200/10 via-transparent to-white/15"></div> */}
 
                 {/* Floating White Boxes */}
-                <div className="absolute top-20 left-1/4 w-16 h-16 bg-white/60 rounded-lg shadow-sm transform rotate-12 animate-float backdrop-blur-sm"></div>
-                <div className="absolute top-40 right-1/3 w-12 h-12 bg-white/40 rounded-lg shadow-sm transform -rotate-6 animate-float-slow backdrop-blur-sm"></div>
-                <div className="absolute top-35 right-1/3 w-12 h-12 bg-white/35 rounded-lg shadow-sm transform -rotate-6 animate-float-slow backdrop-blur-sm"></div>
-                <div className="absolute top-60 left-1/6 w-20 h-8 bg-white/50 rounded-lg shadow-sm transform rotate-3 animate-float-slow backdrop-blur-sm"></div>
-                <div className="absolute top-80 right-1/4 w-14 h-14 bg-white/30 rounded-lg shadow-sm transform -rotate-12 animate-float backdrop-blur-sm"></div>
-                <div className="absolute bottom-40 left-1/3 w-18 h-10 bg-white/45 rounded-lg shadow-sm transform rotate-8 animate-float-reverse backdrop-blur-sm"></div>
-                <div className="absolute bottom-60 right-1/6 w-16 h-12 bg-white/35 rounded-lg shadow-sm transform -rotate-4 animate-float-slow backdrop-blur-sm"></div>
+                <div className="absolute top-20 left-1/4 w-16 h-16 bg-white/60 rounded-lg shadow-sm transform rotate-12 animate-float"></div>
+                <div className="absolute top-40 right-1/3 w-12 h-12 bg-white/40 rounded-lg shadow-sm transform -rotate-6 animate-float-slow"></div>
+                <div className="absolute top-35 right-1/3 w-12 h-12 bg-white/35 rounded-lg shadow-sm transform -rotate-6 animate-float-slow"></div>
+                <div className="absolute top-60 left-1/6 w-20 h-8 bg-white/50 rounded-lg shadow-sm transform rotate-3 animate-float-slow"></div>
+                <div className="absolute top-80 right-1/4 w-14 h-14 bg-white/30 rounded-lg shadow-sm transform -rotate-12 animate-float"></div>
+                <div className="absolute bottom-40 left-1/3 w-18 h-10 bg-white/45 rounded-lg shadow-sm transform rotate-8 animate-float-reverse"></div>
+                <div className="absolute bottom-60 right-1/6 w-16 h-12 bg-white/35 rounded-lg shadow-sm transform -rotate-4 animate-float-slow"></div>
 
                 {/* Additional decorative elements */}
                 <div className="absolute top-1/4 left-1/2 w-2 h-2 bg-gray-400/20 rounded-full animate-pulse"></div>
@@ -110,7 +110,7 @@ const Hero = memo(() => {
             {/* Greeting with Animation */}
             <div className="mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <p className="text-lg text-gray-600 font-medium">
-                {text} ,I'm <span className="text-black font-semibold">Wasih</span>
+                {text}, I'm <span className="text-black font-semibold">Wasih</span>
                 <span className="blinking-cursor ml-1">|</span>
               </p>
             </div>
@@ -168,12 +168,12 @@ const Hero = memo(() => {
               <div className="absolute inset-0 bg-gradient-to-tl from-gray-200/10 via-transparent to-white/15"></div>
 
               {/* Floating White Boxes */}
-              <div className="absolute top-20 left-1/4 w-16 h-16 bg-white/60 rounded-lg shadow-sm transform rotate-12 animate-float backdrop-blur-sm"></div>
-              <div className="absolute top-40 right-1/3 w-12 h-12 bg-white/40 rounded-lg shadow-sm transform -rotate-6 animate-float-reverse backdrop-blur-sm"></div>
-              <div className="absolute top-60 left-1/6 w-20 h-8 bg-white/50 rounded-lg shadow-sm transform rotate-3 animate-float-slow backdrop-blur-sm"></div>
-              <div className="absolute top-80 right-1/4 w-14 h-14 bg-white/30 rounded-lg shadow-sm transform -rotate-12 animate-float backdrop-blur-sm"></div>
-              <div className="absolute bottom-40 left-1/3 w-18 h-10 bg-white/45 rounded-lg shadow-sm transform rotate-8 animate-float-reverse backdrop-blur-sm"></div>
-              <div className="absolute bottom-60 right-1/6 w-16 h-12 bg-white/35 rounded-lg shadow-sm transform -rotate-4 animate-float-slow backdrop-blur-sm"></div>
+              <div className="absolute top-20 left-1/4 w-16 h-16 bg-white/60 rounded-lg shadow-sm transform rotate-12 animate-float"></div>
+              <div className="absolute top-40 right-1/3 w-12 h-12 bg-white/40 rounded-lg shadow-sm transform -rotate-6 animate-float-reverse"></div>
+              <div className="absolute top-60 left-1/6 w-20 h-8 bg-white/50 rounded-lg shadow-sm transform rotate-3 animate-float-slow"></div>
+              <div className="absolute top-80 right-1/4 w-14 h-14 bg-white/30 rounded-lg shadow-sm transform -rotate-12 animate-float"></div>
+              <div className="absolute bottom-40 left-1/3 w-18 h-10 bg-white/45 rounded-lg shadow-sm transform rotate-8 animate-float-reverse"></div>
+              <div className="absolute bottom-60 right-1/6 w-16 h-12 bg-white/35 rounded-lg shadow-sm transform -rotate-4 animate-float-slow"></div>
 
               {/* Additional decorative elements */}
               <div className="absolute top-1/4 left-1/2 w-2 h-2 bg-gray-400/20 rounded-full animate-pulse"></div>

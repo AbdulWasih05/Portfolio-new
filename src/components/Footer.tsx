@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { ArrowUp, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
@@ -10,10 +10,10 @@ const Footer = () => {
   };
 
   const footerLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Expertise', href: '#skills' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About', href: '/#about' },
+    { name: 'Projects', href: '/#projects' },
+    { name: 'Expertise', href: '/#skills' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   const socialLinks = [
@@ -22,14 +22,14 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#050505] text-white pt-24 pb-12 relative overflow-hidden">
+    <footer className="bg-[#050505] text-white pt-16 pb-8 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent opacity-50" />
       <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 mb-12">
           {/* Brand & CTA Section */}
           <div className="lg:col-span-6 flex flex-col justify-between">
             <div>
@@ -68,23 +68,22 @@ const Footer = () => {
           </div>
 
           {/* Navigation & Socials */}
-          <div className="lg:col-span-6 flex flex-col md:flex-row justify-between lg:justify-end gap-12 lg:gap-24">
+          <div className="lg:col-span-6 flex flex-col md:flex-row justify-between lg:justify-end gap-12 lg:gap-20 playfair tracking-widest">
             {/* Quick Links */}
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-gray-200">Navigation</h3>
-              <ul className="space-y-4">
+              <h3 className="text-sm font-medium uppercase tracking-widest text-gray-500 mb-8">Navigation</h3>
+              <ul className="space-y-1">
                 {footerLinks.map((link, index) => (
-                  <motion.li 
+                  <motion.li
                     key={link.name}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 + index * 0.1 }}
-                    className="relative"
                   >
-                    <a 
+                    <a
                       href={link.href}
-                      className="text-gray-400 hover:text-white transition-colors text-lg inline-block hover:translate-x-1 duration-300"
+                      className="py-2 text-gray-400 text-lg block"
                     >
                       {link.name}
                     </a>
@@ -95,8 +94,8 @@ const Footer = () => {
 
             {/* Socials & Location */}
             <div>
-              <h3 className="text-lg font-semibold mb-6 text-gray-200">Connect</h3>
-              <div className="flex gap-4 mb-8">
+              <h3 className="text-sm font-medium uppercase text-gray-500 mb-8">Connect</h3>
+              <div className="space-y-3 mb-10">
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={social.label}
@@ -107,18 +106,21 @@ const Footer = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 + index * 0.1 }}
-                    className="relative w-12 h-12 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-white hover:text-black transition-all duration-300 border border-gray-800 hover:border-white"
+                    className="group playfair tracking-wide flex items-center gap-4 py-2 text-gray-400 hover:text-white transition-all duration-300"
                     aria-label={social.label}
                   >
-                    {social.icon}
+                    <span className="w-10 h-10 rounded-full bg-gray-900/80 border border-gray-800 group-hover:border-gray-600 group-hover:bg-gray-800 flex items-center justify-center transition-all duration-300">
+                      {social.icon}
+                    </span>
+                    <span className="text-lg">{social.label}</span>
+                    <ArrowUp className="w-4 h-4 rotate-45 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                   </motion.a>
                 ))}
               </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold mb-4 text-gray-200">Location</h3>
-                <p className="text-gray-400 flex items-center gap-2">
-                  <MapPin className="w-5 h-5" />
+
+              <div className="pt-6 border-t border-gray-800/60">
+                <p className="text-gray-500 flex items-center gap-3 text-sm">
+                  <MapPin className="w-4 h-4" />
                   Remote / Worldwide
                 </p>
               </div>
@@ -126,24 +128,28 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Back to Top */}
+        <div className="flex justify-center mb-10">
+          <button
+            onClick={scrollToTop}
+            className="group flex flex-col items-center gap-3 text-gray-500 hover:text-white transition-colors duration-300"
+            aria-label="Scroll to top"
+          >
+            <span className="w-12 h-12 rounded-full border border-gray-800 group-hover:border-gray-600 flex items-center justify-center transition-all duration-300">
+              <ArrowUp className="w-5 h-5" />
+            </span>
+            <span className="text-xs uppercase tracking-widest">Back to top</span>
+          </button>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500 text-sm">
+        <div className="pt-8 border-t border-gray-800/60 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-600 text-sm">
             © {currentYear} Abdul Wasih. All rights reserved.
           </p>
-          
-          <div className="flex items-center gap-6">
-            <p className="text-gray-600 text-sm">
-              Built with React & Tailwind
-            </p>
-            <button 
-              onClick={scrollToTop}
-              className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-white hover:text-black transition-all duration-300 border border-gray-800"
-              aria-label="Scroll to top"
-            >
-              <ArrowUp className="w-5 h-5" />
-            </button>
-          </div>
+          <p className="text-gray-700 text-sm">
+            Built with React & Tailwind
+          </p>
         </div>
       </div>
     </footer>
