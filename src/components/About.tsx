@@ -17,8 +17,7 @@ const About: React.FC = () => {
       className="py-24 px-6 md:px-12 lg:px-24 bg-white relative overflow-hidden min-h-[80vh] flex flex-col justify-center"
     >
       {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gray-50 -skew-x-12 transform origin-top-right -z-10" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-gray-50 rounded-full blur-3xl -z-10 opacity-50" />
+      {/* <div className="absolute bottom-0 left-0 w-64 h-64 bg-gray-200 rounded-full blur-3xl -z-10 opacity-50" /> */}
 
       <div className="max-w-5xl mx-auto w-full">
         <div className="text-center mb-16">
