@@ -31,10 +31,10 @@ const LogoCarousel = memo(() => {
                             key={`row1-${tech}-${i}`}
                             className="flex items-center mx-8 group cursor-default"
                         >
-                            <span className="text-xl md:text-2xl font-mono font-bold text-gray-300 uppercase group-hover:text-gray-900 transition-colors duration-300">
+                            <span className="text-xl md:text-2xl font-mono font-bold text-[#b2beb5] uppercase group-hover:text-gray-900 transition-colors duration-300">
                                 {tech}
                             </span>
-                            <span className="ml-8 text-gray-200 text-sm font-mono">///</span>
+                            <span className="ml-8 text-[#b2beb5] opacity-50 text-sm font-mono">///</span>
                         </div>
                     ))}
                 </div>
@@ -51,11 +51,11 @@ const LogoCarousel = memo(() => {
                             key={`row2-${tech}-${i}`}
                             className="flex items-center mx-8 group cursor-default"
                         >
-                            <span className="text-xl md:text-2xl font-mono font-bold text-gray-300 uppercase group-hover:text-gray-900 transition-colors duration-300">
+                            <span className="text-xl md:text-2xl font-mono font-bold text-[#b2beb5] uppercase group-hover:text-gray-900 transition-colors duration-300">
                                 {tech}
                             </span>
 
-                             <span className="ml-8 text-gray-200 text-sm font-mono">///</span>
+                             <span className="ml-8 text-[#b2beb5] opacity-50 text-sm font-mono">///</span>
                         </div>
                     ))}
                 </div>
