@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
-import { FaGithub, FaArrowRight } from "react-icons/fa";
+import { FaGithub, FaArrowRight, FaExternalLinkAlt } from "react-icons/fa";
 import { projects, Project } from "../data/projects";
 
 const Card = ({
@@ -77,16 +77,47 @@ const Card = ({
 
           {/* Content Section */}
           <div className="w-full md:w-[40%] p-8 md:p-12 flex flex-col h-full overflow-y-auto bg-white custom-scrollbar">
-            <div className="mb-6 flex-grow">
-               <Link to={`/projects#project-${i}`} className="group/title block mb-4">
+            <div className="mb-6 flex-grow flex flex-col">
+              <div className="flex items-start justify-between mb-4">
+                <Link to={`/projects#project-${i}`} className="group/title block">
                   <h2 className="text-3xl font-bold playfair text-gray-900 group-hover/title:underline decoration-1 underline-offset-4 transition-all">
                     {project.title}
                   </h2>
-               </Link>
+                </Link>
+                <div className="flex gap-4 text-gray-400 mt-2">
+                  {project.githubUrl && (
+                    <a href={project.githubUrl} target="_blank" rel="noreferrer" className="hover:text-gray-900 transition-colors" aria-label="GitHub Repository">
+                      <FaGithub size={18} />
+                    </a>
+                  )}
+                  {project.websiteUrl && (
+                    <a href={project.websiteUrl} target="_blank" rel="noreferrer" className="hover:text-gray-900 transition-colors" aria-label="Live Website">
+                      <FaExternalLinkAlt size={16} />
+                    </a>
+                  )}
+                </div>
+              </div>
               
-              <p className="text-gray-600 leading-relaxed text-base">
+              <p className="text-gray-600 leading-relaxed text-base mb-8">
                 {project.description}
               </p>
+
+              {/* Tech Stack Pills */}
+              <div className="flex flex-wrap gap-2 mb-8 mt-auto">
+                {project.tech.slice(0, 4).map((t, idx) => (
+                  <span
+                    key={idx}
+                    className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full"
+                  >
+                    {t}
+                  </span>
+                ))}
+                {project.tech.length > 4 && (
+                  <span className="px-3 py-1 bg-gray-50 text-gray-400 text-xs font-medium rounded-full border border-gray-100">
+                    +{project.tech.length - 4}
+                  </span>
+                )}
+              </div>
             </div>
 
             <div className="mt-auto pt-6 border-t border-gray-100">

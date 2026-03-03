@@ -190,7 +190,7 @@ const Header = ({ forceHidden = false }: { forceHidden?: boolean }) => {
               <span>Abdul Wasih</span>
             </button>
 
-            <nav className="border border-gray-200 rounded-lg px-8 py-2 bg-gray-50/50 w-full max-w-3xl">
+            <nav className="border border-gray-200 rounded-lg px-8 py-2 bg-gray-50/50 w-full max-w-3xl tracking-wide">
               <div className="flex items-center justify-between w-full playfair">
                 {navigationItems.map((item) => (
                   <button
