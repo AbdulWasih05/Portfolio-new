@@ -98,12 +98,12 @@ const Card = ({
                 </div>
               </div>
               
-              <p className="text-gray-600 leading-relaxed text-base mb-8">
+              <p className="text-gray-600 leading-relaxed text-base">
                 {project.description}
               </p>
 
               {/* Tech Stack Pills */}
-              <div className="flex flex-wrap gap-2 mb-8 mt-auto">
+              <div className="flex flex-wrap gap-2 mt-4">
                 {project.tech.slice(0, 4).map((t, idx) => (
                   <span
                     key={idx}

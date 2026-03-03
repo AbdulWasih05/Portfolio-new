@@ -38,7 +38,7 @@ export const projects: Project[] = [
         imageWebP: "/fake-review-detector-thumbnail.webp",
         link: "",
         githubUrl: "https://github.com/AbdulWasih05/Fake-Review-Detection",
-        websiteUrl: "https://github.com/AbdulWasih05",
+        // websiteUrl: "https://github.com/AbdulWasih05",
         goal: "Developed an AI-driven browser extension that detects and filters fake reviews in real time, integrating seamlessly with major e-commerce platforms to ensure trustworthy online shopping experiences.",
         features: [
             "Dual-Engine AI Detection: Hybrid local (TensorFlow.js/ONNX) and backend analysis for maximum accuracy and speed",
@@ -59,7 +59,7 @@ export const projects: Project[] = [
         description:
             "Full-stack real estate platform with cross-platform mobile apps, real-time auctions, and AI-powered price prediction.",
         tech: [
-            "React.js",
+            "React",
             "React Native",
             "Node.js",
             "MySQL",
@@ -72,7 +72,8 @@ export const projects: Project[] = [
         image: "/real-estate-thumbnail.jpg",
         imageWebP: "/real-estate-thumbnail.webp",
         githubUrl: "https://github.com/AbdulWasih05",
-        link: "https://auzproperties.vercel.app/",
+        websiteUrl:"https://squareproperties.vercel.app/",
+        link: "https://squareproperties.vercel.app/",
         goal: "Architected production-grade real estate platform with cross-platform mobile apps (iOS/Android), web admin dashboard, and 70+ RESTful APIs secured by JWT auth, RBAC, and Docker. Enables real-time property sync across platforms..",
         features: [
             "Real-Time Auction Bidding System using Socket.IO with live countdown timers and WebSocket connections for instant bid updates",
@@ -110,7 +111,7 @@ export const projects: Project[] = [
             imageWebP: "/retro-wallet-thumbnail.webp",
             link: "#",
             githubUrl: "https://github.com/AbdulWasih05/Retro-Wallet",
-            websiteUrl: "https://github.com/AbdulWasih05",
+            // websiteUrl: "https://github.com/AbdulWasih05",
             goal: "Develop production-ready expense tracker with retro-gaming UI, full-stack CRUD, JWT auth, RESTful APIs, Docker, and real-time analytics.",
             features: [
                 "Immersive Retro Gaming UI with vaporwave neon aesthetics and pixel-perfect animations",
@@ -152,7 +153,7 @@ export const projects: Project[] = [
         imageWebP: "/slotswapper-thumbnail.webp",
         link: "#",
         githubUrl: "https://github.com/AbdulWasih05",
-        websiteUrl: "https://github.com/AbdulWasih05",
+        // websiteUrl: "https://github.com/AbdulWasih05",
         goal: "Create a real-time peer-to-peer swap marketplace empowering patients while giving administrators complete oversight—without compromising security or performance.",
         features: [
             "Real-Time WebSocket Synchronization for instant slot updates and swap requests",
@@ -171,9 +172,9 @@ export const projects: Project[] = [
     {
         title: "Territory Wars - Multiplayer Grid Game",
         description:
-            "Full-stack multiplayer game with real-time tile capture, live leaderboards, and sub-millisecond performance using in-memory caching.",
+            "Full-stack multiplayer game with real-time tile capture, live leaderboards, and sub-millisecond performance using caching.",
         tech: [
-            "React 18",
+            "React",
             "PostgreSQL",
             "Node.js",
             "Express.js",
