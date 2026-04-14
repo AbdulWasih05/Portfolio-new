@@ -1,20 +1,6 @@
-import { useState, useEffect, memo } from 'react';
-import LanyardBadge from './LanyardBadge';
-
+import { memo, useState, useEffect } from 'react';
 
 const Hero = memo(() => {
-  const scrollToProjects = () => {
-    const element = document.getElementById('projects');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-  const scrolltocontact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
   const roles = [
     "Hi",
     "नमस्ते",
@@ -25,6 +11,7 @@ const Hero = memo(() => {
   const [index, setIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [speed, setSpeed] = useState(100);
+
   const handleTyping = () => {
     const current = roles[index];
     if (isDeleting) {
@@ -40,6 +27,7 @@ const Hero = memo(() => {
     } else if (isDeleting && text === "") {
       setIsDeleting(false);
       setIndex((prev) => (prev + 1) % roles.length);
+      setSpeed(500); // pause before starting next word
     }
   };
 
@@ -48,144 +36,101 @@ const Hero = memo(() => {
     return () => clearTimeout(timer);
   }, [text, isDeleting, index, speed]);
 
-
   return (
-    <section id="hero" className="min-h-screen bg-gray-50 pt-24 scroll-mt-20 relative overflow-hidden">
+    <section
+      id="hero"
+      className="grid grid-cols-1 lg:grid-cols-[1fr_340px] border-b border-ink"
+    >
+      {/* Main column */}
+      <div className="px-5 py-7 sm:px-8 sm:py-8 lg:border-r border-ink flex flex-col min-w-0 border-b lg:border-b-0">
+        <div className="flex flex-wrap items-center gap-x-[14px] gap-y-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-3 mb-3">
+          <span className="bg-ink text-paper px-[10px] py-[6px]">Home</span>
+          <span>Open to internships</span>
+          <span>Karnataka, IN</span>
+        </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 min-h-[calc(100vh-6rem)]">
-          {/* Left: Text Content */}
-          <div className="flex flex-col justify-center py-20 lg:pt-8 lg:pb-0 animate-fade-in">
-            {/* Main Title - Stack Layout like "Thoughts Code Coffee" */}
-            <div className="mb-8 animate-fade-in-up">
-              {/* Grid Background Effect - Right Side Only */}
-              <div className="absolute inset-0 opacity-40 pointer-events-none">
-                {/* Main Grid Pattern */}
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `
-                  linear-gradient(rgba(0,0,0,0.0.2) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)
-                `,
-                  backgroundSize: '40px 40px'
-                }}></div>
+        <h1
+          className="font-serif leading-[0.94] tracking-[-0.03em] uppercase"
+          style={{ fontSize: 'clamp(72px, 18vw, 108px)' }}
+        >
+          <span className="block font-black">Build.</span>
+          <span className="block font-light text-ink-3 ">Break.</span>
+          <span className="block font-black">Ship.</span>
+        </h1>
 
-                {/* Secondary smaller grid */}
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `
-                  linear-gradient(rgba(0,0,0,0.030) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(0,0,0,0.030) 1px, transparent 1px)
-                `,
-                  backgroundSize: '10px 10px'
-                }}></div>
+        <div className="mt-[14px] max-w-[80ch] font-mono text-sm sm:text-base leading-[1.6] text-ink-3">
+          <p className="block mb-4">
+            {text || '\u00A0'}, I&apos;m <b className="text-ink font-semibold">Wasih</b>.
+          </p>
+          <p className="block">
+            I can build full-stack products and ship them to production. Currently shipping <b className="text-ink font-semibold">Nirman Mitra</b> and full-stack features at <b className="text-ink font-semibold">Saarthi</b>. Early in my career, but <b className="text-ink font-semibold">I build like I&apos;m not.</b>
+          </p>
+        </div>
 
-                {/* Gradient overlays for depth */}
-                <div className="absolute inset-0 bg-gradient-to-tl from-white/20 via-transparent to-gray-100/30"></div>
-
-                {/* right side div pattern */}
-                {/* <div className="absolute inset-0 bg-gradient-to-tl from-gray-200/10 via-transparent to-white/15"></div> */}
-
-                {/* Floating White Boxes */}
-                <div className="absolute top-20 left-1/4 w-16 h-16 bg-white/60 rounded-lg shadow-sm transform rotate-12 animate-float"></div>
-                <div className="absolute top-40 right-1/3 w-12 h-12 bg-white/40 rounded-lg shadow-sm transform -rotate-6 animate-float-slow"></div>
-                <div className="absolute top-35 right-1/3 w-12 h-12 bg-white/35 rounded-lg shadow-sm transform -rotate-6 animate-float-slow"></div>
-                <div className="absolute top-60 left-1/6 w-20 h-8 bg-white/50 rounded-lg shadow-sm transform rotate-3 animate-float-slow"></div>
-                <div className="absolute top-80 right-1/4 w-14 h-14 bg-white/30 rounded-lg shadow-sm transform -rotate-12 animate-float"></div>
-                <div className="absolute bottom-40 left-1/3 w-18 h-10 bg-white/45 rounded-lg shadow-sm transform rotate-8 animate-float-reverse"></div>
-                <div className="absolute bottom-60 right-1/6 w-16 h-12 bg-white/35 rounded-lg shadow-sm transform -rotate-4 animate-float-slow"></div>
-
-                {/* Additional decorative elements */}
-                <div className="absolute top-1/4 left-1/2 w-2 h-2 bg-gray-400/20 rounded-full animate-pulse"></div>
-                <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-gray-500/25 rounded-full animate-pulse delay-1000"></div>
-                <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-gray-300/15 rounded-full animate-pulse delay-500"></div>
-              </div>
-
-
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-500 leading-none tracking-tight playfair">
-                <div className="block">Thoughts</div>
-                <div className="block">Code</div>
-                <div className="block">Coffee</div>
-              </h1>
-            </div>
-
-            {/* Greeting with Animation */}
-            <div className="mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <p className="text-lg text-gray-600 font-medium">
-                {text}, I'm <span className="text-black font-semibold">Wasih</span>
-                <span className="blinking-cursor ml-1">|</span>
-              </p>
-            </div>
-
-            {/* Description */}
-            <div className="mb-8 space-y-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-              <p className="text-lg text-gray-700 font-medium leading-relaxed max-w-lg">
-                Not a wizard, but can craft fast, secure, and scalable web apps. Dedicated to crafting clean code, seamless UI, and efficient systems.
-              </p>
-            </div>
-
-            {/* CTA Button */}
-            <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              <button
-                onClick={scrollToProjects}
-                className="inline-flex items-center px-4 py-2 text-lg font-medium text-black border border-gray-200 rounded hover:bg-black hover:text-white transition-colors group cursor-pointer"
-              >
-                View My Work
-                <svg
-                  className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Right: ID Badge with Grid Background */}
-          <div className="hidden lg:flex flex-col justify-center py-20 relative animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            {/* Grid Background Effect - Right Side Only */}
-            <div className="absolute inset-0 opacity-40 pointer-events-none">
-              {/* Main Grid Pattern */}
-              <div className="absolute inset-0" style={{
-                backgroundImage: `
-                  linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)
-                `,
-                backgroundSize: '40px 40px'
-              }}></div>
-
-              {/* Secondary smaller grid */}
-              <div className="absolute inset-0 pointer-events-none" style={{
-                backgroundImage: `
-                  linear-gradient(rgba(0,0,0,0.030) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(0,0,0,0.030) 1px, transparent 1px)
-                `,
-                backgroundSize: '10px 10px'
-              }}></div>
-
-              {/* Gradient overlays for depth */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-gray-100/30"></div>
-              <div className="absolute inset-0 bg-gradient-to-tl from-gray-200/10 via-transparent to-white/15"></div>
-
-              {/* Floating White Boxes */}
-              <div className="absolute top-20 left-1/4 w-16 h-16 bg-white/60 rounded-lg shadow-sm transform rotate-12 animate-float"></div>
-              <div className="absolute top-40 right-1/3 w-12 h-12 bg-white/40 rounded-lg shadow-sm transform -rotate-6 animate-float-reverse"></div>
-              <div className="absolute top-60 left-1/6 w-20 h-8 bg-white/50 rounded-lg shadow-sm transform rotate-3 animate-float-slow"></div>
-              <div className="absolute top-80 right-1/4 w-14 h-14 bg-white/30 rounded-lg shadow-sm transform -rotate-12 animate-float"></div>
-              <div className="absolute bottom-40 left-1/3 w-18 h-10 bg-white/45 rounded-lg shadow-sm transform rotate-8 animate-float-reverse"></div>
-              <div className="absolute bottom-60 right-1/6 w-16 h-12 bg-white/35 rounded-lg shadow-sm transform -rotate-4 animate-float-slow"></div>
-
-              {/* Additional decorative elements */}
-              <div className="absolute top-1/4 left-1/2 w-2 h-2 bg-gray-400/20 rounded-full animate-pulse"></div>
-              <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-gray-500/25 rounded-full animate-pulse delay-1000"></div>
-              <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-gray-300/15 rounded-full animate-pulse delay-500"></div>
-            </div>
-
-            {/* ID Badge Component - Positioned at top right */}
-            <LanyardBadge />
-          </div>
+        <div className="mt-[22px] flex flex-col sm:flex-row flex-wrap border-t border-b border-ink">
+          <a
+            href="/projects"
+            className="flex-1 flex items-center justify-between gap-[18px] px-5 py-4 sm:border-r border-ink font-mono text-xs tracking-[0.12em] uppercase bg-ink text-paper hover:bg-ink-3 transition-colors duration-150 min-w-0 sm:min-w-[200px] border-b sm:border-b-0 border-ink"
+          >
+            <span>View My Work</span>
+            <span className="text-base">→</span>
+          </a>
+          <a
+            href="/abdul-wasih-resume.pdf"
+            target="_blank"
+            rel="noopener"
+            className="flex-1 flex items-center justify-between gap-[18px] px-5 py-4 font-mono text-xs tracking-[0.12em] uppercase hover:bg-ink hover:text-paper transition-colors duration-150 min-w-0 sm:min-w-[200px]"
+          >
+            <span>Download Résumé</span>
+            <span className="text-base">↓</span>
+          </a>
         </div>
       </div>
+
+      {/* Side column: portrait + meta */}
+      <aside className="flex flex-col">
+        <div className="relative flex-1 min-h-[220px] bg-ink overflow-hidden">
+          <picture>
+            <source
+              type="image/webp"
+              srcSet="/wasih-img-400w.webp 400w, /wasih-img-800w.webp 800w, /wasih-img-1200w.webp 1200w"
+              sizes="(max-width: 980px) 100vw, 340px"
+            />
+            <img
+              src="/wasih-img.webp"
+              alt="Abdul Wasih portrait"
+              className="absolute inset-0 w-full h-full object-cover grayscale contrast-110"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+            />
+          </picture>
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+          <div className="relative z-10 flex flex-col justify-between h-full p-[18px] text-paper">
+            <div className="font-mono text-[10px] uppercase tracking-[0.18em] opacity-90 drop-shadow">Portrait</div>
+            <div className="font-serif tracking-wide text-[84px] leading-[0.9] text-paper drop-shadow-[0_2px_0_rgba(0,0,0,0.4)]">A.W.</div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.18em] opacity-90 text-right drop-shadow">
+              Karnataka, IN
+            </div>
+          </div>
+        </div>
+        <div className="px-5 py-[14px] border-t border-ink font-mono text-[10px] uppercase tracking-[0.12em] text-ink-2">
+          {[
+            ['Role', 'Full-Stack Intern'],
+            ['Based', 'Karnataka, IN'],
+            ['Timezone', 'UTC+5:30'],
+            ['Status', 'Open. Internships'],
+          ].map(([k, v], i, arr) => (
+            <div
+              key={k}
+              className={`flex justify-between py-[5px] ${i < arr.length - 1 ? 'border-b border-dashed border-rule' : ''}`}
+            >
+              <span>{k}</span>
+              <b className="text-ink font-bold">{v}</b>
+            </div>
+          ))}
+        </div>
+      </aside>
     </section>
   );
 });
