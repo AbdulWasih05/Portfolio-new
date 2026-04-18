@@ -1,15 +1,5 @@
 /* Fonts loaded async in index.html - removed render-blocking @imports */
 
-/* Only animate transform and opacity for better performance */
-.animate-float,
-.animate-float-reverse,
-.animate-float-slow,
-.animate-subtle-sway,
-.animate-gentle-bounce,
-.animate-gentle-swing {
-  will-change: transform;
-}
-
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -57,104 +47,6 @@
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out forwards;
   opacity: 0;
-}
-
-/* Floating animation for background elements */
-@keyframes float {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg);
-  }
-  33% { 
-    transform: translateY(-10px) rotate(2deg);
-  }
-  66% { 
-    transform: translateY(5px) rotate(-1deg);
-  }
-}
-
-@keyframes floatReverse {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg);
-  }
-  33% { 
-    transform: translateY(8px) rotate(-2deg);
-  }
-  66% { 
-    transform: translateY(-6px) rotate(1deg);
-  }
-}
-
-/* Apply floating animations to boxes */
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-reverse {
-  animation: floatReverse 8s ease-in-out infinite;
-}
-
-/* Lanyard Badge Animations */
-@keyframes subtle-sway {
-  0%, 100% { 
-    transform: translateX(-50%) rotate(1deg);
-  }
-  50% { 
-    transform: translateX(-50%) rotate(-0.5deg);
-  }
-}
-
-@keyframes gentle-bounce {
-  0%, 100% { 
-    transform: translateX(-50%) rotate(1deg) translateY(0px);
-  }
-  50% { 
-    transform: translateX(-50%) rotate(1deg) translateY(-2px);
-  }
-}
-
-@keyframes gentle-swing {
-  0%, 100% { 
-    transform: translateX(-50%) rotate(1deg);
-  }
-  25% { 
-    transform: translateX(-50%) rotate(-1deg);
-  }
-  75% { 
-    transform: translateX(-50%) rotate(2deg);
-  }
-}
-
-@keyframes shadow-shift {
-  0%, 100% { 
-    transform: translate(1px, 1px);
-  }
-  50% { 
-    transform: translate(2px, 2px);
-  }
-}
-
-.animate-subtle-sway {
-  animation: subtle-sway 4s ease-in-out infinite;
-}
-
-.animate-gentle-bounce {
-  animation: gentle-bounce 3s ease-in-out infinite;
-}
-
-.animate-gentle-swing {
-  animation: gentle-swing 6s ease-in-out infinite;
-}
-
-.animate-shadow-shift {
-  animation: shadow-shift 5s ease-in-out infinite;
-}
-
-.animate-float-reverse {
-  animation: floatReverse 8s ease-in-out infinite;
-}
-
-.animate-float-slow {
-  animation: float 10s ease-in-out infinite;
 }
 
 /* Section fade-in animations */
@@ -230,6 +122,25 @@ img {
 @tailwind utilities;
 
 @layer base {
+  html, body {
+    background: #F2F0EB;
+    color: #000;
+    font-family: "Inter", sans-serif;
+  }
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  ::selection { background: #000; color: #F2F0EB; }
+}
+
+@layer components {
+  .meta-row { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+  .blink-dot { animation: blink 1.6s infinite; }
+}
+
+@layer base {
   :root {
     /* Muted Grayscale Palette */
     --neutral-50: 50 20% 97%;
@@ -283,20 +194,12 @@ img {
     --hero-text: var(--neutral-900);
     --hero-accent: var(--accent-primary);
 
-    /* Services */
-    --services-bg: var(--neutral-white);
-    --services-card: var(--neutral-100);
-
     /* About */
     --about-bg: var(--accent-warm);
     --about-text: var(--neutral-800);
 
     /* Portfolio */
     --portfolio-bg: var(--neutral-50);
-
-    /* Contact */
-    --contact-bg: var(--neutral-800);
-    --contact-text: var(--neutral-white);
 
     /* Footer */
     --footer-bg: var(--neutral-900);
@@ -491,22 +394,6 @@ img {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.15) 50%, transparent);
   margin: 1.5rem 0;
-}
-
-/* Carousel Animations */
-@keyframes scroll-left {
-  from { transform: translateX(0); }
-  to { transform: translateX(-33.33%); }
-}
-@keyframes scroll-right {
-  from { transform: translateX(-33.33%); }
-  to { transform: translateX(0); }
-}
-.carousel-scroll-left {
-  animation: scroll-left 100s linear infinite;
-}
-.carousel-scroll-right {
-  animation: scroll-right 100s linear infinite;
 }
 
 /* Footer Custom Patterns */
