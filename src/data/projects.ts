@@ -22,6 +22,74 @@ export interface Project {
 
 export const projects: Project[] = [
     {
+        title: "Nirman Mitra",
+        description:
+            "Live WhatsApp voice agent on AWS Bedrock, helping construction workers track materials, log labour, and answer site queries in Hindi.",
+        tech: [
+            "AWS Bedrock",
+            "FastAPI",
+            "WhatsApp Cloud API",
+            "Python"
+        ],
+        image: "/nirman-mitra-thumbnail.png",
+        imageWebP: "/nirman-mitra-thumbnail.webp",
+        link: "https://main.d26uqawil4ygv7.amplifyapp.com",
+        githubUrl: "",
+        websiteUrl: "https://main.d26uqawil4ygv7.amplifyapp.com",
+        goal: "Build an accessible, voice-first AI agent for Indian construction foremen to manage sites without typing.",
+        features: [
+            "WhatsApp Voice Integration for natural language status updates",
+            "Multi-language support (Hindi, English)",
+            "Automated material tracking and labour logging",
+            "Instant query resolution for site issues"
+        ],
+        challenge: "Construction site data is often unstructured and delayed due to manual entry in multiple languages.",
+        approach: "Leveraged AWS Bedrock and WhatsApp API to create a voice-driven interface that seamlessly handles Hindi voice notes and logs structured data.",
+        impact: [
+            { label: "Platform", value: "WhatsApp" },
+            { label: "Input", value: "Voice" },
+            { label: "Target User", value: "Foremen" }
+        ]
+    },
+    {
+        title: "SlotSwapper",
+        description:
+            "Real-time peer-to-peer appointment swap marketplace for healthcare clinics, reducing no-show rates and empowering patients.",
+        tech: [
+            "React",
+            "TypeScript",
+            "Node.js",
+            "Express",
+            "Prisma ORM",
+            "MySQL",
+            "Socket.io",
+            "Docker",
+            "Tailwind CSS",
+            "JWT",
+            "Zustand",
+            "Vite",
+        ],
+        image: "/slotswapper-thumbnail.jpg",
+        imageWebP: "/slotswapper-thumbnail.webp",
+        link: "#",
+        githubUrl: "https://github.com/AbdulWasih05",
+        // websiteUrl: "https://github.com/AbdulWasih05",
+        goal: "Create a real-time peer-to-peer swap marketplace empowering patients while giving administrators complete oversight—without compromising security or performance.",
+        features: [
+            "Real-Time WebSocket Synchronization for instant slot updates and swap requests",
+            "Dual-Interface Architecture with dedicated portals for patients and administrators",
+            "Secure Authentication using JWT and role-based access control",
+            "High-Performance Database with MySQL and strategic indexing for complex queries",
+        ],
+        challenge: "Clinics lose massive revenue from no-shows. Patients lack flexibility, and admins waste time on manual rescheduling. The system needed to solve this securely.",
+        approach: "Built a dual-interface real-time marketplace. React/TypeScript frontend for separate portals, with Node.js/Socket.io ensuring instant sync and <100ms latency.",
+        impact: [
+            { label: "Admin Time Saved", value: "70%" },
+            { label: "Swap Processing", value: "<5s" },
+            { label: "API Endpoints", value: "20+" }
+        ]
+    },
+    {
         title: "Fake Review Detector",
         description:
             "AI-powered Chrome extension that detects fake and AI-generated reviews in real time across 10+ leading platforms.",
@@ -92,122 +160,61 @@ export const projects: Project[] = [
             { label: "Uptime", value: "99.9%" }
         ]
     },
-        {
-            title: "Retro Wallet - Expense Tracker",
-            description:
-                "Full-stack expense tracker with vaporwave retro gaming UI, real-time analytics, and CRUD ops.",
-            tech: [
-                "React",
-                "MySQL",
-                "TypeScript",
-                "Node.js",
-                "Express.js",
-                "Docker",
-                "Sequelize ORM",
-                "JWT",
-                "Tailwind CSS",
-            ],
-            image: "/retro-wallet-thumbnail.jpg",
-            imageWebP: "/retro-wallet-thumbnail.webp",
-            link: "#",
-            githubUrl: "https://github.com/AbdulWasih05/Retro-Wallet",
-            // websiteUrl: "https://github.com/AbdulWasih05",
-            goal: "Develop production-ready expense tracker with retro-gaming UI, full-stack CRUD, JWT auth, RESTful APIs, Docker, and real-time analytics.",
-            features: [
-                "Immersive Retro Gaming UI with vaporwave neon aesthetics and pixel-perfect animations",
-                "Complete Expense Management with real-time CRUD operations and instant total calculations",
-                "Secure JWT Authentication with bcrypt password hashing and Guest Mode for demos",
-                "Advanced Analytics with category-based filtering, date range selection, and visual expense breakdown",
-                "Containerized Deployment with Docker Compose for MySQL, backend, and frontend services",
-                "Lightning-Fast Performance using React 18, Vite bundling, and Sequelize ORM optimization",
-                "Fully Responsive Design with mobile-first Tailwind CSS and seamless cross-device experience",
-                "State Management with React Context API for global expense and authentication states",
-            ],
-            challenge: "Transforming tedious finance management into an engaging experience without compromising security or data integrity.",
-            approach: "Adopted a 'Gamification' design with Vaporwave aesthetics. Used React Context for fluid state and Sequelize ORM to ensure strict data validation.",
-            impact: [
-                { label: "User Engagement", value: "+40%" },
-                { label: "Load Time", value: "0.8s" },
-                { label: "Crash Free", value: "100%" }
-            ]
-    },
     {
-        title: "SlotSwapper",
+        title: "VidyutMitra",
         description:
-            "Real-time peer-to-peer appointment swap marketplace for healthcare clinics, reducing no-show rates and empowering patients.",
+            "WhatsApp AI energy advisor that gives households conversational guidance on electricity usage and ways to lower their bills.",
         tech: [
-            "React",
-            "TypeScript",
-            "Node.js",
-            "Express",
-            "Prisma ORM",
-            "MySQL",
-            "Socket.io",
-            "Docker",
-            "Tailwind CSS",
-            "JWT",
-            "Zustand",
-            "Vite",
+            "AWS Bedrock",
+            "FastAPI",
+            "WhatsApp Cloud API"
         ],
-        image: "/slotswapper-thumbnail.jpg",
-        imageWebP: "/slotswapper-thumbnail.webp",
+        image: "",
         link: "#",
-        githubUrl: "https://github.com/AbdulWasih05",
-        // websiteUrl: "https://github.com/AbdulWasih05",
-        goal: "Create a real-time peer-to-peer swap marketplace empowering patients while giving administrators complete oversight—without compromising security or performance.",
+        githubUrl: "",
+        websiteUrl: "",
+        goal: "Provide smart, conversational energy advice to households via WhatsApp to help reduce consumption.",
         features: [
-            "Real-Time WebSocket Synchronization for instant slot updates and swap requests",
-            "Dual-Interface Architecture with dedicated portals for patients and administrators",
-            "Secure Authentication using JWT and role-based access control",
-            "High-Performance Database with MySQL and strategic indexing for complex queries",
+            "Conversational electricity usage tracking",
+            "Actionable insights to lower bills",
+            "WhatsApp-based natural language interface"
         ],
-        challenge: "Clinics lose massive revenue from no-shows. Patients lack flexibility, and admins waste time on manual rescheduling. The system needed to solve this securely.",
-        approach: "Built a dual-interface real-time marketplace. React/TypeScript frontend for separate portals, with Node.js/Socket.io ensuring instant sync and <100ms latency.",
+        challenge: "Users lack clear, actionable insights on their electricity bills.",
+        approach: "Built a WhatsApp chatbot powered by AWS Bedrock to summarize usage data and recommend savings tips.",
         impact: [
-            { label: "Admin Time Saved", value: "70%" },
-            { label: "Swap Processing", value: "<5s" },
-            { label: "API Endpoints", value: "20+" }
+            { label: "Platform", value: "WhatsApp" },
+            { label: "Focus", value: "Energy Savings" },
+            { label: "Interface", value: "Conversational" }
         ]
     },
     {
-        title: "Territory Wars - Multiplayer Grid Game",
+        title: "IJESTM Journal Platform",
         description:
-            "Full-stack multiplayer game with real-time tile capture, live leaderboards, and sub-millisecond performance using caching.",
+            "College journal website built for AITM with advanced SEO features tailored for academic publications and research papers.",
         tech: [
             "React",
-            "PostgreSQL",
-            "Node.js",
-            "Express.js",
-            "Socket.IO",
-            "Docker",
-            "Prisma ORM",
+            "Next.js",
+            "TypeScript",
             "Tailwind CSS",
-            "Framer Motion",
-            "Vite"
+            "SEO Optimization"
         ],
-        image: "/territory-wars-thumbnail.jpg",
-        imageWebP: "/territory-wars-thumbnail.webp",
-        link: "https://territorial-wars.vercel.app/",
-        githubUrl: "https://github.com/AbdulWasih05/territory-wars",
-        websiteUrl: "https://territorial-wars.vercel.app/",
-        goal: "Build a real-time multiplayer grid game with instant tile capture, live state synchronization across multiple clients, and server-authoritative architecture without database bottlenecks.",
+        image: "",
+        link: "https://ijestm.aitm.edu.in/",
+        githubUrl: "",
+        websiteUrl: "https://ijestm.aitm.edu.in/",
+        goal: "Develop a high-performance, SEO-optimized journal publication website to improve the discoverability of academic research.",
         features: [
-            "Real-Time Multiplayer with Socket.IO handling 18 event types for instant state sync across all connected players",
-            "Server-Authoritative Architecture with in-memory caching (~0.1ms reads vs ~5ms DB) for sub-millisecond gameplay",
-            "Round-Based Competitive Mode with full state machine (Lobby → Countdown → Active → Results) and auto-cycling",
-            "Configurable Lobby System allowing grid size selection (300/600/900 tiles) and round duration (15s/25s/40s) synced live",
-            "Tile Stealing Mechanics enabling players to capture opponent territory with cooldown enforcement and conflict resolution",
-            "Live Leaderboard computed on-the-fly from grid state with real-time score updates and steal tracking",
-            "Optimistic UI Updates providing instant client feedback with server validation and automatic correction on conflicts",
-            "Polished Animations using Framer Motion for tile captures, countdown overlays, toast notifications, and leaderboard reordering",
-            "Containerized Deployment with Docker Compose orchestrating PostgreSQL, backend, and frontend services"
+            "Advanced SEO architecture specifically designed for indexed academic search and Google Scholar indexing",
+            "Modern, reader-friendly UI tailored for digesting long-form research papers and journals",
+            "Responsive layout ensuring seamless reading experiences across mobile and desktop devices",
+            "Streamlined metadata management to ensure articles surface correctly in search engines"
         ],
-        challenge: "Building a responsive multiplayer experience where hundreds of tile updates per second reach all players instantly without database latency or race conditions.",
-        approach: "Adopted server-authoritative model with in-memory Map cache bypassing DB during rounds. Used optimistic UI for instant feedback, Socket.IO for real-time sync, and last-write-wins strategy to eliminate lock contention while maintaining gameplay integrity.",
+        challenge: "Academic journals require strict indexing, rich metadata, and specific SEO standards to be discoverable while keeping the reading experience distraction-free.",
+        approach: "Architected an SEO-first web platform utilizing optimized rendering, structured metadata headers, and semantic HTML to rank research content highly on search engines.",
         impact: [
-            { label: "Real-Time Sync", value: "18 events" },
-            { label: "Max Grid Size", value: "900 tiles" },
-            { label: "State Machine", value: "4 phases" }
+            { label: "Focus", value: "Academic SEO" },
+            { label: "Platform", value: "College Journal" },
+            { label: "Status", value: "Live" }
         ]
     }
 ];
