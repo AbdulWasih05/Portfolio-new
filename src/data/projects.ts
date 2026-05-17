@@ -13,6 +13,7 @@ export interface Project {
     link: string;
     githubUrl?: string;
     websiteUrl?: string;
+    year?: string;
     goal: string;
     features: string[];
     challenge: string;
@@ -106,6 +107,7 @@ export const projects: Project[] = [
         imageWebP: "/fake-review-detector-thumbnail.webp",
         link: "",
         githubUrl: "https://github.com/AbdulWasih05/Fake-Review-Detection",
+        year: "2025",
         // websiteUrl: "https://github.com/AbdulWasih05",
         goal: "Developed an AI-driven browser extension that detects and filters fake reviews in real time, integrating seamlessly with major e-commerce platforms to ensure trustworthy online shopping experiences.",
         features: [
@@ -171,8 +173,9 @@ export const projects: Project[] = [
         ],
         image: "",
         link: "#",
-        githubUrl: "",
+        githubUrl: "https://github.com/AbdulWasih05/",
         websiteUrl: "",
+        year: "2026",
         goal: "Provide smart, conversational energy advice to households via WhatsApp to help reduce consumption.",
         features: [
             "Conversational electricity usage tracking",
@@ -202,6 +205,7 @@ export const projects: Project[] = [
         link: "https://ijestm.aitm.edu.in/",
         githubUrl: "",
         websiteUrl: "https://ijestm.aitm.edu.in/",
+        year: "2025",
         goal: "Develop a high-performance, SEO-optimized journal publication website to improve the discoverability of academic research.",
         features: [
             "Advanced SEO architecture specifically designed for indexed academic search and Google Scholar indexing",
