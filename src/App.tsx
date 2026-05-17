@@ -1,9 +1,12 @@
+import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import ProjectsPage from "./pages/ProjectsPage";
+import SectionLoader from "./components/SectionLoader";
+
+const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
 
 // implemented createBrowserrouter+router instead of traditional browserrouter+route for v7 react-router upgrade
 const router = createBrowserRouter(
@@ -14,7 +17,11 @@ const router = createBrowserRouter(
     },
     {
       path: "/projects",
-      element: <ProjectsPage />,
+      element: (
+        <Suspense fallback={<SectionLoader />}>
+          <ProjectsPage />
+        </Suspense>
+      ),
     },
     {
       path: "*",

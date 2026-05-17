@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#F2F0EB" />
 
     <!-- Resource Hints for Performance -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,29 +13,31 @@
     <!-- Preload critical assets -->
     <!-- Note: Image preload removed - only preload above-the-fold images that are actually in the HTML -->
 
-    <!-- Async font loading with font-display swap -->
+    <!-- Brutalist editorial font stack -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Playfair+Display:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap"
     />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Playfair+Display:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap"
       media="print"
       onload="this.media='all'"
     />
     <noscript
       ><link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Playfair+Display:wght@400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap"
     /></noscript>
 
-    <!-- Preload LCP image -->
+    <!-- Preload LCP image — matches Hero <picture> srcset so the browser picks the same variant -->
     <link
       rel="preload"
-      href="/wasih-img.webp"
       as="image"
+      imagesrcset="/wasih-img-400w.webp 400w, /wasih-img-800w.webp 800w, /wasih-img-1200w.webp 1200w"
+      imagesizes="(max-width: 980px) 100vw, 340px"
       type="image/webp"
       fetchpriority="high"
     />
@@ -53,6 +56,18 @@
     <meta property="og:url" content="https://wasih.tech/" />
     <meta property="og:image" content="https://wasih.tech/og-image.jpg" />
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Abdul Wasih | Portfolio" />
+    <meta name="twitter:description" content="Full Stack Engineer." />
+    <meta name="twitter:image" content="https://wasih.tech/og-image.jpg" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Microsoft Clarity analytics (deferred to end of body so it doesn't block FCP/LCP) -->
     <script type="text/javascript">
       (function (c, l, a, r, i, t, y) {
         c[a] =
@@ -67,16 +82,5 @@
         y.parentNode.insertBefore(t, y);
       })(window, document, "clarity", "script", "ub71xbza5s");
     </script>
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Abdul Wasih | Portfolio" />
-    <meta name="twitter:description" content="Full Stack Engineer." />
-    <meta name="twitter:image" content="https://wasih.tech/og-image.jpg" />
-  </head>
-
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

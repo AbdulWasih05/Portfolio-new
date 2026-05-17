@@ -1,251 +1,267 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaCode, FaHistory, FaUser } from "react-icons/fa";
+import { useState } from 'react';
 
-const About: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("story");
+type TabId = 'now' | 'toolkit' | 'experience';
 
-  const tabs = [
-    { id: "story", label: "My Story", icon: FaUser },
-    { id: "toolkit", label: "Toolkit", icon: FaCode },
-    { id: "experience", label: "Experience", icon: FaHistory },
-  ];
+const tabs: { id: TabId; num: string; label: string }[] = [
+  { id: 'now', num: '01', label: 'Now' },
+  { id: 'toolkit', num: '02', label: 'Toolkit' },
+  { id: 'experience', num: '03', label: 'Experience' },
+];
 
-  return (
-    <section
-      id="about"
-      className="py-24 px-6 md:px-12 lg:px-24 bg-white relative overflow-hidden min-h-[80vh] flex flex-col justify-center"
-    >
-      {/* Decorative background element */}
-      {/* <div className="absolute bottom-0 left-0 w-64 h-64 bg-gray-200 rounded-full blur-3xl -z-10 opacity-50" /> */}
+const tools = [
+  // Frontend
+  { name: 'React', desc: 'Production UIs, component systems.', cat: 'Frontend', usedIn: 'Saarthi' },
+  { name: 'Next.js', desc: 'App router, SSR, Edge runtime.', cat: 'Frontend', usedIn: 'Pearl Modern School' },
+  { name: 'TypeScript', desc: 'Strict types, generics, narrowing.', cat: 'Frontend', usedIn: 'Core stack' },
+  { name: 'Tailwind', desc: 'Utility-first CSS, styling systems.', cat: 'Frontend', usedIn: 'Core stack' },
+  { name: 'Redux', desc: 'State management, predictable mutation.', cat: 'Frontend', usedIn: 'Saarthi' },
+  // Backend
+  { name: 'Node.js', desc: 'Express, streams, worker threads.', cat: 'Backend', usedIn: 'InsForge' },
+  { name: 'Express', desc: 'REST APIs, middleware, routing.', cat: 'Backend', usedIn: 'InsForge' },
+  { name: 'FastAPI', desc: 'Async APIs, Pydantic, backgrounds.', cat: 'Backend', usedIn: 'Nirman Mitra' },
+  { name: 'PostgreSQL', desc: 'Schema design, indexing, queries.', cat: 'Backend', usedIn: 'Saarthi' },
+  // Infra
+  { name: 'AWS', desc: 'Cloud services, IAM, storage routing.', cat: 'Infra', usedIn: 'Nirman Mitra' },
+  { name: 'Docker', desc: 'Multi-stage builds, Compose.', cat: 'Infra', usedIn: 'All projects' },
+  { name: 'Git', desc: 'Version control, branching strategies.', cat: 'Infra', usedIn: 'All projects' },
+  { name: 'CI/CD', desc: 'Automated pipelines, GitHub Actions.', cat: 'Infra', usedIn: 'Saarthi' },
+  // AI & Agents
+  { name: 'PyTorch', desc: 'Training, fine-tuning, RL agents.', cat: 'AI & Agents', usedIn: 'Dhara AI' },
+];
 
-      <div className="max-w-5xl mx-auto w-full">
-        <div className="text-center mb-16">
-          <h2 className="text-sm font-bold tracking-[0.2em] text-gray-400 uppercase mb-4 playfair">
-            About Me
-          </h2>
-          <h3 className="text-4xl md:text-5xl font-bold text-gray-900 playfair">
-            More than just <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-500">
-              code.
-            </span>
-          </h3>
-        </div>
-
-        {/* Tab Navigation */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-gray-100 p-1.5 rounded-full relative">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`relative px-6 py-2.5 rounded-full text-sm font-medium transition-colors duration-300 flex items-center gap-2 z-10 ${
-                  activeTab === tab.id
-                    ? "text-white"
-                    : "text-gray-600 hover:text-gray-900"
-                }`}
-              >
-                {activeTab === tab.id && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-gray-900 rounded-full -z-10"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-                <tab.icon className="text-xs" />
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Content Area */}
-        <div className="relative min-h-[400px]">
-          <AnimatePresence mode="wait">
-            {activeTab === "story" && (
-              <motion.div
-                key="story"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
-                className="w-full max-w-4xl mx-auto text-center"
-              >
-                <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-6 font-light w-full max-w-4xl mx-auto">
-                  "I bridge the gap between{" "}
-                  <span className="text-gray-900 font-medium">design</span> and{" "}
-                  <span className="text-gray-900 font-medium">engineering</span>
-                  . My journey started with a curiosity for how things work,
-                  which evolved into a passion for building scalable
-                  applications that solve real-world problems."
-                </p>
-                <p className="text-lg text-gray-600 leading-relaxed mb-6 w-full max-w-2xl mx-auto">
-                  With a background in full-stack development, I specialize in
-                  creating seamless digital experiences.
-                </p>
-                <p className="text-gray-500 leading-relaxed mb-12 w-full max-w-lg mx-auto">
-                  I believe that great software is not just about clean code,
-                  but about empathy for the user and attention to the smallest
-                  details.
-                </p>
-                <a
-                  href="resume.pdf"
-                  download="Wasih_Resume.pdf"
-                  className="inline-flex items-center px-4 py-2 text-md font-medium text-black border border-gray-300 rounded hover:bg-black hover:text-white transition-colors group cursor-pointer"
-                >
-                  Download Resume
-                  <svg
-                    className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-              </motion.div>
-            )}
-
-            {activeTab === "toolkit" && (
-              <motion.div
-                key="toolkit"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-8"
-              >
-                <SkillGroup
-                  title="Frontend"
-                  skills={[
-                    "React",
-                    "Next.js",
-                    "TypeScript",
-                    "Tailwind CSS",
-                    "Framer Motion",
-                    "Redux",
-                  ]}
-                />
-                <SkillGroup
-                  title="Backend"
-                  skills={[
-                    "Node.js",
-                    "Express",
-                    "MySQL",
-                    "MongoDB",
-                    "Redis",
-                    "REST APIs",
-                  ]}
-                />
-                <SkillGroup
-                  title="DevOps"
-                  skills={["Docker", "AWS", "CI/CD", "Git", "Nginx", "Linux"]}
-                />
-                <SkillGroup
-                  title="AI & Machine Learning"
-                  skills={[
-                    "TensorFlow",
-                    "Keras",
-                    "PyTorch",
-                    "scikit-learn",
-                    "Jupyter Notebook",
-                  ]}
-                />{" "}
-              </motion.div>
-            )}
-
-            {activeTab === "experience" && (
-              <motion.div
-                key="experience"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
-                className="max-w-3xl mx-auto space-y-8"
-              >
-                <ExperienceItem
-                  role="SDE Intern"
-                  company="Saarthi"
-                  period="Dec 2025 - Present"
-                  description={
-                    <ul className="list-disc ml-4 space-y-2">
-                      <li>
-                        Architected a secure end-to-end payment processing
-                        engine integrating Dodo Payments; implemented
-                        webhook-driven event handling and idempotent API logic
-                        to ensure 100% transaction consistency across
-                        distributed systems.
-                      </li>
-                      <li>
-                        Engineered a UX-optimized multi-step checkout interface
-                        using React, reducing cart abandonment by 22% through
-                        real-time field validation and proactive error handling
-                        for failed payment attempts.
-                      </li>
-                      <li>
-                        Refactored high-traffic Jobs and Drives pages from
-                        Client-Side Rendering (CSR) to Server-Side Rendering
-                        (SSR), boosting SEO visibility and search engine
-                        indexation while reducing initial page load time by 35%.
-                      </li>
-                    </ul>
-                  }
-                />
-                <ExperienceItem
-                  role="Freelance Web Developer"
-                  company="Various Projects"
-                  period="2024 - Present"
-                  description="Spearheaded digital transformation for diverse clients, including Pearl Modern and local startups; delivered high-performance web applications by blending experimental UI design with scalable architecture, resulting in improved user engagement and modern digital presences."
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
-    </section>
-  );
+type Experience = {
+  yearTop: string;
+  yearSub: string;
+  title: string;
+  company: string;
+  role: string;
+  body: string;
+  stack: string[];
 };
 
-const SkillGroup = ({ title, skills }: { title: string; skills: string[] }) => (
-  <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100 hover:border-gray-200 transition-colors">
-    <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 playfair">
-      {title}
-    </h4>
-    <div className="flex flex-wrap gap-2">
-      {skills.map((skill) => (
-        <span
-          key={skill}
-          className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-600 hover:text-gray-900 hover:border-gray-300 transition-colors cursor-default"
-        >
-          {skill}
-        </span>
-      ))}
-    </div>
-  </div>
-);
+const experiences: Experience[] = [
+  {
+    yearTop: '2025.',
+    yearSub: 'Present. Karnataka',
+    title: 'Full-Stack Intern,',
+    company: 'Saarthi',
+    role: 'Engineer. End to end.',
+    body: 'Full-stack intern shipping production features end to end. Code in prod from week one, owning features without hand-holding, across React, FastAPI, and Postgres.',
+    stack: ['React', 'FastAPI', 'PostgreSQL'],
+  },
+  {
+    yearTop: '2025.',
+    yearSub: 'Present. Side',
+    title: 'Builder,',
+    company: 'Nirman Mitra',
+    role: 'Solo build. Live in production.',
+    body: 'WhatsApp voice agent for Indian construction workers. Helps foremen track materials, log labour, and answer site queries in Hindi. Live on AWS Bedrock. Real users, real outcomes.',
+    stack: ['AWS Bedrock', 'FastAPI', 'WhatsApp Cloud API'],
+  },
+  {
+    yearTop: '2025.',
+    yearSub: 'Present. OSS',
+    title: 'Open Source Contributor,',
+    company: 'InsForge (YC P26)',
+    role: 'One feature PR. Consistency fixes.',
+    body: 'Shipping PRs to a YC-backed open-source backend platform. One feature merged. Plus consistency fixes across the codebase.',
+    stack: ['TypeScript', 'Node.js'],
+  },
+  {
+    yearTop: '2024.',
+    yearSub: 'Present. Freelance',
+    title: 'Freelance Web Developer,',
+    company: 'Pearl Modern School',
+    role: 'Solo build. Client work.',
+    body: "Built and maintains the school's full website.",
+    stack: ['Next.js', 'TypeScript', 'Tailwind'],
+  },
+];
 
-const ExperienceItem = ({
-  role,
-  company,
-  period,
-  description,
-}: {
-  role: string;
-  company: string;
-  period: string;
-  description: string | React.ReactNode;
-}) => (
-  <div className="relative pl-8 border-l-2 border-gray-100 hover:border-gray-300 transition-colors duration-300">
-    <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-2 border-gray-300" />
-    <div className="mb-1 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-      <h4 className="text-lg font-bold text-gray-900 playfair">{role}</h4>
-      <span className="text-sm text-gray-500 font-medium bg-gray-50 px-3 py-1 rounded-full">
-        {period}
-      </span>
-    </div>
-    <p className="text-gray-800 font-medium mb-2">{company}</p>
-    <div className="text-gray-600 text-sm leading-relaxed">{description}</div>
-  </div>
-);
+const About = () => {
+  const [tab, setTab] = useState<TabId>('now');
+
+  return (
+    <>
+      {/* About head */}
+      <section
+        id="about"
+        className="px-5 sm:px-8 pt-12 sm:pt-14 pb-7 border-b-4 border-ink grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-end"
+      >
+        <h2
+          className="font-serif font-normal leading-[0.9] tracking-[-0.03em]"
+          style={{ fontSize: 'clamp(48px, 9vw, 120px)' }}
+        >
+          About <span className="italic text-ink-3">me</span>.
+        </h2>
+        <div className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-3 md:text-right">
+          <b className="block text-ink">Karnataka, IN</b>
+          <span>Full-Stack Intern @ Saarthi</span>
+        </div>
+      </section>
+
+      {/* Tabs */}
+      <div role="tablist" className="flex border-b border-ink bg-paper overflow-x-auto">
+        {tabs.map((t, i) => {
+          const active = tab === t.id;
+          return (
+            <button
+              key={t.id}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              onClick={() => setTab(t.id)}
+              className={`flex-1 min-w-[120px] px-5 py-[18px] text-left flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] transition-colors duration-150 ${
+                i < tabs.length - 1 ? 'border-r border-ink' : ''
+              } ${active ? 'bg-ink text-paper' : 'text-ink-3 hover:bg-paper-2'}`}
+            >
+              <span className={`font-serif italic text-[18px] ${active ? 'text-rule' : 'text-mute'} normal-case tracking-normal`}>
+                {t.num}
+              </span>
+              {t.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Now panel */}
+      {tab === 'now' && (
+        <section className="border-b-4 border-ink grid grid-cols-1 lg:grid-cols-[1.5fr_1fr]">
+          <div className="px-5 sm:px-8 py-10 sm:py-12 lg:border-r border-ink border-b lg:border-b-0">
+            <p className="font-serif text-[24px] sm:text-[32px] leading-[1.45] text-ink mb-5 max-w-[24ch] tracking-[-0.005em]">
+              I build full-stack products and own them end to end. Database to deploy.
+            </p>
+            <p className="font-serif text-[20px] sm:text-[24px] leading-[1.45] text-ink-2 mb-5 max-w-[30ch]">
+              Currently interning full-stack at <b className="italic text-ink font-normal">Saarthi</b>, shipping features to production across React, FastAPI, and Postgres. Side projects on the weekends.
+            </p>
+            <p className="font-serif text-[20px] sm:text-[24px] leading-[1.45] text-ink-2 mb-5 max-w-[30ch]">
+              I move fast and iterate in the open. I don&apos;t leave a mess behind.
+            </p>
+            <p className="font-serif text-[20px] sm:text-[24px] leading-[1.45] text-ink-2 mb-5 max-w-[30ch]">
+              If a problem looks unsolvable or unsexy, that&apos;s the kind I want.
+            </p>
+            <a
+              href="/abdul-wasih-resume.pdf"
+              target="_blank"
+              rel="noopener"
+              className="mt-[14px] inline-flex items-center gap-[14px] px-6 py-4 bg-ink text-paper font-mono text-xs uppercase tracking-[0.16em] hover:bg-ink-3 transition-colors"
+            >
+              Download Résumé (PDF) <span className="text-base">↓</span>
+            </a>
+          </div>
+          <aside className="px-5 sm:px-8 py-10 sm:py-12 bg-paper-2 flex flex-col items-start">
+            <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-mute mb-8 flex items-center gap-[10px]">
+              <span className="w-6 h-px bg-ink" />
+              Open To
+            </div>
+            
+            <p className="font-serif text-[24px] sm:text-[32px] leading-[1.45] text-ink mb-5 max-w-[24ch] tracking-[-0.005em]">
+              Full-stack internships.
+            </p>
+            
+            <p className="font-serif text-[20px] sm:text-[24px] leading-[1.45] text-ink-2 mb-5 max-w-[30ch]">
+              The pull for me is real ownership. Features I own end to end, shipped to people who actually use them.
+            </p>
+            <p className="font-serif text-[20px] sm:text-[24px] leading-[1.45] text-ink-2 mb-5 max-w-[30ch]">
+              Startup or big tech, that&apos;s the kind of team I want.
+            </p>
+            <p className="font-serif text-[20px] sm:text-[24px] leading-[1.45] text-ink-2 mb-8 max-w-[30ch]">
+              Remote, or on the ground in Bangalore.
+            </p>
+
+            <a
+              href="#contact"
+              className="mt-auto inline-flex items-center font-mono text-[11px] uppercase tracking-[0.16em] text-ink hover:text-ink-3 transition-colors border-b border-ink/30 hover:border-ink pb-1"
+            >
+              Get in touch →
+            </a>
+          </aside>
+        </section>
+      )}
+
+      {/* Toolkit panel */}
+      {tab === 'toolkit' && (
+        <section className="border-b-4 border-ink" aria-label="Stack">
+          <div className="hidden md:grid grid-cols-[60px_1fr_140px_180px] gap-6 px-7 py-[14px] border-b border-ink font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3 items-center">
+            <div>№</div>
+            <div>Tool. Description</div>
+            <div className="text-left">Category</div>
+            <div className="text-right">Used In</div>
+          </div>
+          {tools.map((t, i) => {
+            const num = (i + 1).toString().padStart(2, '0');
+            return (
+              <div
+                key={t.name}
+                className={`group grid md:grid-cols-[60px_1fr_140px_180px] grid-cols-2 gap-4 md:gap-6 px-5 sm:px-7 py-[18px] sm:py-[22px] items-center transition-colors duration-150 hover:bg-ink hover:text-paper ${
+                  i < tools.length - 1 ? 'border-b border-ink' : ''
+                }`}
+              >
+                <div className="font-mono text-[11px] text-mute group-hover:text-rule">{num}</div>
+                <div className="md:col-auto col-span-2 flex flex-col gap-1">
+                  <h4 className="font-serif font-normal text-[24px] sm:text-[28px] tracking-[-0.02em] leading-none">
+                    {t.name}
+                  </h4>
+                  <span className="text-[13px] text-mute group-hover:text-rule leading-[1.4]">
+                    {t.desc}
+                  </span>
+                </div>
+                <div className="font-mono text-[10px] tracking-[0.14em] uppercase bg-ink text-paper group-hover:bg-paper group-hover:text-ink px-[10px] py-[5px] justify-self-start md:justify-self-end">
+                  {t.cat}
+                </div>
+                <div className="font-mono text-[12px] sm:text-[13px] font-bold text-right md:col-auto col-span-2 md:text-right text-left">
+                  {t.usedIn}
+                </div>
+              </div>
+            );
+          })}
+        </section>
+      )}
+
+      {/* Experience panel */}
+      {tab === 'experience' && (
+        <section className="border-b-4 border-ink">
+          {experiences.map((xp, i) => (
+            <article
+              key={xp.company}
+              className={`grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-9 px-5 sm:px-8 py-7 sm:py-8 hover:bg-paper-2 transition-colors ${
+                i < experiences.length - 1 ? 'border-b border-ink' : ''
+              }`}
+            >
+              <div className="font-mono text-xs uppercase tracking-[0.14em] text-ink-3">
+                <b className="block text-ink font-serif font-normal text-[36px] tracking-[-0.02em] leading-none normal-case mb-2">
+                  {xp.yearTop}
+                </b>
+                {xp.yearSub}
+              </div>
+              <div>
+                <h3
+                  className="font-serif font-normal leading-[1.05] tracking-[-0.02em] mb-[6px]"
+                  style={{ fontSize: 'clamp(24px, 3.4vw, 48px)' }}
+                >
+                  {xp.title} <span className="italic text-ink-3">{xp.company}</span>
+                </h3>
+                <div className="font-mono text-[11px] tracking-[0.16em] uppercase text-mute mb-[14px]">
+                  {xp.role}
+                </div>
+                <p className="text-ink-2 text-[15px] leading-[1.65] max-w-[60ch]">{xp.body}</p>
+                <div className="flex flex-wrap gap-[6px] mt-[18px]">
+                  {xp.stack.map((s) => (
+                    <span
+                      key={s}
+                      className="font-mono text-[10px] tracking-[0.1em] uppercase border border-ink px-2 py-1"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </section>
+      )}
+    </>
+  );
+};
 
 export default About;

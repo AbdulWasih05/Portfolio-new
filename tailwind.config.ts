@@ -64,7 +64,14 @@ export default {
 				},
 				zinc: {
 					900: '#18181B',
-				}
+				},
+				paper: '#F2F0EB',
+				'paper-2': '#E8E5DD',
+				ink: '#000000',
+				'ink-2': '#1A1A1A',
+				'ink-3': '#3D3D3D',
+				mute: '#737373',
+				rule: '#B8B5AD',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -94,7 +101,9 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out'
 			},
 			fontFamily: {
-				sans: ['Satoshi', 'sans-serif'],
+				sans: ['Inter', 'sans-serif'],
+				serif: ['"Instrument Serif"', 'serif'],
+				mono: ['"JetBrains Mono"', 'monospace'],
 			},
 		}
 	},

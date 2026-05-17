@@ -1,306 +1,194 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const Header = ({ forceHidden = false }: { forceHidden?: boolean }) => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+const navItems = [
+  { num: '01', label: 'Home', target: 'hero', route: '/' },
+  { num: '02', label: 'Work', target: 'projects', route: '/projects' },
+  { num: '03', label: 'About', target: 'about', route: '/' },
+];
+
+const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
-    // If we navigated here with a state carrying a targetId, scroll to it
-    if (location.state && location.state.targetId) {
-      const element = document.getElementById(location.state.targetId);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100); // Small delay to ensuring DOM is ready
+    if (location.pathname === '/projects') {
+      setActiveSection('projects');
+      return;
+    }
+
+    const handleScroll = () => {
+      const aboutEl = document.getElementById('about');
+      if (aboutEl) {
+        const rect = aboutEl.getBoundingClientRect();
+        // If about section comes into the top half of the screen, mark as active
+        if (rect.top <= window.innerHeight * 0.5) {
+          setActiveSection('about');
+        } else {
+          setActiveSection('hero');
+        }
+      } else {
+        setActiveSection('hero');
       }
-      // Clear state so it doesn't persist on refresh
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check once on mount
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.pathname]);
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const headerOffset = 100; // Account for the sticky header height
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  useEffect(() => {
+    if (location.state && (location.state as any).targetId) {
+      const id = (location.state as any).targetId;
+      setTimeout(() => scrollToSection(id), 100);
       window.history.replaceState({}, document.title);
     }
   }, [location]);
 
   useEffect(() => {
-    const controlNavbar = () => {
-      const currentScrollY = window.scrollY;
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
-      // Determine if user has scrolled more than 50px
-      setIsScrolled(currentScrollY > 50);
-
-      // Hide/Show based on scroll direction
-      if (currentScrollY > lastScrollY) {
-        // Scrolling down
-        setIsVisible(false);
-      } else {
-        // Scrolling up
-        setIsVisible(true);
-      }
-
-      setLastScrollY(currentScrollY);
-      clearTimeout((window as any).scrollTimeout);
-      (window as any).scrollTimeout = setTimeout(() => {
-        setIsVisible(true);
-      }, 1000);
-    };
-
-    // Set active section based on route
-    if (location.pathname === '/projects') {
-      setActiveSection('projects');
-    } else if (location.pathname === '/' && activeSection === 'projects' && window.scrollY < 100) {
-      setActiveSection('hero');
+  const handleClick = (item: typeof navItems[number]) => {
+    setMenuOpen(false);
+    if (item.target === 'projects' && item.route === '/projects') {
+      navigate('/projects');
+      return;
     }
-
-    // Track active section only on home page
-    const trackActiveSection = () => {
-      if (location.pathname !== '/') return;
-
-      const sections = ['hero', 'about', 'projects', 'Skills', 'contact'];
-      const scrollPosition = window.scrollY + 100; // Offset for header height
-
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(sectionId);
-            break;
-          }
-        }
-      }
-    };
-
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          controlNavbar();
-          trackActiveSection();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [lastScrollY, location.pathname]);
-
-  const handleNavigation = (id: string) => {
     if (location.pathname !== '/') {
-        navigate('/', { state: { targetId: id } });
-    } else {
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
+      navigate('/', { state: { targetId: item.target } });
+      return;
     }
-    setIsMobileMenuOpen(false);
+    scrollToSection(item.target);
   };
 
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isMobileMenuOpen]);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+  const isCurrent = (item: typeof navItems[number]) => {
+    if (location.pathname === '/projects') return item.target === 'projects';
+    if (location.pathname === '/') return item.target === activeSection;
+    return false;
   };
-
-  const navigationItems = [
-    { name: 'Home', id: 'hero' },
-    { name: 'About', id: 'about' },
-    { name: 'Project', id: 'projects' },
-    { name: 'Expertise', id: 'Skills' },
-    { name: 'Contact', id: 'contact' }
-  ];
 
   return (
     <>
-      {/* Skip Link for Accessibility */}
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-black text-white px-4 py-2 rounded z-50"
-      >
-        Skip to main content
-      </a>
+      {/* Meta strip */}
+      <div className="grid grid-cols-2 border-b border-ink font-mono text-[11px] uppercase tracking-[0.06em]">
+        <div className="px-[18px] py-[10px] border-r border-ink">
+          <span className="inline-block w-[7px] h-[7px] bg-ink rounded-full mr-2 align-middle blink-dot" />
+          Karnataka, IN
+        </div>
+        <div className="px-[18px] py-[10px] text-right">UTC+5:30</div>
+      </div>
 
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 
-          ${isVisible && !forceHidden ? 'translate-y-0' : '-translate-y-full'}
-          ${isScrolled ? 'bg-white/90 backdrop-blur-sm shadow-sm' : 'bg-white'}`}
-      >
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          {/* Mobile Header */}
-          <div className="md:hidden flex justify-between items-center mb-6">
-            <button
-              onClick={() => handleNavigation('hero')}
-              className="flex items-center gap-2 text-xl font-semibold focus:outline-none focus:ring-2 focus:ring-black rounded playfair tracking-wide"
-              aria-label="Go to top"
-            >
-              <img
-                src="/favicon.ico"
-                alt="AK Logo"
-                width="28"
-                height="28"
-                className="rounded-full"
-              />
+      {/* Nav */}
+      <header className="flex items-stretch justify-between lg:grid lg:grid-cols-[1fr_340px] border-b-4 border-ink bg-paper sticky top-0 z-50">
+        <div className="flex items-stretch justify-between flex-1 min-w-0">
+          <button
+            type="button"
+            onClick={() => handleClick(navItems[0])}
+            className="flex items-center gap-[14px] px-[28px] py-[18px] border-r border-ink text-left min-w-0"
+            aria-label="Home"
+          >
+            <span className="w-11 h-11 bg-ink text-paper flex items-center justify-center font-serif italic text-2xl leading-none shrink-0">W</span>
+            <span className="font-serif text-[22px] leading-none truncate">
               Abdul Wasih
-            </button>
+              <small className="block font-mono text-[10px] tracking-[0.15em] uppercase text-ink-3 mt-1 not-italic truncate">
+                Engineer · Builder
+              </small>
+            </span>
+          </button>
 
-            <button
-              className="relative w-8 h-8 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-black rounded"
-              onClick={toggleMobileMenu}
-              aria-label="Toggle navigation menu"
-              aria-expanded={isMobileMenuOpen}
-            >
-              <span className="absolute w-6 h-0.5 bg-black -translate-y-[7px]" />
-              <span className="absolute w-4 h-0.5 bg-black translate-x-[4px]" />
-              <span className="absolute w-6 h-0.5 bg-black translate-y-[7px]" />
-            </button>
-          </div>
-
-          {/* Desktop Header */}
-          <div className="hidden md:flex flex-col items-center space-y-2">
-            <button
-              onClick={() => handleNavigation('hero')}
-              className="flex items-center gap-2 text-xl font-bold focus:outline-none focus:ring-2 focus:ring-black rounded playfair tracking-wider"
-              aria-label="Go to top"
-            >
-              <img
-                src="/favicon.ico"
-                alt="AK Logo"
-                width="28"
-                height="28"
-                className="rounded-full"
-              />
-              <span>Abdul Wasih</span>
-            </button>
-
-            <nav className="border border-gray-200 rounded-lg px-8 py-2 bg-gray-50/50 w-full max-w-3xl tracking-wide">
-              <div className="flex items-center justify-between w-full playfair">
-                {navigationItems.map((item) => (
-                  <button
-                    key={item.name}
-                    onClick={() => handleNavigation(item.id)}
-                    className={`text-sm transition-all duration-300 relative group focus:outline-none focus:ring-2 focus:ring-black rounded px-2 py-1 ${activeSection === item.id
-                        ? 'text-black border-b-2 border-black'
-                        : 'text-gray-700 hover:text-black'
-                      }`}
-                  >
-                    {item.name}
-                    <span className={`absolute -bottom-1 left-0 h-[2px] bg-black transition-all duration-300 ${activeSection === item.id ? 'w-full' : 'w-0 group-hover:w-full'
-                      }`} />
-                  </button>
-                ))}
-              </div>
-            </nav>
-          </div>
+          <button
+            type="button"
+            className="md:hidden bg-ink text-paper px-[22px] font-mono tracking-[0.14em] uppercase text-xs border-l border-ink shrink-0"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? '× Close' : '☰ Menu'}
+          </button>
         </div>
 
+        <nav className="hidden md:flex items-stretch lg:w-full">
+          {navItems.map((item) => {
+            const current = isCurrent(item);
+            return (
+              <button
+                key={item.label}
+                type="button"
+                onClick={() => handleClick(item)}
+                aria-current={current ? 'page' : undefined}
+                className={`flex-1 flex justify-center px-6 items-center gap-[10px] border-l border-ink font-mono text-xs uppercase tracking-[0.08em] transition-colors duration-150 hover:bg-ink hover:text-paper ${
+                  current ? 'bg-ink text-paper' : ''
+                }`}
+              >
+                <span className="text-[10px] opacity-60">{item.num}</span>
+                {item.label}
+              </button>
+            );
+          })}
+        </nav>
       </header>
 
-      {/* Mobile Navigation Overlay - Outside header so it's not affected by header transforms */}
+      {/* Mobile menu drawer */}
       <div
-        className={`md:hidden fixed inset-0 bg-white z-[60] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          isMobileMenuOpen
-            ? 'opacity-100 visible'
-            : 'opacity-0 invisible'
+        className={`md:hidden fixed inset-0 bg-paper z-[60] flex flex-col border-t-4 border-ink transition-transform duration-200 ${
+          menuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        {/* Mobile Overlay Header — matches main header padding exactly */}
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex justify-between items-center">
-            <button
-              onClick={() => handleNavigation('hero')}
-              className="flex items-center gap-2 text-xl font-semibold focus:outline-none focus:ring-2 focus:ring-black rounded playfair tracking-wide"
-              aria-label="Go to top"
-            >
-              <img
-                src="/favicon.ico"
-                alt="AK Logo"
-                width="28"
-                height="28"
-                className="rounded-full"
-              />
-              Abdul Wasih
-            </button>
-
-            <button
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="relative w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-black"
-              aria-label="Close menu"
-            >
-              <span className="absolute w-6 h-0.5 bg-black rotate-45" />
-              <span className="absolute w-6 h-0.5 bg-black -rotate-45" />
-            </button>
+        <div className="flex justify-between items-stretch border-b-4 border-ink">
+          <div className="flex items-center px-[28px] py-[18px] border-r border-ink flex-1">
+            <div aria-hidden="true" className="h-11 w-11"></div>
           </div>
-        </div>
-
-        {/* Mobile Overlay Content */}
-        <div className="flex flex-col items-center pt-16">
-          <nav className="flex flex-col items-center space-y-8">
-            {navigationItems.map((item, index) => (
-              <button
-                key={item.name}
-                onClick={() => handleNavigation(item.id)}
-                className={`text-3xl font-semibold playfair transition-all duration-500 focus:outline-none ${
-                  activeSection === item.id
-                    ? 'text-black'
-                    : 'text-gray-400 hover:text-black'
-                } ${
-                  isMobileMenuOpen
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-4'
-                }`}
-                style={{
-                  transitionDelay: isMobileMenuOpen ? `${150 + index * 75}ms` : '0ms',
-                }}
-              >
-                {item.name}
-              </button>
-            ))}
-          </nav>
-
-          {/* Mobile CTA */}
-          <div
-            className={`mt-12 transition-all duration-500 ${
-              isMobileMenuOpen
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-4'
-            }`}
-            style={{
-              transitionDelay: isMobileMenuOpen ? `${150 + navigationItems.length * 75}ms` : '0ms',
-            }}
+          <button
+            type="button"
+            onClick={() => setMenuOpen(false)}
+            className="bg-ink text-paper px-[22px] font-mono tracking-[0.14em] uppercase text-xs shrink-0"
           >
+            × Close
+          </button>
+        </div>
+        <nav className="flex-1 flex flex-col pt-[18px]">
+          {navItems.map((item) => (
             <button
-              onClick={() => handleNavigation('contact')}
-              className="inline-flex items-center gap-3 px-10 py-3.5 text-lg font-medium text-white bg-black rounded-full hover:bg-gray-800 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
+              key={item.label}
+              type="button"
+              onClick={() => handleClick(item)}
+              className="border-b border-ink px-[28px] py-9 text-left flex justify-between items-end group active:bg-paper-2 transition-colors"
             >
-              Let's Talk
-              <svg
-                className="w-5 h-5 transition-transform group-hover:translate-x-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <span className="font-serif font-normal text-[56px] leading-[0.85] tracking-[-0.02em] uppercase">
+                {item.label}
+              </span>
+              <span className="font-mono text-sm opacity-60 mb-1 uppercase tracking-[0.1em]">{item.num}</span>
             </button>
-          </div>
+          ))}
+        </nav>
+        <div className="mt-auto">
+          <a
+            href="mailto:buildwithwasih@gmail.com"
+            onClick={() => setMenuOpen(false)}
+            className="flex justify-between items-center w-full bg-ink text-paper px-[28px] py-[28px] font-mono uppercase tracking-[0.16em] text-[13px] active:bg-ink-3 transition-colors"
+          >
+            <span>Get in touch</span>
+            <span>→</span>
+          </a>
         </div>
       </div>
     </>

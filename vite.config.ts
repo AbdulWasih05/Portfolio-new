@@ -9,6 +9,8 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    // my ngrok server
+    allowedHosts: ["defunct-saltish-tanna.ngrok-free.dev"],
   },
   plugins: [
     react(),
@@ -67,21 +69,15 @@ export default defineConfig(({ mode }) => ({
               id.includes('node_modules/react-dom') ||
               id.includes('node_modules/react-router-dom') ||
               id.includes('node_modules/scheduler') ||
-              id.includes('node_modules/next-themes') ||
-              id.includes('node_modules/react-helmet-async') ||
-              id.includes('node_modules/vaul')) {
+              id.includes('node_modules/react-helmet-async')) {
             return 'react-vendor';
-          }
-          // Framer Motion - lazy loaded for below-fold
-          if (id.includes('node_modules/framer-motion')) {
-            return 'framer-motion';
           }
           // Radix UI and floating-ui (they depend on each other)
           if (id.includes('node_modules/@radix-ui') || id.includes('node_modules/@floating-ui')) {
             return 'radix-ui';
           }
-          // Icons - lazy loaded
-          if (id.includes('node_modules/react-icons') || id.includes('node_modules/lucide-react')) {
+          // Icons
+          if (id.includes('node_modules/lucide-react')) {
             return 'icons';
           }
           // Other node_modules
@@ -100,7 +96,6 @@ export default defineConfig(({ mode }) => ({
       'react',
       'react-dom',
       'react-router-dom',
-      'framer-motion',
     ],
   },
 }));
