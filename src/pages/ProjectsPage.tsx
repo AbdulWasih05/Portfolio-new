@@ -11,7 +11,7 @@ const slugify = (s: string) =>
     .replace(/^-|-$/g, '');
 
 const yearOf = (project: (typeof projects)[number], i: number) => {
-  // Newest projects on top — show 2025 for the first two, 2024 below.
+  if (project.year) return project.year;
   if (i === 0) return '2025';
   if (i === 1) return '2025';
   return '2024';

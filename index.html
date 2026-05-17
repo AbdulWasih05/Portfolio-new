@@ -15,6 +15,33 @@
 
     <!-- Brutalist editorial font stack -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <!-- Preload critical above-the-fold font files in parallel with the CSS
+         to eliminate the FOUT swap on the hero ("Build. Break. Ship.", "A.W.")
+         and the projects heading. Note: gstatic URLs are version-pinned by Google
+         and may need updating if the font version bumps. -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="https://fonts.gstatic.com/s/instrumentserif/v5/jizHRFtNs2ka5fXjeivQ4LroWlx-6zAjjH7Motmp5g.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjnTLgNs.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2"
+    />
+
     <link
       rel="preload"
       as="style"
