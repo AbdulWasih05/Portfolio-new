@@ -182,7 +182,9 @@ const Header = () => {
         </nav>
         <div className="mt-auto">
           <a
-            href="mailto:buildwithwasih@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=buildwithwasih@gmail.com&su=Hello%20Wasih"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
             className="flex justify-between items-center w-full bg-ink text-paper px-[28px] py-[28px] font-mono uppercase tracking-[0.16em] text-[13px] active:bg-ink-3 transition-colors"
           >

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useResumeModal } from './ResumeModal';
 
 type TabId = 'now' | 'toolkit' | 'experience';
 
@@ -10,18 +11,17 @@ const tabs: { id: TabId; num: string; label: string }[] = [
 
 const tools = [
   // Frontend
-  { name: 'React', desc: 'Production UIs, component systems.', cat: 'Frontend', usedIn: 'Saarthi' },
-  { name: 'Next.js', desc: 'App router, SSR, Edge runtime.', cat: 'Frontend', usedIn: 'Pearl Modern School' },
+  { name: 'React', desc: 'Production UIs, component systems.', cat: 'Frontend', usedIn: 'Core stack' },
+  { name: 'Next.js', desc: 'App router, SSR, Edge runtime.', cat: 'Frontend', usedIn: 'Core stack' },
   { name: 'TypeScript', desc: 'Strict types, generics, narrowing.', cat: 'Frontend', usedIn: 'Core stack' },
   { name: 'Tailwind', desc: 'Utility-first CSS, styling systems.', cat: 'Frontend', usedIn: 'Core stack' },
-  { name: 'Redux', desc: 'State management, predictable mutation.', cat: 'Frontend', usedIn: 'Saarthi' },
   // Backend
   { name: 'Node.js', desc: 'Express, streams, worker threads.', cat: 'Backend', usedIn: 'InsForge' },
   { name: 'Express', desc: 'REST APIs, middleware, routing.', cat: 'Backend', usedIn: 'InsForge' },
-  { name: 'FastAPI', desc: 'Async APIs, Pydantic, backgrounds.', cat: 'Backend', usedIn: 'Nirman Mitra' },
+  { name: 'FastAPI', desc: 'Async APIs, Pydantic, backgrounds.', cat: 'Backend', usedIn: 'SiteSaathi' },
   { name: 'PostgreSQL', desc: 'Schema design, indexing, queries.', cat: 'Backend', usedIn: 'Saarthi' },
   // Infra
-  { name: 'AWS', desc: 'Cloud services, IAM, storage routing.', cat: 'Infra', usedIn: 'Nirman Mitra' },
+  { name: 'AWS', desc: 'Cloud services, IAM, storage routing.', cat: 'Infra', usedIn: 'SiteSaathi' },
   { name: 'Docker', desc: 'Multi-stage builds, Compose.', cat: 'Infra', usedIn: 'All projects' },
   { name: 'Git', desc: 'Version control, branching strategies.', cat: 'Infra', usedIn: 'All projects' },
   { name: 'CI/CD', desc: 'Automated pipelines, GitHub Actions.', cat: 'Infra', usedIn: 'Saarthi' },
@@ -53,7 +53,7 @@ const experiences: Experience[] = [
     yearTop: '2025.',
     yearSub: 'Present. Side',
     title: 'Builder,',
-    company: 'Nirman Mitra',
+    company: 'SiteSaathi',
     role: 'Solo build. Live in production.',
     body: 'WhatsApp voice agent for Indian construction workers. Helps foremen track materials, log labour, and answer site queries in Hindi. Live on AWS Bedrock. Real users, real outcomes.',
     stack: ['AWS Bedrock', 'FastAPI', 'WhatsApp Cloud API'],
@@ -80,6 +80,7 @@ const experiences: Experience[] = [
 
 const About = () => {
   const [tab, setTab] = useState<TabId>('now');
+  const { openResume, prefetchResume } = useResumeModal();
 
   return (
     <>
@@ -140,14 +141,16 @@ const About = () => {
             <p className="font-serif text-[20px] sm:text-[24px] leading-[1.45] text-ink-2 mb-5 max-w-[30ch]">
               If a problem looks unsolvable or unsexy, that&apos;s the kind I want.
             </p>
-            <a
-              href="/abdul-wasih-resume.pdf"
-              target="_blank"
-              rel="noopener"
+            <button
+              type="button"
+              onClick={openResume}
+              onPointerEnter={prefetchResume}
+              onFocus={prefetchResume}
+              onTouchStart={prefetchResume}
               className="mt-[14px] inline-flex items-center gap-[14px] px-6 py-4 bg-ink text-paper font-mono text-xs uppercase tracking-[0.16em] hover:bg-ink-3 transition-colors"
             >
-              Download Résumé (PDF) <span className="text-base">↓</span>
-            </a>
+              View Résumé (PDF) <span className="text-base">↗</span>
+            </button>
           </div>
           <aside className="px-5 sm:px-8 py-10 sm:py-12 bg-paper-2 flex flex-col items-start">
             <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-mute mb-8 flex items-center gap-[10px]">
@@ -170,7 +173,9 @@ const About = () => {
             </p>
 
             <a
-              href="#contact"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=buildwithwasih@gmail.com&su=Hello%20Wasih"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-auto inline-flex items-center font-mono text-[11px] uppercase tracking-[0.16em] text-ink hover:text-ink-3 transition-colors border-b border-ink/30 hover:border-ink pb-1"
             >
               Get in touch →

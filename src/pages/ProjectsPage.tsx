@@ -1,14 +1,7 @@
-import { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { projects } from '../data/projects';
+import { Link } from 'react-router-dom';
+import { projects, slugify } from '../data/projects';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-
-const slugify = (s: string) =>
-  s
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
 
 const yearOf = (project: (typeof projects)[number], i: number) => {
   if (project.year) return project.year;
@@ -18,23 +11,6 @@ const yearOf = (project: (typeof projects)[number], i: number) => {
 };
 
 const ProjectsPage = () => {
-  const { hash } = useLocation();
-
-  useEffect(() => {
-    if (hash) {
-      const id = hash.replace('#', '');
-      const el = document.getElementById(id);
-      if (el) {
-        setTimeout(() => {
-          const offset = el.getBoundingClientRect().top + window.pageYOffset - 120;
-          window.scrollTo({ top: offset, behavior: 'smooth' });
-        }, 100);
-      }
-    } else {
-      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-    }
-  }, [hash]);
-
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Header />
@@ -44,7 +20,7 @@ const ProjectsPage = () => {
           <div className="flex flex-wrap items-center gap-x-[14px] gap-y-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-3 mb-[14px]">
             <span className="bg-ink text-paper px-[10px] py-[3px]">Work</span>
             <span>{projects.length} builds</span>
-            <span>2024 — Present</span>
+            <span>2024 - Present</span>
           </div>
           <h1
             className="font-serif font-normal leading-[0.86] tracking-[-0.04em]"
@@ -61,19 +37,11 @@ const ProjectsPage = () => {
         {projects.map((project, i) => {
           const num = (i + 1).toString().padStart(2, '0');
           const slug = slugify(project.title);
-          const href =
-            project.websiteUrl && project.websiteUrl !== '#'
-              ? project.websiteUrl
-              : project.link && project.link !== '#'
-                ? project.link
-                : project.githubUrl || '#';
           return (
-            <a
+            <Link
               key={project.title}
               id={slug}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
+              to={`/projects/${slug}`}
               className="group grid grid-cols-1 md:grid-cols-[80px_1fr_200px_160px_60px] items-center gap-4 md:gap-6 px-5 sm:px-7 py-7 sm:py-9 border-b border-ink transition-colors duration-150 hover:bg-ink hover:text-paper"
             >
               <div className="font-mono text-[14px] font-bold tracking-[0.1em]">{num}</div>
@@ -110,7 +78,7 @@ const ProjectsPage = () => {
                 <span>{project.link && project.link !== '#' ? 'Live' : 'Shipped'}</span>
               </div>
               <div className="font-serif text-[28px] md:text-right text-left tracking-[-0.02em]">→</div>
-            </a>
+            </Link>
           );
         })}
 

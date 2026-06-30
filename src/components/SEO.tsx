@@ -15,62 +15,8 @@ const SEO = ({
   image = "https://wasih.tech/og-image.jpg",
   type = "website"
 }: SEOProps) => {
-  // JSON-LD Structured Data
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Abdul Wasih",
-    "jobTitle": "Full Stack Engineer",
-    "description": description,
-    "url": url,
-    "image": image,
-    "sameAs": [
-      "https://github.com/AbdulWasih05",
-      "https://www.linkedin.com/in/iamwasih"
-    ],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Freelance Developer"
-    },
-    "knowsAbout": [
-      "React.js",
-      "Next.js",
-      "Node.js",
-      "Express.js",
-      "JavaScript",
-      "TypeScript",
-      "MySQL",
-      "Docker",
-      "Git",
-      "Frontend Development",
-      "Backend Development",
-      "Full Stack Development",
-      "API Integration",
-      "DevOps",
-      "Data Structures",
-      "Algorithms",
-      "Object-Oriented Programming",
-      "Web Development",
-      "Responsive Web Design",
-      "REST APIs"
-    ],
-    "skills": [
-      "React.js",
-      "Next.js",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "MySQL",
-      "Docker",
-      "Git",
-      "JavaScript",
-      "TypeScript",
-      "HTML5",
-      "CSS3",
-      "Responsive Design",
-      "API Development"
-    ]
-  };
+  // Note: Person JSON-LD lives statically in index.html (single source of truth,
+  // crawlable without JS and visible in View Source).
 
   return (
     <Helmet>
@@ -113,12 +59,7 @@ const SEO = ({
       {/* Preconnect to external domains for performance */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      
-      {/* JSON-LD Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
-      
+
       {/* Favicon and App Icons */}
       <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
