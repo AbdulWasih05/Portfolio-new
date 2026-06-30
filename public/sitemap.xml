@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://wasih.netlify.app/</loc>
+    <loc>https://wasih.tech/</loc>
+    <lastmod>2026-06-15</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://wasih.netlify.app/#Projects</loc>
+    <loc>https://wasih.tech/projects</loc>
+    <lastmod>2026-06-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://wasih.netlify.app/#contact</loc>
-    <priority>0.8</priority>
+    <loc>https://wasih.tech/projects/vidyutmitra</loc>
+    <lastmod>2026-06-24</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wasih.tech/projects/slotswapper</loc>
+    <lastmod>2026-06-24</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wasih.tech/projects/fake-review-detector</loc>
+    <lastmod>2026-06-24</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wasih.tech/projects/real-estate-platform</loc>
+    <lastmod>2026-06-24</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wasih.tech/projects/sitesaathi</loc>
+    <lastmod>2026-06-24</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wasih.tech/projects/ijestm-journal-platform</loc>
+    <lastmod>2026-06-24</lastmod>
+    <priority>0.7</priority>
   </url>
 </urlset>

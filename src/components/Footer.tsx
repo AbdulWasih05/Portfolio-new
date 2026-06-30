@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useResumeModal } from './ResumeModal';
 
 const Footer = () => {
+  const { openResume, prefetchResume } = useResumeModal();
   return (
     <footer className="bg-ink text-paper border-t-4 border-ink">
       <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr] border-b border-[#2a2a2a]">
@@ -17,7 +19,9 @@ const Footer = () => {
             Open to internship and freelance work. Reach out at the address below.
           </p>
           <a
-            href="mailto:buildwithwasih@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=buildwithwasih@gmail.com&su=Hello%20Wasih"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-3 mt-6 font-serif text-[22px] sm:text-[28px] border-b border-paper pb-[6px]"
           >
             buildwithwasih@gmail.com
@@ -47,10 +51,20 @@ const Footer = () => {
         <div className="px-5 sm:px-8 py-8 sm:py-12">
           <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-mute mb-[18px]">Connect</div>
           <div className="grid gap-3 font-serif text-[20px] sm:text-[24px]">
+            <button
+              type="button"
+              onClick={openResume}
+              onPointerEnter={prefetchResume}
+              onFocus={prefetchResume}
+              onTouchStart={prefetchResume}
+              className="flex w-full justify-between items-baseline gap-[10px] border-b border-[#2a2a2a] pb-[10px] text-left hover:text-rule"
+            >
+              <span>Résumé</span>
+              <span className="font-mono text-[10px] text-mute">↗</span>
+            </button>
             {[
-              { label: 'Résumé', sym: '↓', href: '/abdul-wasih-resume.pdf', external: true },
-              { label: 'GitHub', sym: '↗', href: 'https://github.com/AbdulWasih05', external: true },
-              { label: 'LinkedIn', sym: '↗', href: 'https://linkedin.com/in/iamwasih', external: true },
+              { label: 'GitHub', sym: '↗', href: 'https://github.com/AbdulWasih05' },
+              { label: 'LinkedIn', sym: '↗', href: 'https://linkedin.com/in/iamwasih' },
             ].map((l) => (
               <a
                 key={l.label}

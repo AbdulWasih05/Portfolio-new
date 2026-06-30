@@ -1,6 +1,8 @@
 import { memo, useState, useEffect } from 'react';
+import { useResumeModal } from './ResumeModal';
 
 const Hero = memo(() => {
+  const { openResume, prefetchResume } = useResumeModal();
   const roles = [
     "Hi",
     "नमस्ते",
@@ -63,7 +65,7 @@ const Hero = memo(() => {
             {text || '\u00A0'}, I&apos;m <b className="text-ink font-semibold">Wasih</b>.
           </p>
           <p className="block">
-            I can build full-stack products and ship them to production. Currently shipping <b className="text-ink font-semibold">Nirman Mitra</b> and full-stack features at <b className="text-ink font-semibold">Saarthi</b>. Early in my career, but <b className="text-ink font-semibold">I build like I&apos;m not.</b>
+            I can build full-stack products and ship them to production. Currently shipping <b className="text-ink font-semibold">SiteSaathi</b> and full-stack features at <b className="text-ink font-semibold">Saarthi</b>. Early in my career, but <b className="text-ink font-semibold">I build like I&apos;m not.</b>
           </p>
         </div>
 
@@ -75,15 +77,17 @@ const Hero = memo(() => {
             <span>View My Work</span>
             <span className="text-base">→</span>
           </a>
-          <a
-            href="/abdul-wasih-resume.pdf"
-            target="_blank"
-            rel="noopener"
+          <button
+            type="button"
+            onClick={openResume}
+            onPointerEnter={prefetchResume}
+            onFocus={prefetchResume}
+            onTouchStart={prefetchResume}
             className="flex-1 flex items-center justify-between gap-[18px] px-5 py-4 font-mono text-xs tracking-[0.12em] uppercase hover:bg-ink hover:text-paper transition-colors duration-150 min-w-0 sm:min-w-[200px]"
           >
-            <span>Download Résumé</span>
-            <span className="text-base">↓</span>
-          </a>
+            <span>Quick Look</span>
+            <span className="text-base">↗</span>
+          </button>
         </div>
       </div>
 

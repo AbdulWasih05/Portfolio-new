@@ -88,6 +88,42 @@
     <meta name="twitter:title" content="Abdul Wasih | Portfolio" />
     <meta name="twitter:description" content="Full Stack Engineer." />
     <meta name="twitter:image" content="https://wasih.tech/og-image.jpg" />
+
+    <!-- JSON-LD structured data (Person) — static so it's crawlable without JS
+         and visible in View Source. Single source of truth (not duplicated in SEO.tsx). -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Abdul Wasih",
+        "jobTitle": "Full Stack Engineer",
+        "url": "https://wasih.tech/",
+        "image": "https://wasih.tech/og-image.jpg",
+        "sameAs": [
+          "https://github.com/AbdulWasih05",
+          "https://www.linkedin.com/in/iamwasih"
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Freelance Developer"
+        },
+        "knowsAbout": [
+          "React.js",
+          "Next.js",
+          "Node.js",
+          "Express.js",
+          "JavaScript",
+          "TypeScript",
+          "MySQL",
+          "Docker",
+          "Git",
+          "Full Stack Development",
+          "API Integration",
+          "REST APIs",
+          "Responsive Web Design"
+        ]
+      }
+    </script>
   </head>
 
   <body>

@@ -21,73 +21,126 @@ export interface Project {
     impact: ProjectStats[];
 }
 
+// Shared slug helper — single source of truth for project URLs (/projects/:slug).
+// Imported by Projects.tsx, ProjectsPage.tsx and ProjectDetailPage.tsx so card
+// links and route lookups can never drift apart.
+export const slugify = (s: string) =>
+    s
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+
 export const projects: Project[] = [
     {
-        title: "Nirman Mitra",
+        title: "VidyutMitra",
         description:
-            "Live WhatsApp voice agent on AWS Bedrock, helping construction workers track materials, log labour, and answer site queries in Hindi.",
+            "WhatsApp-first AI energy advisor for MESCOM consumers in coastal Karnataka. Send one photo of your electricity bill and get a personalized analysis, a Kannada voice note, and an infographic back in seconds, voice-first, zero literacy required.",
         tech: [
-            "AWS Bedrock",
-            "FastAPI",
-            "WhatsApp Cloud API",
-            "Python"
+            "Flask",
+            "Gemini 2.5 Flash",
+            "Groq Llama 3.3 70B",
+            "Sarvam AI (Kannada TTS)",
+            "Supabase",
+            "Twilio WhatsApp",
+            "Next.js"
         ],
-        image: "/nirman-mitra-thumbnail.png",
-        imageWebP: "/nirman-mitra-thumbnail.webp",
-        link: "https://main.d26uqawil4ygv7.amplifyapp.com",
-        githubUrl: "",
-        websiteUrl: "https://main.d26uqawil4ygv7.amplifyapp.com",
-        goal: "Build an accessible, voice-first AI agent for Indian construction foremen to manage sites without typing.",
+        image: "/vidyutmitra-thumbnail.png",
+        imageWebP: "/vidyutmitra-thumbnail.webp",
+        link: "https://vidyut-mitra.wasih.tech/",
+        githubUrl: "https://github.com/AbdulWasih05/vidyut-mitra",
+        websiteUrl: "https://vidyut-mitra.wasih.tech/",
+        year: "2026",
+        goal: "Help MESCOM households uncover the money they quietly lose to bill traps (Fixed Charge over-provisioning, Gruha Jyothi cliffs, and missed solar subsidies) through a zero-typing, zero-literacy WhatsApp advisor in their own language.",
         features: [
-            "WhatsApp Voice Integration for natural language status updates",
-            "Multi-language support (Hindi, English)",
-            "Automated material tracking and labour logging",
-            "Instant query resolution for site issues"
+            "One photo of a bill returns a full analysis in 10–15s: a text report, a Kannada voice note, and a printable infographic, no typing, no app install",
+            "Triple deterministic analysis per bill: Tariff Engine (Fixed Charge Trap), Subsidy Navigator (PM Surya Ghar & Gruha Jyothi), and a Solar ROI calculator",
+            "Voice-first Kannada output via Sarvam's native TTS, making the analysis accessible regardless of literacy",
+            "Hallucination-guarded AI: every number in an AI-framed reply is regex-validated verbatim against a deterministic fact-pack before it sends",
+            "DPDPA-compliant by design: bill image bytes are never written to disk and the schema has no image column",
+            "Two-turn follow-up drilldowns (SOLAR / FIXED / SUBSIDY / CLIFF) served from a 30-minute cached analysis"
         ],
-        challenge: "Construction site data is often unstructured and delayed due to manual entry in multiple languages.",
-        approach: "Leveraged AWS Bedrock and WhatsApp API to create a voice-driven interface that seamlessly handles Hindi voice notes and logs structured data.",
+        challenge: "22.6 lakh MESCOM households pay an electricity bill every month with no idea they are losing money to traps the bill never explains. The KERC tariff order runs 47 pages, bills mix Kannada and English, and many consumers cannot read either fluently.",
+        approach: "A WhatsApp-first pipeline: Gemini 2.5 Flash extracts every bill field, three deterministic Python modules run the math in parallel, and Groq Llama 3.3 70B adds only two personalized lines, validated verbatim against the analysis. Sarvam synthesizes a Kannada voice note and Twilio dispatches text, voice, and infographic in ~12 seconds.",
         impact: [
-            { label: "Platform", value: "WhatsApp" },
-            { label: "Input", value: "Voice" },
-            { label: "Target User", value: "Foremen" }
+            { label: "Saved / Household", value: "₹1,740/yr" },
+            { label: "At MESCOM Scale", value: "₹39 Cr/yr" },
+            { label: "Cost / Bill", value: "~₹1.7" }
         ]
     },
     {
-        title: "SlotSwapper",
+        title: "To the Moon",
         description:
-            "Real-time peer-to-peer appointment swap marketplace for healthcare clinics, reducing no-show rates and empowering patients.",
+            "A local-first placement-prep app I built for myself and fellow students: one calm home to run mock interviews, DSA revision, study goals, resume checks, and applications instead of scattered notes, tabs, and half-filled spreadsheets. Self-hosted for now.",
         tech: [
+            "Next.js",
             "React",
             "TypeScript",
+            "Express",
+            "Prisma",
+            "SQLite",
+            "Google Gemini",
+            "Zustand",
+            "Tailwind CSS",
+            "Docker"
+        ],
+        image: "/to-the-moon-thumbnail.png",
+        imageWebP: "/to-the-moon-thumbnail.webp",
+        link: "",
+        githubUrl: "https://github.com/AbdulWasih05",
+        year: "2026",
+        goal: "Give myself and other students a single organized system for placement prep, every module a student actually needs, so prep lives in one place instead of messy notes, browser tabs, and forgotten deadlines.",
+        features: [
+            "AI mock interviews on a Google Gemini pipeline, answered by text or voice (Web Speech API), with job-description and company-specific question generation plus batch answer evaluation, scoring, and feedback",
+            "DSA tracker with built-in spaced repetition (1/3/7/14/30/60-day intervals) that resurfaces problems for review before you forget them",
+            "Resume module that parses PDF/DOCX uploads and runs a Gemini skill-gap analysis against target roles",
+            "Application, company, and opportunity trackers (internships, hackathons, OSS programs, fellowships) tied to a calendar and deadlines so nothing slips",
+            "Weekly study goals and session tracking, custom question banks with model answers, and a priority task board",
+            "Analytics dashboard with progress over time, performance by question type, weak-area detection, and CSV export, all on a local-first SQLite store"
+        ],
+        challenge: "Placement prep is scattered across mock-interview sites, DSA sheets, resume docs, application spreadsheets, and random notes that never talk to each other, so it is easy to lose track of what to revise and what is due.",
+        approach: "Built a local-first Next.js 15 and Express/Prisma app over SQLite that unifies every prep workflow into one dashboard, with a rate-limited Gemini service (Bottleneck) powering interviews and resume analysis and a spaced-repetition engine deciding what to revisit next.",
+        impact: [
+            { label: "Prep Modules", value: "14" },
+            { label: "AI", value: "Gemini" },
+            { label: "Status", value: "Self-hosted" }
+        ]
+    },
+    {
+        title: "IJESTM Journal Platform",
+        description:
+            "Full-stack academic journal and peer-review platform for AITM, running the entire manuscript lifecycle behind role-based editorial workflows, real-time notifications, and SEO tuned for Google Scholar indexing.",
+        tech: [
+            "React",
+            "Vite",
             "Node.js",
             "Express",
-            "Prisma ORM",
             "MySQL",
-            "Socket.io",
-            "Docker",
-            "Tailwind CSS",
             "JWT",
-            "Zustand",
-            "Vite",
+            "Socket.io",
+            "Nodemailer",
+            "Tailwind CSS"
         ],
-        image: "/slotswapper-thumbnail.jpg",
-        imageWebP: "/slotswapper-thumbnail.webp",
-        link: "#",
-        githubUrl: "https://github.com/AbdulWasih05",
-        // websiteUrl: "https://github.com/AbdulWasih05",
-        goal: "Create a real-time peer-to-peer swap marketplace empowering patients while giving administrators complete oversight—without compromising security or performance.",
+        image: "/ijestm-thumbnail.png",
+        imageWebP: "/ijestm-thumbnail.webp",
+        link: "https://ijestm.aitm.edu.in/",
+        githubUrl: "",
+        websiteUrl: "https://ijestm.aitm.edu.in/",
+        year: "2025",
+        goal: "Build a production-grade journal platform that drives the full manuscript lifecycle, submission, double-blind peer review, editorial decisions, and DOI publication, while staying discoverable to academic search engines.",
         features: [
-            "Real-Time WebSocket Synchronization for instant slot updates and swap requests",
-            "Dual-Interface Architecture with dedicated portals for patients and administrators",
-            "Secure Authentication using JWT and role-based access control",
-            "High-Performance Database with MySQL and strategic indexing for complex queries",
+            "Role-based access control across five roles (visitor, author, reviewer, editor, admin), enforced by granular middleware down to per-paper ownership and reviewer-assignment checks",
+            "JWT authentication with refresh tokens, bcrypt password hashing, email verification, and password reset, hardened with Helmet, rate limiting, and server-side request validation",
+            "Complete double-blind peer-review workflow: manuscript submission, reviewer invitations via tokenized email links, autosaved review drafts, editorial decisions, and versioned revision tracking",
+            "Real-time notifications over Socket.io alongside transactional email (Nodemailer) for paper status changes, new submissions, and review invitations",
+            "55+ RESTful endpoints over a 13-table relational MySQL schema, with Multer file uploads, PDF/DOCX parsing, DOI assignment on publish, and view/download metrics",
+            "SEO-first React frontend with Google Scholar prerendering and structured metadata to rank research content in academic search"
         ],
-        challenge: "Clinics lose massive revenue from no-shows. Patients lack flexibility, and admins waste time on manual rescheduling. The system needed to solve this securely.",
-        approach: "Built a dual-interface real-time marketplace. React/TypeScript frontend for separate portals, with Node.js/Socket.io ensuring instant sync and <100ms latency.",
+        challenge: "Academic journals must run a rigorous multi-role editorial pipeline and emit strict scholarly metadata for indexing, all while keeping the public reading experience fast and distraction-free.",
+        approach: "Built a Node.js/Express and MySQL backend with JWT-secured RBAC and a Socket.io notification layer driving the full submission-to-publication workflow, paired with a Vite/React frontend that prerenders Google Scholar metadata for discoverability.",
         impact: [
-            { label: "Admin Time Saved", value: "70%" },
-            { label: "Swap Processing", value: "<5s" },
-            { label: "API Endpoints", value: "20+" }
+            { label: "API Endpoints", value: "55+" },
+            { label: "User Roles", value: "5 (RBAC)" },
+            { label: "Status", value: "Live" }
         ]
     },
     {
@@ -163,63 +216,71 @@ export const projects: Project[] = [
         ]
     },
     {
-        title: "VidyutMitra",
+        title: "SiteSaathi",
         description:
-            "WhatsApp AI energy advisor that gives households conversational guidance on electricity usage and ways to lower their bills.",
+            "Live WhatsApp voice agent on AWS Bedrock, helping construction workers track materials, log labour, and answer site queries in Hindi.",
         tech: [
             "AWS Bedrock",
             "FastAPI",
-            "WhatsApp Cloud API"
+            "WhatsApp Cloud API",
+            "Python"
         ],
-        image: "",
-        link: "#",
-        githubUrl: "https://github.com/AbdulWasih05/",
-        websiteUrl: "",
-        year: "2026",
-        goal: "Provide smart, conversational energy advice to households via WhatsApp to help reduce consumption.",
+        image: "/nirman-mitra-thumbnail.png",
+        imageWebP: "/nirman-mitra-thumbnail.webp",
+        link: "https://main.d26uqawil4ygv7.amplifyapp.com",
+        githubUrl: "",
+        websiteUrl: "https://main.d26uqawil4ygv7.amplifyapp.com",
+        goal: "Build an accessible, voice-first AI agent for Indian construction foremen to manage sites without typing.",
         features: [
-            "Conversational electricity usage tracking",
-            "Actionable insights to lower bills",
-            "WhatsApp-based natural language interface"
+            "WhatsApp Voice Integration for natural language status updates",
+            "Multi-language support (Hindi, English)",
+            "Automated material tracking and labour logging",
+            "Instant query resolution for site issues"
         ],
-        challenge: "Users lack clear, actionable insights on their electricity bills.",
-        approach: "Built a WhatsApp chatbot powered by AWS Bedrock to summarize usage data and recommend savings tips.",
+        challenge: "Construction site data is often unstructured and delayed due to manual entry in multiple languages.",
+        approach: "Leveraged AWS Bedrock and WhatsApp API to create a voice-driven interface that seamlessly handles Hindi voice notes and logs structured data.",
         impact: [
             { label: "Platform", value: "WhatsApp" },
-            { label: "Focus", value: "Energy Savings" },
-            { label: "Interface", value: "Conversational" }
+            { label: "Input", value: "Voice" },
+            { label: "Target User", value: "Foremen" }
         ]
     },
     {
-        title: "IJESTM Journal Platform",
+        title: "SlotSwapper",
         description:
-            "College journal website built for AITM with advanced SEO features tailored for academic publications and research papers.",
+            "Real-time peer-to-peer appointment swap marketplace for healthcare clinics, reducing no-show rates and empowering patients.",
         tech: [
             "React",
-            "Next.js",
             "TypeScript",
+            "Node.js",
+            "Express",
+            "Prisma ORM",
+            "MySQL",
+            "Socket.io",
+            "Docker",
             "Tailwind CSS",
-            "SEO Optimization"
+            "JWT",
+            "Zustand",
+            "Vite",
         ],
-        image: "",
-        link: "https://ijestm.aitm.edu.in/",
-        githubUrl: "",
-        websiteUrl: "https://ijestm.aitm.edu.in/",
-        year: "2025",
-        goal: "Develop a high-performance, SEO-optimized journal publication website to improve the discoverability of academic research.",
+        image: "/slotswapper-thumbnail.jpg",
+        imageWebP: "/slotswapper-thumbnail.webp",
+        link: "#",
+        githubUrl: "https://github.com/AbdulWasih05",
+        // websiteUrl: "https://github.com/AbdulWasih05",
+        goal: "Create a real-time peer-to-peer swap marketplace empowering patients while giving administrators complete oversight without compromising security or performance.",
         features: [
-            "Advanced SEO architecture specifically designed for indexed academic search and Google Scholar indexing",
-            "Modern, reader-friendly UI tailored for digesting long-form research papers and journals",
-            "Responsive layout ensuring seamless reading experiences across mobile and desktop devices",
-            "Streamlined metadata management to ensure articles surface correctly in search engines"
+            "Real-Time WebSocket Synchronization for instant slot updates and swap requests",
+            "Dual-Interface Architecture with dedicated portals for patients and administrators",
+            "Secure Authentication using JWT and role-based access control",
+            "High-Performance Database with MySQL and strategic indexing for complex queries",
         ],
-        challenge: "Academic journals require strict indexing, rich metadata, and specific SEO standards to be discoverable while keeping the reading experience distraction-free.",
-        approach: "Architected an SEO-first web platform utilizing optimized rendering, structured metadata headers, and semantic HTML to rank research content highly on search engines.",
+        challenge: "Clinics lose massive revenue from no-shows. Patients lack flexibility, and admins waste time on manual rescheduling. The system needed to solve this securely.",
+        approach: "Built a dual-interface real-time marketplace. React/TypeScript frontend for separate portals, with Node.js/Socket.io ensuring instant sync and <100ms latency.",
         impact: [
-            { label: "Focus", value: "Academic SEO" },
-            { label: "Platform", value: "College Journal" },
-            { label: "Status", value: "Live" }
+            { label: "Admin Time Saved", value: "70%" },
+            { label: "Swap Processing", value: "<5s" },
+            { label: "API Endpoints", value: "20+" }
         ]
     }
 ];
-
