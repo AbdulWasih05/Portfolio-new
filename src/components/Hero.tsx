@@ -1,9 +1,19 @@
 import { memo, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useResumeModal } from './ResumeModal';
 
 const Hero = memo(() => {
   const { openResume, prefetchResume } = useResumeModal();
+
+  // Smooth-scroll to the featured Projects section on the home page.
+  // Falls back to the native #projects jump if the section isn't present.
+  const scrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const el = document.getElementById('projects');
+    if (!el) return;
+    e.preventDefault();
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+  };
+
   const roles = [
     "Hi",
     "नमस्ते",
@@ -71,13 +81,14 @@ const Hero = memo(() => {
         </div>
 
         <div className="mt-[22px] flex flex-col sm:flex-row flex-wrap border-t border-b border-ink">
-          <Link
-            to="/projects"
+          <a
+            href="#projects"
+            onClick={scrollToProjects}
             className="flex-1 flex items-center justify-between gap-[18px] px-5 py-4 sm:border-r border-ink font-mono text-xs tracking-[0.12em] uppercase bg-ink text-paper hover:bg-ink-3 transition-colors duration-150 min-w-0 sm:min-w-[200px] border-b sm:border-b-0 border-ink"
           >
             <span>View My Work</span>
             <span className="text-base">→</span>
-          </Link>
+          </a>
           <button
             type="button"
             onClick={openResume}
