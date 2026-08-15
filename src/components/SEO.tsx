@@ -9,8 +9,8 @@ interface SEOProps {
 }
 
 const SEO = ({
-  title = "Abdul Wasih - Full Stack Engineer | React, Node.js Specialist",
-  description = "Enthusiastic Full Stack Engineer crafting scalable web applications with React.js, Next.js, Node.js. Specializing in responsive UI, API integration and Docker containerization.",
+  title = "Abdul Wasih - Software Engineer | React, Node.js Specialist",
+  description = "Enthusiastic Software Engineer crafting scalable web applications with React.js, Next.js, Node.js. Specializing in responsive UI, API integration and Docker containerization.",
   url = "https://wasih.tech",
   image = "https://wasih.tech/og-image.jpg",
   type = "website"
@@ -40,7 +40,7 @@ const SEO = ({
       <meta property="og:image" content={image} />
       <meta property="og:image:width" content="1024" />
       <meta property="og:image:height" content="1024" />
-      <meta property="og:site_name" content="Abdul Wasih - Full Stack Engineer Portfolio" />
+      <meta property="og:site_name" content="Abdul Wasih - Software Engineer Portfolio" />
       <meta property="og:locale" content="en_US" />
 
       {/* Twitter */}
@@ -54,7 +54,7 @@ const SEO = ({
       {/* Additional Meta Tags */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-      <meta name="keywords" content="Abdul Wasih, Full Stack Engineer, React Developer, Node.js Developer, Next.js, TypeScript, JavaScript, MongoDB, MySQL, Docker, Git, Web Development, Portfolio, API Development, Frontend Developer, Backend Developer, Cloud Computing, DevOps, Responsive Web Design, REST API" />
+      <meta name="keywords" content="Abdul Wasih, Software Engineer, React Developer, Node.js Developer, Next.js, TypeScript, JavaScript, MongoDB, MySQL, Docker, Git, Web Development, Portfolio, API Development, Frontend Developer, Backend Developer, Cloud Computing, DevOps, Responsive Web Design, REST API" />
       
       {/* Preconnect to external domains for performance */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
