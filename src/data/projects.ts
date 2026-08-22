@@ -195,8 +195,8 @@ export const projects: Project[] = [
         image: "/real-estate-thumbnail.jpg",
         imageWebP: "/real-estate-thumbnail.webp",
         githubUrl: "https://github.com/AbdulWasih05",
-        websiteUrl:"https://squareproperties.vercel.app/",
-        link: "https://squareproperties.vercel.app/",
+        websiteUrl:"https://square.wasih.tech/",
+        link: "https://square.wasih.tech/",
         goal: "Architected production-grade real estate platform with cross-platform mobile apps (iOS/Android), web admin dashboard, and 70+ RESTful APIs secured by JWT auth, RBAC, and Docker. Enables real-time property sync across platforms..",
         features: [
             "Real-Time Auction Bidding System using Socket.IO with live countdown timers and WebSocket connections for instant bid updates",

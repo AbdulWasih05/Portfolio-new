@@ -46,7 +46,7 @@ const experiences: Experience[] = [
     title: 'Full-Stack Intern,',
     company: 'Saarthi',
     role: 'Engineer. End to end.',
-    body: 'Full-stack intern shipping production features end to end. Code in prod from week one, owning features without hand-holding, across React, FastAPI, and Postgres.',
+    body: 'Full-stack intern shipping production features end to end. Code in prod from week one, owning features without hand-holding, across React, FastAPI, and Postgres. Six months alongside the founding engineers, and trusted with payments.',
     stack: ['React', 'FastAPI', 'PostgreSQL'],
   },
   {
