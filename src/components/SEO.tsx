@@ -38,8 +38,8 @@ const SEO = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta property="og:image:width" content="1024" />
-      <meta property="og:image:height" content="1024" />
+      <meta property="og:image:width" content="1257" />
+      <meta property="og:image:height" content="630" />
       <meta property="og:site_name" content="Abdul Wasih - Software Engineer Portfolio" />
       <meta property="og:locale" content="en_US" />
 
