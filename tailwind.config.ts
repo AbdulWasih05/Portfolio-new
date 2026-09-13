@@ -103,8 +103,7 @@ export default {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
 				serif: ['"Instrument Serif"', 'serif'],
-				mono: ['"JetBrains Mono"', 'monospace'],
-			},
+				mono: ['"JetBrains Mono"', 'monospace'],			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

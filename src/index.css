@@ -12,109 +12,15 @@
   }
 }
 
-/* Blinking cursor animation */
-.blinking-cursor {
-  animation: blink 1s infinite;
-}
-
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
-}
-
-/* Fade in animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-  opacity: 0;
-}
-
-/* Section fade-in animations */
-.fade-in-section {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.fade-in-section.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Button hover animations */
-.btn-hover {
-  transition: all 0.3s ease;
-}
-
-.btn-hover:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive text sizes */
-.heading-responsive {
-  font-size: clamp(1.25rem, 2vw + 1rem, 2rem);
-}
-
-/* Focus styles for accessibility */
-.focus-ring:focus {
-  outline: 2px solid black;
-  outline-offset: 2px;
 }
 
 /* Image responsive max-width */
 img {
   max-width: 100%;
   height: auto;
-}
-
-/* Ensure minimum contrast ratios */
-.text-contrast {
-  color: #1a1a1a; /* Ensures 4.5:1 contrast on white background */
-}
-
-.text-contrast-light {
-  color: #4a4a4a; /* Ensures 4.5:1 contrast on light gray */
-}
-
-.inter {
-  font-family: 'Source Sans 3', sans-serif;
-}
-
-.playfair {
-  font-family: 'Playfair Display', serif;
-}
-
-.title-large {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  line-height: 1.1;
-  font-weight: 500;
-}
-
-.description {
-  font-size: clamp(1rem, 1.2vw, 1.2rem);
-  line-height: 1.5;
-  color: #666;
 }
 
 @tailwind base;
@@ -136,7 +42,6 @@ img {
 }
 
 @layer components {
-  .meta-row { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
   .blink-dot { animation: blink 1.6s infinite; }
 }
 
@@ -315,99 +220,8 @@ img {
   }
 }
 
-.perspective {
-  perspective: 1000px;
-}
-
-.backface-hidden {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.rotate-y-180 {
-  transform: rotateY(180deg);
-}
-
-
-/* Custom Scrollbar Styles */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
-}
-
-/* Hide scrollbar arrows */
-.custom-scrollbar::-webkit-scrollbar-button {
-  display: none;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(80, 80, 80, 0.6);
-  border-radius: 10px;
-  transition: background 0.3s ease;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(60, 60, 60, 0.8);
-}
-
-/* Firefox scrollbar styles */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(80, 80, 80, 0.6) rgba(0, 0, 0, 0.1);
-}
-
-/* Glassmorphism Styles */
-.glass-morphism {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(15px) saturate(180%);
-  -webkit-backdrop-filter: blur(15px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  will-change: transform, opacity;
-}
-
-.glass-backdrop {
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-/* Gradient Animations */
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.gradient-animate {
-  background-size: 200% 200%;
-  animation: gradient-shift 3s ease infinite;
-}
-
-/* Section Divider */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.15) 50%, transparent);
-  margin: 1.5rem 0;
-}
-
-/* Footer Custom Patterns */
-.footer-dot-pattern {
-  background-image: radial-gradient(circle, white 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-.footer-glow {
-  background: radial-gradient(ellipse at center top, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
-}
-
 /* Content visibility for below-fold sections */
-#about, #projects, #Skills, #contact {
+#about, #projects {
   content-visibility: auto;
   contain-intrinsic-size: auto 500px;
 }

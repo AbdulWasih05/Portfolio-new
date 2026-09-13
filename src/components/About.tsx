@@ -9,25 +9,50 @@ const tabs: { id: TabId; num: string; label: string }[] = [
   { id: 'experience', num: '03', label: 'Experience' },
 ];
 
+// usedIn is left empty where no project in data/projects.ts shows the tool yet.
 const tools = [
   // Frontend
   { name: 'React', desc: 'Production UIs, component systems.', cat: 'Frontend', usedIn: 'Core stack' },
   { name: 'Next.js', desc: 'App router, SSR, Edge runtime.', cat: 'Frontend', usedIn: 'Core stack' },
   { name: 'TypeScript', desc: 'Strict types, generics, narrowing.', cat: 'Frontend', usedIn: 'Core stack' },
   { name: 'Tailwind', desc: 'Utility-first CSS, styling systems.', cat: 'Frontend', usedIn: 'Core stack' },
+  { name: 'Framer Motion / GSAP', desc: 'Entrance choreography, scroll and layout motion.', cat: 'Frontend', usedIn: '' },
+  { name: 'TanStack Query', desc: 'Server state, caching, invalidation.', cat: 'Frontend', usedIn: '' },
+  { name: 'Zustand', desc: 'Client state without the Redux weight.', cat: 'Frontend', usedIn: 'To the Moon' },
   // Backend
   { name: 'Node.js', desc: 'Express, streams, worker threads.', cat: 'Backend', usedIn: 'InsForge' },
   { name: 'Express', desc: 'REST APIs, middleware, routing.', cat: 'Backend', usedIn: 'InsForge' },
   { name: 'FastAPI', desc: 'Async APIs, Pydantic, backgrounds.', cat: 'Backend', usedIn: 'SiteSaathi' },
   { name: 'PostgreSQL', desc: 'Schema design, indexing, queries.', cat: 'Backend', usedIn: 'Saarthi' },
+  { name: 'WebSockets / Socket.IO', desc: 'Real-time sequencing, reconnection handling.', cat: 'Backend', usedIn: 'IJESTM' },
+  { name: 'Prisma / Drizzle', desc: 'Migrations, type-safe queries.', cat: 'Backend', usedIn: 'To the Moon' },
+  { name: 'Redis', desc: 'Caching, rate limiting, queues.', cat: 'Backend', usedIn: '' },
+  { name: 'Zod', desc: 'Runtime validation at API boundaries.', cat: 'Backend', usedIn: '' },
   // Infra
   { name: 'AWS', desc: 'Cloud services, IAM, storage routing.', cat: 'Infra', usedIn: 'SiteSaathi' },
   { name: 'Docker', desc: 'Multi-stage builds, Compose.', cat: 'Infra', usedIn: 'All projects' },
   { name: 'Git', desc: 'Version control, branching strategies.', cat: 'Infra', usedIn: 'All projects' },
   { name: 'CI/CD', desc: 'Automated pipelines, GitHub Actions.', cat: 'Infra', usedIn: 'Saarthi' },
-  // AI & Agents
-  { name: 'PyTorch', desc: 'Training, fine-tuning, RL agents.', cat: 'AI & Agents', usedIn: 'Dhara AI' },
+  { name: 'Vercel', desc: 'Preview deploys, edge config.', cat: 'Infra', usedIn: '' },
+  { name: 'Nginx / Cloudflare', desc: 'Reverse proxy, caching, DNS.', cat: 'Infra', usedIn: '' },
+  { name: 'Sentry / PostHog', desc: 'Error tracking, product analytics.', cat: 'Infra', usedIn: '' },
+  { name: 'Playwright / Vitest', desc: 'E2E and unit coverage.', cat: 'Infra', usedIn: '' },
+  // AI & Research
+  { name: 'PyTorch', desc: 'Model training, fine-tuning.', cat: 'AI & Research', usedIn: 'Dhara AI' },
+  { name: 'Gemini / Groq LLMs', desc: 'Bill extraction and replies checked against deterministic facts.', cat: 'AI & Research', usedIn: 'VidyutMitra' },
+  { name: 'AWS Bedrock', desc: 'Voice agent that understands Hindi voice notes.', cat: 'AI & Research', usedIn: 'SiteSaathi' },
+  { name: 'DistilBERT', desc: 'Transformer text classification for fake reviews.', cat: 'AI & Research', usedIn: 'Fake Review Detector' },
+  { name: 'TensorFlow.js / ONNX', desc: 'In-browser inference, no server round trip.', cat: 'AI & Research', usedIn: 'Fake Review Detector' },
+  { name: 'Sarvam AI', desc: 'Kannada text-to-speech voice notes.', cat: 'AI & Research', usedIn: 'VidyutMitra' },
 ];
+
+// One column per category, in the order categories first appear above.
+const toolGroups = tools.reduce<{ cat: string; items: typeof tools }[]>((groups, tool) => {
+  const group = groups.find((g) => g.cat === tool.cat);
+  if (group) group.items.push(tool);
+  else groups.push({ cat: tool.cat, items: [tool] });
+  return groups;
+}, []);
 
 type Experience = {
   yearTop: string;
@@ -41,22 +66,31 @@ type Experience = {
 
 const experiences: Experience[] = [
   {
+    yearTop: '2026.',
+    yearSub: 'Present. Stealth',
+    title: 'Full-Stack Intern,',
+    company: 'Stealth Startup',
+    role: 'Second startup. Full-stack.',
+    body: 'Second startup internship. Building full-stack features at an early-stage company in stealth.',
+    stack: [],
+  },
+  {
     yearTop: '2025.',
-    yearSub: 'Present. Karnataka',
+    yearSub: '6+ months. Karnataka',
     title: 'Full-Stack Intern,',
     company: 'Saarthi',
     role: 'Engineer. End to end.',
-    body: 'Full-stack intern shipping production features end to end. Code in prod from week one, owning features without hand-holding, across React, FastAPI, and Postgres. Six months alongside the founding engineers, and trusted with payments.',
+    body: 'Full-stack intern shipping production features end to end. Code in prod from week one, owning features without hand-holding, across React, FastAPI, and Postgres. 6+ months alongside the founding engineers, and trusted with payments.',
     stack: ['React', 'FastAPI', 'PostgreSQL'],
   },
   {
     yearTop: '2025.',
-    yearSub: 'Present. Side',
-    title: 'Builder,',
-    company: 'SiteSaathi',
-    role: 'Solo build. Live in production.',
-    body: 'WhatsApp voice agent for Indian construction workers. Helps foremen track materials, log labour, and answer site queries in Hindi. Live on AWS Bedrock. Real users, real outcomes.',
-    stack: ['AWS Bedrock', 'FastAPI', 'WhatsApp Cloud API'],
+    yearSub: 'Live. Client',
+    title: 'Full-Stack Developer,',
+    company: 'IJESTM',
+    role: 'Built for AITM college. Live in production.',
+    body: "Built AITM college's academic journal and peer-review platform, running the full manuscript lifecycle: submission, double-blind review, editorial decisions, and DOI publication. 55+ REST endpoints, five-role access control, and real-time notifications.",
+    stack: ['React', 'Node.js', 'MySQL'],
   },
   {
     yearTop: '2025.',
@@ -80,6 +114,8 @@ const experiences: Experience[] = [
 
 const About = () => {
   const [tab, setTab] = useState<TabId>('now');
+  const [activeToolName, setActiveToolName] = useState(tools[0].name);
+  const activeTool = tools.find((t) => t.name === activeToolName) ?? tools[0];
   const { openResume, prefetchResume } = useResumeModal();
 
   return (
@@ -97,7 +133,7 @@ const About = () => {
         </h2>
         <div className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-3 md:text-right">
           <b className="block text-ink">Karnataka, IN</b>
-          <span>Full-Stack Intern @ Saarthi</span>
+          <span>Full-Stack Intern @ Stealth Startup</span>
         </div>
       </section>
 
@@ -133,7 +169,7 @@ const About = () => {
               I build full-stack products and own them end to end. Database to deploy.
             </p>
             <p className="font-serif text-[20px] sm:text-[24px] leading-[1.45] text-ink-2 mb-5 max-w-[30ch]">
-              Currently interning full-stack at <b className="italic text-ink font-normal">Saarthi</b>, shipping features to production across React, FastAPI, and Postgres. Side projects on the weekends.
+              Currently interning full-stack at a <b className="italic text-ink font-normal">stealth startup</b>, after 6+ months shipping to production at <b className="italic text-ink font-normal">Saarthi</b> across React, FastAPI, and Postgres. Side projects on the weekends.
             </p>
             <p className="font-serif text-[20px] sm:text-[24px] leading-[1.45] text-ink-2 mb-5 max-w-[30ch]">
               I move fast and iterate in the open. I don&apos;t leave a mess behind.
@@ -157,11 +193,11 @@ const About = () => {
               <span className="w-6 h-px bg-ink" />
               Open To
             </div>
-            
+
             <p className="font-serif text-[24px] sm:text-[32px] leading-[1.45] text-ink mb-5 max-w-[24ch] tracking-[-0.005em]">
               Full-stack internships.
             </p>
-            
+
             <p className="font-serif text-[20px] sm:text-[24px] leading-[1.45] text-ink-2 mb-5 max-w-[30ch]">
               The pull for me is real ownership. Features I own end to end, shipped to people who actually use them.
             </p>
@@ -184,42 +220,60 @@ const About = () => {
         </section>
       )}
 
-      {/* Toolkit panel */}
+      {/* Toolkit panel — tools batched as tags per category; hovering or focusing one fills the detail panel */}
       {tab === 'toolkit' && (
-        <section className="border-b-4 border-ink" aria-label="Stack">
-          <div className="hidden md:grid grid-cols-[60px_1fr_140px_180px] gap-6 px-7 py-[14px] border-b border-ink font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3 items-center">
-            <div>№</div>
-            <div>Tool. Description</div>
-            <div className="text-left">Category</div>
-            <div className="text-right">Used In</div>
-          </div>
-          {tools.map((t, i) => {
-            const num = (i + 1).toString().padStart(2, '0');
-            return (
+        <section className="border-b-4 border-ink grid grid-cols-1 lg:grid-cols-[1fr_340px]" aria-label="Stack">
+          <div className="lg:border-r border-ink">
+            {toolGroups.map((group, gi) => (
               <div
-                key={t.name}
-                className={`group grid md:grid-cols-[60px_1fr_140px_180px] grid-cols-2 gap-4 md:gap-6 px-5 sm:px-7 py-[18px] sm:py-[22px] items-center transition-colors duration-150 hover:bg-ink hover:text-paper ${
-                  i < tools.length - 1 ? 'border-b border-ink' : ''
-                }`}
+                key={group.cat}
+                className={`grid grid-cols-1 md:grid-cols-[170px_1fr] ${gi < toolGroups.length - 1 ? 'border-b border-ink' : ''}`}
               >
-                <div className="font-mono text-[11px] text-mute group-hover:text-rule">{num}</div>
-                <div className="md:col-auto col-span-2 flex flex-col gap-1">
-                  <h4 className="font-serif font-normal text-[24px] sm:text-[28px] tracking-[-0.02em] leading-none">
-                    {t.name}
-                  </h4>
-                  <span className="text-[13px] text-mute group-hover:text-rule leading-[1.4]">
-                    {t.desc}
-                  </span>
+                <div className="px-5 sm:px-8 md:pl-8 md:pr-4 pt-5 md:pb-5 flex md:flex-col items-center md:items-start justify-between md:justify-start gap-2 font-mono text-[10px] uppercase tracking-[0.16em]">
+                  <span className="bg-ink text-paper px-[10px] py-[5px]">{group.cat}</span>
+                  <span className="text-mute">{group.items.length.toString().padStart(2, '0')} tools</span>
                 </div>
-                <div className="font-mono text-[10px] tracking-[0.14em] uppercase bg-ink text-paper group-hover:bg-paper group-hover:text-ink px-[10px] py-[5px] justify-self-start md:justify-self-end">
-                  {t.cat}
-                </div>
-                <div className="font-mono text-[12px] sm:text-[13px] font-bold text-right md:col-auto col-span-2 md:text-right text-left">
-                  {t.usedIn}
+                <div className="px-5 sm:px-8 md:pl-0 pt-3 pb-5 md:pt-5 flex flex-wrap gap-2">
+                  {group.items.map((t) => {
+                    const isActive = t.name === activeTool.name;
+                    return (
+                      <button
+                        key={t.name}
+                        type="button"
+                        aria-pressed={isActive}
+                        onMouseEnter={() => setActiveToolName(t.name)}
+                        onFocus={() => setActiveToolName(t.name)}
+                        onClick={() => setActiveToolName(t.name)}
+                        className={`font-serif text-[18px] sm:text-[20px] leading-none tracking-[-0.01em] border border-ink px-3 py-[7px] transition-colors duration-150 ${
+                          isActive ? 'bg-ink text-paper' : 'hover:bg-paper-2'
+                        }`}
+                      >
+                        {t.name}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
+
+          <aside
+            aria-live="polite"
+            className="order-first lg:order-none border-b lg:border-b-0 border-ink bg-paper-2 px-5 sm:px-8 py-6 sm:py-8 flex flex-col gap-3"
+          >
+            <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-mute flex items-center gap-[10px]">
+              <span className="w-6 h-px bg-ink" />
+              {activeTool.cat}
+            </div>
+            <h4 className="font-serif font-normal text-[36px] sm:text-[44px] leading-[0.95] tracking-[-0.02em]">
+              {activeTool.name}
+            </h4>
+            <p className="font-serif text-[20px] leading-[1.4] text-ink-2 max-w-[30ch]">{activeTool.desc}</p>
+            <div className="mt-auto pt-4 border-t border-dashed border-rule flex justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.12em]">
+              <span className="text-mute">Used in</span>
+              <b className="text-ink font-bold text-right">{activeTool.usedIn || '—'}</b>
+            </div>
+          </aside>
         </section>
       )}
 

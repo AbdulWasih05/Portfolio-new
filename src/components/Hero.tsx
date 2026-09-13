@@ -71,12 +71,15 @@ const Hero = memo(() => {
           <span className="block font-black">Ship.</span>
         </h1>
 
-        <div className="mt-[14px] max-w-[80ch] font-mono text-sm sm:text-base leading-[1.6] text-ink-3">
-          <p className="block mb-4">
-            {text || '\u00A0'}, I&apos;m <b className="text-ink font-semibold">Wasih</b>.
+        <div className="mt-[14px] max-w-[60ch] font-serif text-[20px] sm:text-[24px] leading-[1.45] text-ink-2">
+          <p className="block mb-3">
+            {text || '\u00A0'}, I&apos;m <b className="text-ink font-normal">Wasih</b>.
           </p>
           <p className="block">
-            I can build full-stack products and ship them to production. Currently shipping <b className="text-ink font-semibold">SiteSaathi</b> and full-stack features at <b className="text-ink font-semibold">Saarthi</b>. Early in my career, but <b className="text-ink font-semibold">I build like I&apos;m not.</b>
+            Two startups in. 6+ months shipping to production alongside founding engineers at{' '}
+            <b className="text-ink font-normal">Saarthi</b>, now building full-stack at a{' '}
+            <b className="text-ink font-normal">stealth startup</b>. Early in my career, but{' '}
+            <b className="text-ink font-normal">I build like I&apos;m not.</b>
           </p>
         </div>
 
