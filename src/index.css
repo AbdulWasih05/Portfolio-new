@@ -17,6 +17,28 @@
   51%, 100% { opacity: 0; }
 }
 
+/* Easter eggs: terminal drop-in and glitch bars (kept outside @layer so they're never purged) */
+@keyframes wasih-drop {
+  from { transform: translateY(-105%); }
+  to { transform: translateY(0); }
+}
+.wasih-drop { animation: wasih-drop 220ms cubic-bezier(0.2, 0.9, 0.3, 1); }
+
+@keyframes wasih-glitch {
+  0% { transform: translate3d(0, 0, 0); opacity: 1; }
+  50% { transform: translate3d(-12px, var(--wasih-jump, 24px), 0); opacity: 1; }
+  100% { transform: translate3d(8px, var(--wasih-jump, 24px), 0); opacity: 0; }
+}
+/* White + difference inverts whatever sits under each bar. */
+.wasih-glitch-bar {
+  position: absolute;
+  left: -16px;
+  right: -16px;
+  background: #fff;
+  mix-blend-mode: difference;
+  animation: wasih-glitch 500ms steps(1, end) forwards;
+}
+
 /* Image responsive max-width */
 img {
   max-width: 100%;

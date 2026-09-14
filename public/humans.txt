@@ -1,0 +1,21 @@
+/* TEAM */
+  Builder: Abdul Wasih
+  Role: Full-Stack Intern, stealth startup
+  Site: https://wasih.tech
+  GitHub: AbdulWasih05
+  LinkedIn: iamwasih
+  From: Karnataka, India
+
+/* THANKS */
+  Coffee. The Vite docs. Whoever keeps npm up.
+
+/* SITE */
+  Last update: 2026/09
+  Language: English
+  Standards: HTML5, CSS3, TypeScript
+  Components: React 18, React Router 6, Tailwind CSS 3, Vite 5
+  Fonts: Instrument Serif, JetBrains Mono, Inter
+  Hosting: Netlify
+  Machine-readable: /llms.txt, /api/me.json
+  API: curl -sL https://wasih.tech/api/me.json
+  Easter eggs: yes. the footer keeps score.

@@ -30,6 +30,13 @@
   [headers.values]
     Content-Type = "application/json; charset=utf-8"
 
+# Generated at build time (scripts/generate-api.ts); fetchable from anyone's devtools.
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=300"
+
 [[headers]]
   for = "/*.webp"
   [headers.values]
