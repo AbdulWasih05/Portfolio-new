@@ -58,6 +58,18 @@ export const Note = ({ kind, onClose }: { kind: NoteKind; onClose: () => void })
   );
 };
 
+/** Stamp shown while Night Edition is on. Drawn in day colors; the night styles flip it. Click to exit. */
+export const NightBanner = ({ onExit }: { onExit: () => void }) => (
+  <button
+    type="button"
+    onClick={onExit}
+    aria-label="Night Edition on. Activate to return to the day edition."
+    className="fixed bottom-4 left-4 z-40 -rotate-3 border-4 border-ink bg-paper px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] text-ink shadow-[4px_4px_0_0_#000]"
+  >
+    ★ Night Edition ★
+  </button>
+);
+
 const GLITCH_BARS = [
   { top: '18%', height: 6, jump: '28px' },
   { top: '41%', height: 3, jump: '-36px' },

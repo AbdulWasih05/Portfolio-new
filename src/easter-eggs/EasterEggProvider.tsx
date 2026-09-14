@@ -3,17 +3,20 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { toast } from '@/hooks/use-toast';
 import { EasterEggContext, type EasterEggs, type OpenMode } from './context';
 import {
+  NIGHT_BG,
   SECRETS,
   TOTAL,
   isSecretId,
   loadFound,
+  loadNight,
   pad2,
   prefersReducedMotion,
   saveFound,
+  saveNight,
   type SecretId,
 } from './secrets';
 import { useGlobalTriggers } from './useGlobalTriggers';
-import { EggBoundary, GlitchOverlay, Note, type NoteKind } from './Overlays';
+import { EggBoundary, GlitchOverlay, NightBanner, Note, type NoteKind } from './Overlays';
 
 // The terminal is the heavy part; it loads on first open (or on counter hover).
 const loadTerminal = () => import('./Terminal');
@@ -44,6 +47,7 @@ export const EasterEggRoot = () => {
   const [terminalMode, setTerminalMode] = useState<OpenMode | null>(null);
   const [note, setNote] = useState<NoteKind | null>(null);
   const [glitching, setGlitching] = useState(false);
+  const [night, setNight] = useState(loadNight);
   const history = useRef<string[]>([]);
   const taps = useRef({ logo: { n: 0, last: 0 }, ping: { n: 0, last: 0 } });
   const lastGlitch = useRef(0);
@@ -103,9 +107,26 @@ export const EasterEggRoot = () => {
 
   useEffect(() => () => window.clearTimeout(glitchTimer.current), []);
 
+  const toggleNight = useCallback(() => setNight((on) => !on), []);
+
+  // Night Edition: the class on <html> drives the CSS (see index.css); theme-color follows.
+  useEffect(() => {
+    document.documentElement.classList.toggle('night-edition', night);
+    saveNight(night);
+    if (night) find('night');
+    // Helmet rewrites its theme-color tag on navigation, so re-sync per route, after Helmet commits.
+    const t = window.setTimeout(() => {
+      document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((meta) => {
+        if (meta.dataset.day === undefined) meta.dataset.day = meta.content;
+        meta.content = night ? NIGHT_BG : meta.dataset.day;
+      });
+    }, 0);
+    return () => window.clearTimeout(t);
+  }, [night, pathname, find]);
+
   useGlobalTriggers({
     onTerminalKey: () => setTerminalMode((m) => (m ? null : 'keyboard')),
-    onKonami: () => eggToast('↑↑↓↓←→←→BA', 'night edition is in the shop.'),
+    onKonami: toggleNight,
     onWasih: glitch,
   });
 
@@ -133,6 +154,8 @@ export const EasterEggRoot = () => {
       found,
       find,
       resetSecrets,
+      night,
+      toggleNight,
       terminalOpen: terminalMode !== null,
       openTerminal,
       closeTerminal,
@@ -142,7 +165,7 @@ export const EasterEggRoot = () => {
       glitch,
       history,
     }),
-    [found, find, resetSecrets, terminalMode, openTerminal, closeTerminal, prefetchTerminal, logoTap, dotTap, glitch]
+    [found, find, resetSecrets, night, toggleNight, terminalMode, openTerminal, closeTerminal, prefetchTerminal, logoTap, dotTap, glitch]
   );
 
   return (
@@ -155,6 +178,7 @@ export const EasterEggRoot = () => {
           </Suspense>
         </EggBoundary>
       )}
+      {night && <NightBanner onExit={toggleNight} />}
       {glitching && <GlitchOverlay />}
       {note && <Note kind={note} onClose={() => setNote(null)} />}
     </EasterEggContext.Provider>

@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- data-night-mode picks the Night Edition strategy: "invert" (one filter) or "palette" (recolored tokens). -->
+<html lang="en" data-night-mode="invert">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#F2F0EB" />
+    <!-- Night Edition easter egg: apply before first paint so a reload doesn't flash the day theme. -->
+    <script>
+      try {
+        if (localStorage.getItem("wasih:night") === "1") {
+          document.documentElement.classList.add("night-edition");
+          var themeColor = document.querySelector('meta[name="theme-color"]');
+          if (themeColor) {
+            themeColor.setAttribute("data-day", themeColor.content);
+            themeColor.content = "#0D0F14";
+          }
+        }
+      } catch (e) {}
+    </script>
 
     <!-- Resource Hints for Performance -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

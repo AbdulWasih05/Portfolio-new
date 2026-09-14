@@ -7,6 +7,8 @@ export interface EasterEggs {
   found: ReadonlySet<SecretId>;
   find: (id: SecretId) => void;
   resetSecrets: () => void;
+  night: boolean;
+  toggleNight: () => void;
   terminalOpen: boolean;
   openTerminal: (mode: OpenMode) => void;
   closeTerminal: () => void;
@@ -24,6 +26,8 @@ export const EasterEggContext = createContext<EasterEggs>({
   found: new Set(),
   find: noop,
   resetSecrets: noop,
+  night: false,
+  toggleNight: noop,
   terminalOpen: false,
   openTerminal: noop,
   closeTerminal: noop,

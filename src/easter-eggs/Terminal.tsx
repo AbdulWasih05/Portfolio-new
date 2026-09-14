@@ -169,7 +169,8 @@ const Terminal = ({ autoFocus }: { autoFocus: boolean }) => {
       className="fixed inset-0 z-[95]"
       style={viewport ? { top: viewport.top, height: viewport.height, bottom: 'auto' } : undefined}
     >
-      <div className="absolute inset-0 bg-ink/40" onClick={closeTerminal} aria-hidden="true" />
+      {/* night-keep: under Night Edition's invert the backdrop still dims instead of washing out */}
+      <div className="night-keep absolute inset-0 bg-ink/40" onClick={closeTerminal} aria-hidden="true" />
       <div
         ref={panelRef}
         tabIndex={-1}

@@ -164,7 +164,7 @@ const ProjectDetailPage = () => {
           <section className="border-b border-ink">
             <div className="relative aspect-[16/9] overflow-hidden">
               <div
-                className="absolute inset-0"
+                className="night-backdrop absolute inset-0"
                 style={{
                   background:
                     'radial-gradient(120% 80% at 50% -10%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 55%), radial-gradient(100% 110% at 50% 120%, rgba(184,181,173,0.4) 0%, rgba(184,181,173,0) 60%), linear-gradient(160deg, #F5F2EC 0%, #EAE6DD 55%, #DFDACF 100%)',
