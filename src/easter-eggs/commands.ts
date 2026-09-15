@@ -100,7 +100,9 @@ const COMMANDS: Command[] = [
       const target = args.find((a) => !a.startsWith('-'))?.replace(/\/$/, '');
       const width = Math.max(...PROJECTS.map((p) => p.slug.length)) + 3;
       const projectList = PROJECTS.map((p) => `  ${p.slug.padEnd(width)}${p.year}`).join('\n');
-      if (target === 'api') return ctx.print('me.json');
+      if (target === 'api') {
+        return ctx.print("me.json\n\nheads up: it's an endpoint, not a file. you don't cat an api. you fetch it.");
+      }
       if (target === 'projects') return ctx.print(`${projectList}\nopen one with: open <name>`);
       if (target) return ctx.print(`ls: cannot access '${target}': No such file or directory`, 'err');
       const top = flags.includes('a') ? '.  ..  .riddle  now.md  resume.pdf  api/  projects/' : 'now.md  resume.pdf  api/  projects/';
@@ -261,7 +263,15 @@ const COMMANDS: Command[] = [
     names: ['vim', 'vi', 'nano', 'emacs'],
     run: (_args, ctx) => ctx.print("you can check in, but you can't :q. closing it for you."),
   },
-  { names: ['cd'], run: (_args, ctx) => ctx.print("cd: it's a portfolio, not a filesystem. everything's already in ~.") },
+  {
+    names: ['cd'],
+    run: (args, ctx) =>
+      ctx.print(
+        args[0]?.replace(/\/$/, '') === 'api'
+          ? 'cd: api/ is an endpoint, not a folder. try: ls api'
+          : "cd: it's a portfolio, not a filesystem. everything's already in ~."
+      ),
+  },
   { names: ['pwd'], run: (_args, ctx) => ctx.print('/home/guest') },
   { names: ['echo'], run: (args, ctx) => ctx.print(args.join(' ')) },
 ];

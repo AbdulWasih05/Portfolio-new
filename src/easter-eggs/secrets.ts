@@ -12,7 +12,7 @@ export interface Secret {
 export const SECRETS: readonly Secret[] = [
   { id: 'terminal', clue: 'engineers start with ~', toast: 'wasih.sh: guest shell granted.' },
   { id: 'sudo', clue: 'some commands need root.', toast: 'sudo: incident reported. to no one.' },
-  { id: 'api', clue: 'every startup ships an api. even this one. try curl.', toast: "api: 200 OK. no rate limits. please don't check." },
+  { id: 'api', clue: 'every startup ships an api. even this one. start with: ls api', toast: "api: 200 OK. no rate limits. please don't check." },
   { id: 'riddle', clue: 'devtools are open. so is the riddle. (mobile: ls -a)', toast: 'riddle: solved. you read the tagline.' },
   { id: 'night', clue: '↑↑↓↓←→←→BA. thumbs work too.', toast: 'night edition: same news, less glare.' },
   { id: 'logo', clue: 'the W answers after seven knocks.', toast: 'the W: seven knocks. it answered.' },
@@ -44,7 +44,7 @@ export const saveFound = (found: ReadonlySet<SecretId>) => {
 
 // Night Edition. Key and color are mirrored in the pre-paint script in index.html.
 const NIGHT_KEY = 'wasih:night';
-export const NIGHT_BG = '#0D0F14';
+export const NIGHT_BG = '#15130F';
 
 export const loadNight = () => {
   try {

@@ -39,80 +39,84 @@
   animation: wasih-glitch 500ms steps(1, end) forwards;
 }
 
-/* Night Edition (Konami). The strategy is chosen by data-night-mode on <html> in index.html. */
-
-/* "invert": one filter flips the page; images and .night-keep flip back so they look like day. */
-html[data-night-mode="invert"].night-edition { filter: invert(1); }
-html[data-night-mode="invert"].night-edition .night-keep,
-html[data-night-mode="invert"].night-edition img:not(.night-keep img),
-html[data-night-mode="invert"].night-edition video:not(.night-keep video) { filter: invert(1); }
-@media print {
+/* Night Edition (Konami): "warm newsprint". Recolors every palette class used in src.
+   Day → night: paper #F2F0EB → #15130F · paper-2 → #1F1C17 · ink #000 → #EAE4D6
+   ink-2 → #DCD5C6 · ink-3 → #ABA391 · mute → #857E70 · rule → #3B372F
+   Screen only, so printing a page in Night Edition still prints the day look. */
+@media screen {
+  html.night-edition { color-scheme: dark; }
   html.night-edition,
-  html.night-edition img,
-  html.night-edition .night-keep { filter: none !important; }
+  html.night-edition body { background: #15130F; color: #EAE4D6; }
+  html.night-edition ::selection { background: #EAE4D6; color: #15130F; }
+
+  html.night-edition .bg-paper { background-color: #15130F; }
+  html.night-edition .bg-paper-2 { background-color: #1F1C17; }
+  html.night-edition .bg-ink { background-color: #EAE4D6; }
+  html.night-edition .bg-ink\/40 { background-color: rgba(0, 0, 0, 0.55); }
+  html.night-edition .bg-ink\/80 { background-color: rgba(0, 0, 0, 0.85); }
+
+  html.night-edition .text-ink { color: #EAE4D6; }
+  html.night-edition .text-ink-2 { color: #DCD5C6; }
+  html.night-edition .text-ink-3 { color: #ABA391; }
+  html.night-edition .text-ink-3\/45 { color: rgba(171, 163, 145, 0.45); }
+  html.night-edition .text-ink-3\/55 { color: rgba(171, 163, 145, 0.55); }
+  html.night-edition .text-mute { color: #857E70; }
+  html.night-edition .text-rule { color: #3B372F; }
+  html.night-edition .text-paper { color: #15130F; }
+  html.night-edition .caret-ink { caret-color: #EAE4D6; }
+
+  html.night-edition .border-ink { border-color: #EAE4D6; }
+  html.night-edition .border-t-ink { border-top-color: #EAE4D6; }
+  html.night-edition .border-ink\/10 { border-color: rgba(234, 228, 214, 0.1); }
+  html.night-edition .border-ink\/30 { border-color: rgba(234, 228, 214, 0.3); }
+  html.night-edition .border-ink-3 { border-color: #ABA391; }
+  html.night-edition .border-paper { border-color: #15130F; }
+  html.night-edition .border-rule { border-color: #3B372F; }
+
+  /* Hard shadows stay black: a quiet offset instead of a glaring cream slab. */
+  html.night-edition .shadow-\[4px_4px_0_0_\#000\] { box-shadow: 4px 4px 0 0 #000; }
+  html.night-edition .shadow-\[6px_6px_0_0_\#000\] { box-shadow: 6px 6px 0 0 #000; }
+  html.night-edition .shadow-\[8px_8px_0_0_\#000\] { box-shadow: 8px 8px 0 0 #000; }
+  html.night-edition [class*="bg-[radial-gradient("] {
+    background-image: radial-gradient(#3B372F 1px, transparent 1px);
+  }
+  /* Project image backdrops use inline style gradients; only !important beats inline. */
+  html.night-edition .night-backdrop {
+    background: radial-gradient(120% 85% at 50% -12%, rgba(234, 228, 214, 0.06) 0%, rgba(234, 228, 214, 0) 55%),
+      linear-gradient(158deg, #1C1A15 0%, #221F19 55%, #29251E 100%) !important;
+  }
+
+  /* The hero portrait keeps its day framing. */
+  html.night-edition .night-keep.bg-ink { background-color: #000; }
+  html.night-edition .night-keep .text-paper { color: #EAE4D6; }
+
+  /* Interactive states: more specific than the base overrides above, so they still win. */
+  html.night-edition .hover\:bg-ink:hover { background-color: #EAE4D6; }
+  html.night-edition .hover\:bg-ink-3:hover,
+  html.night-edition .active\:bg-ink-3:active { background-color: #ABA391; }
+  html.night-edition .hover\:bg-paper-2:hover,
+  html.night-edition .active\:bg-paper-2:active { background-color: #1F1C17; }
+  html.night-edition .hover\:text-ink:hover { color: #EAE4D6; }
+  html.night-edition .hover\:text-ink-3:hover,
+  html.night-edition .group:hover .group-hover\:text-ink-3 { color: #ABA391; }
+  html.night-edition .hover\:text-paper:hover,
+  html.night-edition .focus-visible\:text-paper:focus-visible { color: #15130F; }
+  html.night-edition .group:hover .group-hover\:text-paper\/40 { color: rgba(21, 19, 15, 0.4); }
+  html.night-edition .hover\:text-rule:hover,
+  html.night-edition .group:hover .group-hover\:text-rule { color: #857E70; }
+  html.night-edition .hover\:border-ink:hover { border-color: #EAE4D6; }
+
+  /* Footer: black by day. By night it stays a deep panel, not a cream slab, with its own light-on-dark states. */
+  html.night-edition footer.bg-ink { background-color: #0E0D0A; border-color: #2E2A23; }
+  html.night-edition footer.text-paper,
+  html.night-edition footer .text-paper { color: #EAE4D6; }
+  html.night-edition footer .text-rule { color: #ABA391; }
+  html.night-edition footer .border-paper { border-color: #EAE4D6; }
+  html.night-edition footer .border-\[\#2a2a2a\] { border-color: #2E2A23; }
+  html.night-edition footer .hover\:text-rule:hover { color: #ABA391; }
+  html.night-edition footer .hover\:text-paper:hover,
+  html.night-edition footer .focus-visible\:text-paper:focus-visible { color: #EAE4D6; }
 }
-
-/* "palette": fallback if the root filter misbehaves (fixed elements, scroll jank on iOS).
-   Recolors every palette class used in src to the same night values the invert produces. */
-html[data-night-mode="palette"].night-edition { color-scheme: dark; }
-html[data-night-mode="palette"].night-edition,
-html[data-night-mode="palette"].night-edition body { background: #0D0F14; color: #F2F0EB; }
-html[data-night-mode="palette"].night-edition ::selection { background: #F2F0EB; color: #0D0F14; }
-
-html[data-night-mode="palette"].night-edition .bg-paper { background-color: #0D0F14; }
-html[data-night-mode="palette"].night-edition .bg-paper-2 { background-color: #171A22; }
-html[data-night-mode="palette"].night-edition .bg-ink { background-color: #F2F0EB; }
-html[data-night-mode="palette"].night-edition .bg-ink\/40 { background-color: rgba(0, 0, 0, 0.6); }
-html[data-night-mode="palette"].night-edition .bg-ink\/80 { background-color: rgba(0, 0, 0, 0.85); }
-html[data-night-mode="palette"].night-edition .night-keep.bg-ink { background-color: #000; }
-
-html[data-night-mode="palette"].night-edition .text-ink { color: #F2F0EB; }
-html[data-night-mode="palette"].night-edition .text-ink-2 { color: #E5E5E5; }
-html[data-night-mode="palette"].night-edition .text-ink-3 { color: #C2C2C2; }
-html[data-night-mode="palette"].night-edition .text-ink-3\/45 { color: rgba(194, 194, 194, 0.45); }
-html[data-night-mode="palette"].night-edition .text-ink-3\/55 { color: rgba(194, 194, 194, 0.55); }
-html[data-night-mode="palette"].night-edition .text-mute { color: #8C8C8C; }
-html[data-night-mode="palette"].night-edition .text-rule { color: #474A52; }
-html[data-night-mode="palette"].night-edition .text-paper { color: #0D0F14; }
-html[data-night-mode="palette"].night-edition .night-keep .text-paper { color: #F2F0EB; }
-html[data-night-mode="palette"].night-edition .caret-ink { caret-color: #F2F0EB; }
-
-html[data-night-mode="palette"].night-edition .border-ink { border-color: #F2F0EB; }
-html[data-night-mode="palette"].night-edition .border-t-ink { border-top-color: #F2F0EB; }
-html[data-night-mode="palette"].night-edition .border-ink\/10 { border-color: rgba(242, 240, 235, 0.1); }
-html[data-night-mode="palette"].night-edition .border-ink\/30 { border-color: rgba(242, 240, 235, 0.3); }
-html[data-night-mode="palette"].night-edition .border-ink-3 { border-color: #C2C2C2; }
-html[data-night-mode="palette"].night-edition .border-paper { border-color: #0D0F14; }
-html[data-night-mode="palette"].night-edition .border-rule { border-color: #474A52; }
-html[data-night-mode="palette"].night-edition .border-\[\#2a2a2a\] { border-color: #D5D5D5; }
-
-html[data-night-mode="palette"].night-edition .shadow-\[4px_4px_0_0_\#000\] { box-shadow: 4px 4px 0 0 #F2F0EB; }
-html[data-night-mode="palette"].night-edition .shadow-\[6px_6px_0_0_\#000\] { box-shadow: 6px 6px 0 0 #F2F0EB; }
-html[data-night-mode="palette"].night-edition .shadow-\[8px_8px_0_0_\#000\] { box-shadow: 8px 8px 0 0 #F2F0EB; }
-html[data-night-mode="palette"].night-edition [class*="bg-[radial-gradient("] {
-  background-image: radial-gradient(#474A52 1px, transparent 1px);
-}
-/* Project image backdrops use inline style gradients; only !important beats inline. */
-html[data-night-mode="palette"].night-edition .night-backdrop {
-  background: radial-gradient(120% 85% at 50% -12%, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 55%),
-    linear-gradient(158deg, #0A0D13 0%, #15191F 55%, #1E232D 100%) !important;
-}
-
-/* Interactive states: more specific than the base overrides above, so they still win. */
-html[data-night-mode="palette"].night-edition .hover\:bg-ink:hover { background-color: #F2F0EB; }
-html[data-night-mode="palette"].night-edition .hover\:bg-ink-3:hover,
-html[data-night-mode="palette"].night-edition .active\:bg-ink-3:active { background-color: #C2C2C2; }
-html[data-night-mode="palette"].night-edition .hover\:bg-paper-2:hover,
-html[data-night-mode="palette"].night-edition .active\:bg-paper-2:active { background-color: #171A22; }
-html[data-night-mode="palette"].night-edition .hover\:text-ink:hover { color: #F2F0EB; }
-html[data-night-mode="palette"].night-edition .hover\:text-ink-3:hover,
-html[data-night-mode="palette"].night-edition .group:hover .group-hover\:text-ink-3 { color: #C2C2C2; }
-html[data-night-mode="palette"].night-edition .hover\:text-paper:hover,
-html[data-night-mode="palette"].night-edition .focus-visible\:text-paper:focus-visible { color: #0D0F14; }
-html[data-night-mode="palette"].night-edition .group:hover .group-hover\:text-paper\/40 { color: rgba(13, 15, 20, 0.4); }
-html[data-night-mode="palette"].night-edition .hover\:text-rule:hover,
-html[data-night-mode="palette"].night-edition .group:hover .group-hover\:text-rule { color: #474A52; }
-html[data-night-mode="palette"].night-edition .hover\:border-ink:hover { border-color: #F2F0EB; }
 
 /* Image responsive max-width */
 img {

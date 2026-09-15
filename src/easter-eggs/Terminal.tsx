@@ -169,8 +169,7 @@ const Terminal = ({ autoFocus }: { autoFocus: boolean }) => {
       className="fixed inset-0 z-[95]"
       style={viewport ? { top: viewport.top, height: viewport.height, bottom: 'auto' } : undefined}
     >
-      {/* night-keep: under Night Edition's invert the backdrop still dims instead of washing out */}
-      <div className="night-keep absolute inset-0 bg-ink/40" onClick={closeTerminal} aria-hidden="true" />
+      <div className="absolute inset-0 bg-ink/40" onClick={closeTerminal} aria-hidden="true" />
       <div
         ref={panelRef}
         tabIndex={-1}
@@ -195,11 +194,19 @@ const Terminal = ({ autoFocus }: { autoFocus: boolean }) => {
           className="min-h-0 flex-1 overflow-y-auto whitespace-pre-wrap break-words px-4 py-3 text-[12px] leading-[1.6] sm:text-[13px]"
         >
           {lines.map((line) => (
-            <div key={line.id} className={line.kind === 'err' ? 'text-ink-3' : undefined}>
+            // Typed commands: bold full ink with space above; output a step softer; errors softer still.
+            <div
+              key={line.id}
+              className={
+                line.kind === 'in' ? 'mt-3 text-ink first:mt-0' : line.kind === 'err' ? 'text-ink-3' : 'text-ink-2'
+              }
+            >
               {line.kind === 'in' && <span className="text-mute">guest@wasih.tech:~$ </span>}
               {line.parts.map((part, i) =>
                 typeof part === 'string' ? (
-                  <span key={i}>{part}</span>
+                  <span key={i} className={line.kind === 'in' ? 'font-bold' : undefined}>
+                    {part}
+                  </span>
                 ) : SAFE_HREF.test(part.href) ? (
                   <a
                     key={i}
