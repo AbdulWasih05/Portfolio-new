@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useEasterEggs } from '@/easter-eggs/context';
 
 const navItems = [
   { num: '01', label: 'Home', target: 'hero', route: '/' },
@@ -10,6 +11,7 @@ const navItems = [
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { logoTap, dotTap } = useEasterEggs();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
@@ -92,7 +94,15 @@ const Header = () => {
       {/* Meta strip */}
       <div className="grid grid-cols-2 border-b border-ink font-mono text-[11px] uppercase tracking-[0.06em]">
         <div className="px-[18px] py-[10px] border-r border-ink">
-          <span className="inline-block w-[7px] h-[7px] bg-ink rounded-full mr-2 align-middle blink-dot" />
+          {/* The dot is a button: five pokes and it answers (see easter-eggs). */}
+          <button
+            type="button"
+            onClick={dotTap}
+            aria-label="Status"
+            className="-my-3 -ml-3 -mr-1 inline-flex h-8 w-8 items-center justify-center align-middle touch-manipulation"
+          >
+            <span className="inline-block w-[7px] h-[7px] bg-ink rounded-full blink-dot" />
+          </button>
           Karnataka, IN
         </div>
         <div className="px-[18px] py-[10px] text-right">UTC+5:30</div>
@@ -103,8 +113,11 @@ const Header = () => {
         <div className="flex items-stretch justify-between flex-1 min-w-0">
           <button
             type="button"
-            onClick={() => handleClick(navItems[0])}
-            className="flex items-center gap-[14px] px-[28px] py-[18px] border-r border-ink text-left min-w-0"
+            onClick={() => {
+              logoTap();
+              handleClick(navItems[0]);
+            }}
+            className="flex items-center gap-[14px] px-[28px] py-[18px] border-r border-ink text-left min-w-0 select-none touch-manipulation"
             aria-label="Home"
           >
             <span className="w-11 h-11 bg-ink text-paper flex items-center justify-center font-serif italic text-2xl leading-none shrink-0">W</span>

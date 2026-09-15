@@ -25,7 +25,7 @@ const ProjectCard = ({ project, num, className = '' }: ProjectCardProps) => (
     <div className="relative aspect-[4/3] border-b border-ink overflow-hidden">
       {/* Premium studio backdrop — layered warm radials matching the theme */}
       <div
-        className="absolute inset-0"
+        className="night-backdrop absolute inset-0"
         style={{
           background:
             'radial-gradient(120% 85% at 50% -12%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 55%), radial-gradient(110% 110% at 50% 120%, rgba(184,181,173,0.4) 0%, rgba(184,181,173,0) 60%), linear-gradient(158deg, #F5F2EC 0%, #EAE6DD 55%, #E1DCD2 100%)',

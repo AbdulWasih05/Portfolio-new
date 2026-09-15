@@ -1,7 +1,22 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import viteCompression from 'vite-plugin-compression';
+import { buildMe } from "./scripts/generate-api";
+
+// /api/me.json is generated from src/data (profile + projects): emitted on build, served in dev.
+const apiPlugin = (): Plugin => ({
+  name: "wasih-api",
+  configureServer(server) {
+    server.middlewares.use("/api/me.json", (_req, res) => {
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
+      res.end(JSON.stringify(buildMe(), null, 2));
+    });
+  },
+  generateBundle() {
+    this.emitFile({ type: "asset", fileName: "api/me.json", source: JSON.stringify(buildMe(), null, 2) });
+  },
+});
 
 
 // https://vitejs.dev/config/
@@ -14,6 +29,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
+    apiPlugin(),
     // Gzip compression
     viteCompression({
       verbose: true,

@@ -17,6 +17,107 @@
   51%, 100% { opacity: 0; }
 }
 
+/* Easter eggs: terminal drop-in and glitch bars (kept outside @layer so they're never purged) */
+@keyframes wasih-drop {
+  from { transform: translateY(-105%); }
+  to { transform: translateY(0); }
+}
+.wasih-drop { animation: wasih-drop 220ms cubic-bezier(0.2, 0.9, 0.3, 1); }
+
+@keyframes wasih-glitch {
+  0% { transform: translate3d(0, 0, 0); opacity: 1; }
+  50% { transform: translate3d(-12px, var(--wasih-jump, 24px), 0); opacity: 1; }
+  100% { transform: translate3d(8px, var(--wasih-jump, 24px), 0); opacity: 0; }
+}
+/* White + difference inverts whatever sits under each bar. */
+.wasih-glitch-bar {
+  position: absolute;
+  left: -16px;
+  right: -16px;
+  background: #fff;
+  mix-blend-mode: difference;
+  animation: wasih-glitch 500ms steps(1, end) forwards;
+}
+
+/* Night Edition (Konami): "warm newsprint". Recolors every palette class used in src.
+   Day → night: paper #F2F0EB → #15130F · paper-2 → #1F1C17 · ink #000 → #EAE4D6
+   ink-2 → #DCD5C6 · ink-3 → #ABA391 · mute → #857E70 · rule → #3B372F
+   Screen only, so printing a page in Night Edition still prints the day look. */
+@media screen {
+  html.night-edition { color-scheme: dark; }
+  html.night-edition,
+  html.night-edition body { background: #15130F; color: #EAE4D6; }
+  html.night-edition ::selection { background: #EAE4D6; color: #15130F; }
+
+  html.night-edition .bg-paper { background-color: #15130F; }
+  html.night-edition .bg-paper-2 { background-color: #1F1C17; }
+  html.night-edition .bg-ink { background-color: #EAE4D6; }
+  html.night-edition .bg-ink\/40 { background-color: rgba(0, 0, 0, 0.55); }
+  html.night-edition .bg-ink\/80 { background-color: rgba(0, 0, 0, 0.85); }
+
+  html.night-edition .text-ink { color: #EAE4D6; }
+  html.night-edition .text-ink-2 { color: #DCD5C6; }
+  html.night-edition .text-ink-3 { color: #ABA391; }
+  html.night-edition .text-ink-3\/45 { color: rgba(171, 163, 145, 0.45); }
+  html.night-edition .text-ink-3\/55 { color: rgba(171, 163, 145, 0.55); }
+  html.night-edition .text-mute { color: #857E70; }
+  html.night-edition .text-rule { color: #3B372F; }
+  html.night-edition .text-paper { color: #15130F; }
+  html.night-edition .caret-ink { caret-color: #EAE4D6; }
+
+  html.night-edition .border-ink { border-color: #EAE4D6; }
+  html.night-edition .border-t-ink { border-top-color: #EAE4D6; }
+  html.night-edition .border-ink\/10 { border-color: rgba(234, 228, 214, 0.1); }
+  html.night-edition .border-ink\/30 { border-color: rgba(234, 228, 214, 0.3); }
+  html.night-edition .border-ink-3 { border-color: #ABA391; }
+  html.night-edition .border-paper { border-color: #15130F; }
+  html.night-edition .border-rule { border-color: #3B372F; }
+
+  /* Hard shadows stay black: a quiet offset instead of a glaring cream slab. */
+  html.night-edition .shadow-\[4px_4px_0_0_\#000\] { box-shadow: 4px 4px 0 0 #000; }
+  html.night-edition .shadow-\[6px_6px_0_0_\#000\] { box-shadow: 6px 6px 0 0 #000; }
+  html.night-edition .shadow-\[8px_8px_0_0_\#000\] { box-shadow: 8px 8px 0 0 #000; }
+  html.night-edition [class*="bg-[radial-gradient("] {
+    background-image: radial-gradient(#3B372F 1px, transparent 1px);
+  }
+  /* Project image backdrops use inline style gradients; only !important beats inline. */
+  html.night-edition .night-backdrop {
+    background: radial-gradient(120% 85% at 50% -12%, rgba(234, 228, 214, 0.06) 0%, rgba(234, 228, 214, 0) 55%),
+      linear-gradient(158deg, #1C1A15 0%, #221F19 55%, #29251E 100%) !important;
+  }
+
+  /* The hero portrait keeps its day framing. */
+  html.night-edition .night-keep.bg-ink { background-color: #000; }
+  html.night-edition .night-keep .text-paper { color: #EAE4D6; }
+
+  /* Interactive states: more specific than the base overrides above, so they still win. */
+  html.night-edition .hover\:bg-ink:hover { background-color: #EAE4D6; }
+  html.night-edition .hover\:bg-ink-3:hover,
+  html.night-edition .active\:bg-ink-3:active { background-color: #ABA391; }
+  html.night-edition .hover\:bg-paper-2:hover,
+  html.night-edition .active\:bg-paper-2:active { background-color: #1F1C17; }
+  html.night-edition .hover\:text-ink:hover { color: #EAE4D6; }
+  html.night-edition .hover\:text-ink-3:hover,
+  html.night-edition .group:hover .group-hover\:text-ink-3 { color: #ABA391; }
+  html.night-edition .hover\:text-paper:hover,
+  html.night-edition .focus-visible\:text-paper:focus-visible { color: #15130F; }
+  html.night-edition .group:hover .group-hover\:text-paper\/40 { color: rgba(21, 19, 15, 0.4); }
+  html.night-edition .hover\:text-rule:hover,
+  html.night-edition .group:hover .group-hover\:text-rule { color: #857E70; }
+  html.night-edition .hover\:border-ink:hover { border-color: #EAE4D6; }
+
+  /* Footer: black by day. By night it stays a deep panel, not a cream slab, with its own light-on-dark states. */
+  html.night-edition footer.bg-ink { background-color: #0E0D0A; border-color: #2E2A23; }
+  html.night-edition footer.text-paper,
+  html.night-edition footer .text-paper { color: #EAE4D6; }
+  html.night-edition footer .text-rule { color: #ABA391; }
+  html.night-edition footer .border-paper { border-color: #EAE4D6; }
+  html.night-edition footer .border-\[\#2a2a2a\] { border-color: #2E2A23; }
+  html.night-edition footer .hover\:text-rule:hover { color: #ABA391; }
+  html.night-edition footer .hover\:text-paper:hover,
+  html.night-edition footer .focus-visible\:text-paper:focus-visible { color: #EAE4D6; }
+}
+
 /* Image responsive max-width */
 img {
   max-width: 100%;

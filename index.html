@@ -5,6 +5,19 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#F2F0EB" />
+    <!-- Night Edition easter egg: apply before first paint so a reload doesn't flash the day theme. -->
+    <script>
+      try {
+        if (localStorage.getItem("wasih:night") === "1") {
+          document.documentElement.classList.add("night-edition");
+          var themeColor = document.querySelector('meta[name="theme-color"]');
+          if (themeColor) {
+            themeColor.setAttribute("data-day", themeColor.content);
+            themeColor.content = "#15130F";
+          }
+        }
+      } catch (e) {}
+    </script>
 
     <!-- Resource Hints for Performance -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -127,7 +140,40 @@
   </head>
 
   <body>
+    <!--
+      ┌────────────────────────────────────────────────┐
+      │ hi. you're reading the source. good instinct.  │
+      │ the markup is boring; React does the talking.  │
+      │ the fun parts: press ~ on the page,            │
+      │ open devtools, or read /humans.txt.            │
+      └────────────────────────────────────────────────┘
+    -->
+    <!-- React mounts here. everything below is JavaScript's problem. -->
     <div id="root"></div>
+
+    <!-- Console easter egg. Inline on purpose: the bundler strips console calls from app code. -->
+    <script>
+      (function () {
+        var mono = 'font-family:"JetBrains Mono",monospace;';
+        var W = "\n██╗    ██╗\n██║    ██║\n██║ █╗ ██║\n██║███╗██║\n╚███╔███╔╝\n ╚══╝╚══╝ \n";
+        console.log("%c" + W, mono + "font-weight:700;line-height:1.1");
+        console.log("%c wasih.tech — console edition ", mono + "background:#000;color:#F2F0EB;padding:2px 6px");
+        console.log("%cyou opened devtools on a portfolio. of course you did.\nno errors in here. i checked. twice. in prod.", mono + "color:#3D3D3D");
+        console.log("%criddle: engineers do me on purpose. users do me by accident.\n        i sit between making it and shipping it. what am i?", mono);
+        console.log('%canswer with: wasih.unlock("…")', mono + "color:#737373");
+        window.wasih = {
+          hint: "it is on the homepage. between two other verbs.",
+          unlock: function (answer) {
+            if (String(answer || "").trim().toLowerCase() !== "break") return "access denied. try wasih.hint";
+            (window.__wasihQ = window.__wasihQ || []).push("riddle");
+            try {
+              window.dispatchEvent(new CustomEvent("wasih:found", { detail: "riddle" }));
+            } catch (e) {}
+            return "access granted. build. break. ship. (the footer noticed.)";
+          },
+        };
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
 
     <!-- Microsoft Clarity analytics (deferred to end of body so it doesn't block FCP/LCP) -->

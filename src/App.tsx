@@ -6,6 +6,7 @@ import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import SectionLoader from "./components/SectionLoader";
+import { EasterEggRoot } from "./easter-eggs/EasterEggProvider";
 
 const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
 const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage"));
@@ -14,28 +15,34 @@ const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage"));
 const router = createBrowserRouter(
   [
     {
-      path: "/",
-      element: <Index />,
-    },
-    {
-      path: "/projects",
-      element: (
-        <Suspense fallback={<SectionLoader />}>
-          <ProjectsPage />
-        </Suspense>
-      ),
-    },
-    {
-      path: "/projects/:slug",
-      element: (
-        <Suspense fallback={<SectionLoader />}>
-          <ProjectDetailPage />
-        </Suspense>
-      ),
-    },
-    {
-      path: "*",
-      element: <NotFound />,
+      // Pathless layout: the easter eggs wrap every page and can use router hooks.
+      element: <EasterEggRoot />,
+      children: [
+        {
+          path: "/",
+          element: <Index />,
+        },
+        {
+          path: "/projects",
+          element: (
+            <Suspense fallback={<SectionLoader />}>
+              <ProjectsPage />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/projects/:slug",
+          element: (
+            <Suspense fallback={<SectionLoader />}>
+              <ProjectDetailPage />
+            </Suspense>
+          ),
+        },
+        {
+          path: "*",
+          element: <NotFound />,
+        },
+      ],
     },
   ],
 

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useResumeModal } from './ResumeModal';
+import SecretsCounter from '@/easter-eggs/SecretsCounter';
 
 const Footer = () => {
   const { openResume, prefetchResume } = useResumeModal();
@@ -81,10 +82,11 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-between gap-[6px] sm:gap-0 px-5 sm:px-8 py-[18px] font-mono text-[10px] uppercase tracking-[0.18em] text-mute">
+      {/* Fixed columns so the secrets counter can change width without nudging its neighbours */}
+      <div className="flex flex-col gap-[6px] sm:grid sm:grid-cols-3 sm:items-start sm:gap-6 px-5 sm:px-8 py-[18px] font-mono text-[10px] uppercase tracking-[0.18em] text-mute">
         <div>© 2025. Abdul Wasih</div>
-        <div>KARNATAKA, IN. BUILT BY WASIH</div>
-        <div>End of page :)</div>
+        <div className="sm:text-center">KARNATAKA, IN. BUILT BY WASIH</div>
+        <SecretsCounter />
       </div>
     </footer>
   );
