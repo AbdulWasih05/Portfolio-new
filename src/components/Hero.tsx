@@ -108,8 +108,7 @@ const Hero = memo(() => {
 
       {/* Side column: portrait + meta */}
       <aside className="flex flex-col">
-        {/* night-keep: Night Edition leaves the portrait exactly as it is by day */}
-        <div className="night-keep relative flex-1 min-h-[220px] bg-ink overflow-hidden">
+        <div className="relative flex-1 min-h-[220px] bg-ink overflow-hidden">
           <picture>
             <source
               type="image/webp"
