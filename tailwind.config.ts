@@ -70,7 +70,7 @@ export default {
 				ink: '#000000',
 				'ink-2': '#1A1A1A',
 				'ink-3': '#3D3D3D',
-				mute: '#737373',
+				mute: '#666666',
 				rule: '#B8B5AD',
 			},
 			borderRadius: {
