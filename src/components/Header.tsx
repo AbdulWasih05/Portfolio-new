@@ -1,160 +1,147 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { site } from '@/data/site';
+import { useHashScroll } from '@/hooks/useHashScroll';
+import { useResumeModal } from './ResumeModal';
+import CopyEmail from './CopyEmail';
 
+// Each item is a section of the home page.
 const navItems = [
-  { num: '01', label: 'Home', target: 'hero', route: '/' },
-  { num: '02', label: 'Work', target: 'projects', route: '/projects' },
-  { num: '03', label: 'About', target: 'about', route: '/' },
+  { num: '01', label: 'Work', id: 'projects' },
+  { num: '02', label: 'Experience', id: 'experience' },
+  { num: '03', label: 'About', id: 'about' },
 ];
 
 const Header = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const { openResume, prefetchResume } = useResumeModal();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState('');
+
+  useHashScroll();
+
+  // On the home page, the section crossing the middle of the viewport is the current one.
+  useEffect(() => {
+    if (pathname !== '/') return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          setActiveSection((cur) => (entry.isIntersecting ? id : cur === id ? '' : cur));
+        });
+      },
+      { rootMargin: '-45% 0px -55% 0px' },
+    );
+    navItems.forEach((item) => {
+      const el = document.getElementById(item.id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, [pathname]);
 
   useEffect(() => {
-    if (location.pathname === '/projects') {
-      setActiveSection('projects');
-      return;
-    }
-
-    const handleScroll = () => {
-      const aboutEl = document.getElementById('about');
-      if (aboutEl) {
-        const rect = aboutEl.getBoundingClientRect();
-        // If about section comes into the top half of the screen, mark as active
-        if (rect.top <= window.innerHeight * 0.5) {
-          setActiveSection('about');
-        } else {
-          setActiveSection('hero');
-        }
-      } else {
-        setActiveSection('hero');
-      }
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check once on mount
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [location.pathname]);
-
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const headerOffset = 100; // Account for the sticky header height
-      const elementPosition = el.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
-  useEffect(() => {
-    if (location.state && (location.state as any).targetId) {
-      const id = (location.state as any).targetId;
-      setTimeout(() => scrollToSection(id), 100);
-      window.history.replaceState({}, document.title);
-    }
-  }, [location]);
-
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+    };
   }, [menuOpen]);
 
-  const handleClick = (item: typeof navItems[number]) => {
-    setMenuOpen(false);
-    if (item.target === 'projects' && item.route === '/projects') {
-      navigate('/projects');
-      return;
-    }
-    if (location.pathname !== '/') {
-      navigate('/', { state: { targetId: item.target } });
-      return;
-    }
-    scrollToSection(item.target);
+  const isCurrent = (item: typeof navItems[number]) => {
+    if (pathname.startsWith('/projects')) return item.id === 'projects';
+    if (pathname === '/') return item.id === activeSection;
+    return false;
   };
 
-  const isCurrent = (item: typeof navItems[number]) => {
-    if (location.pathname === '/projects') return item.target === 'projects';
-    if (location.pathname === '/') return item.target === activeSection;
-    return false;
+  const resumeHandlers = {
+    onPointerEnter: prefetchResume,
+    onFocus: prefetchResume,
+    onTouchStart: prefetchResume,
   };
 
   return (
     <>
-      {/* Meta strip */}
-      <div className="grid grid-cols-2 border-b border-ink font-mono text-[11px] uppercase tracking-[0.06em]">
-        <div className="px-[18px] py-[10px] border-r border-ink">
-          <span className="inline-block w-[7px] h-[7px] bg-ink rounded-full mr-2 align-middle blink-dot" />
-          Karnataka, IN
-        </div>
-        <div className="px-[18px] py-[10px] text-right">UTC+5:30</div>
-      </div>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[70] focus:bg-ink focus:text-paper focus:px-4 focus:py-3 font-mono text-xs uppercase tracking-[0.12em]"
+      >
+        Skip to content
+      </a>
 
       {/* Nav */}
-      <header className="flex items-stretch justify-between lg:grid lg:grid-cols-[1fr_340px] border-b-4 border-ink bg-paper sticky top-0 z-50">
-        <div className="flex items-stretch justify-between flex-1 min-w-0">
-          <button
-            type="button"
-            onClick={() => handleClick(navItems[0])}
-            className="flex items-center gap-[14px] px-[28px] py-[18px] border-r border-ink text-left min-w-0"
-            aria-label="Home"
-          >
-            <span className="w-11 h-11 bg-ink text-paper flex items-center justify-center font-serif italic text-2xl leading-none shrink-0">W</span>
-            <span className="font-serif text-[22px] leading-none truncate">
-              Abdul Wasih
-              <small className="block font-mono text-[10px] tracking-[0.15em] uppercase text-ink-3 mt-1 not-italic truncate">
-                Engineer · Builder
-              </small>
-            </span>
-          </button>
+      <header className="flex items-stretch justify-between border-b-4 border-ink bg-paper sticky top-0 z-50">
+        <Link
+          to="/"
+          className="flex items-center gap-[14px] px-5 sm:px-[28px] py-3 sm:py-[18px] text-left min-w-0"
+          aria-label={`${site.name}, home`}
+        >
+          {/* Same mark as the favicon (public/icon.svg). */}
+          <img src="/icon.svg" alt="" width={44} height={44} className="w-11 h-11 shrink-0" />
 
-          <button
-            type="button"
-            className="md:hidden bg-ink text-paper px-[22px] font-mono tracking-[0.14em] uppercase text-xs border-l border-ink shrink-0"
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-expanded={menuOpen}
-          >
-            {menuOpen ? '× Close' : '☰ Menu'}
-          </button>
-        </div>
+          <span className="font-serif text-[22px] leading-none truncate">
+            {site.name}
+            <small className="block font-mono text-[11px] tracking-[0.15em] uppercase text-ink-3 mt-1 not-italic truncate">
+              {site.role}
+            </small>
+          </span>
+        </Link>
 
-        <nav className="hidden md:flex items-stretch lg:w-full">
+        <button
+          type="button"
+          className="md:hidden bg-ink text-paper px-[22px] font-mono tracking-[0.14em] uppercase text-xs shrink-0"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+        >
+          {menuOpen ? '× Close' : '☰ Menu'}
+        </button>
+
+        <nav className="hidden md:flex items-stretch" aria-label="Main">
           {navItems.map((item) => {
             const current = isCurrent(item);
             return (
-              <button
-                key={item.label}
-                type="button"
-                onClick={() => handleClick(item)}
-                aria-current={current ? 'page' : undefined}
-                className={`flex-1 flex justify-center px-6 items-center gap-[10px] border-l border-ink font-mono text-xs uppercase tracking-[0.08em] transition-colors duration-150 hover:bg-ink hover:text-paper ${
+              <Link
+                key={item.id}
+                to={`/#${item.id}`}
+                aria-current={current ? 'true' : undefined}
+                className={`flex px-5 lg:px-7 items-center gap-[10px] border-l border-ink font-mono text-xs uppercase tracking-[0.08em] transition-colors duration-150 ink-fill ${
                   current ? 'bg-ink text-paper' : ''
                 }`}
               >
-                <span className="text-[10px] opacity-60">{item.num}</span>
+                <span className="hidden lg:inline text-[11px] opacity-60">{item.num}</span>
                 {item.label}
-              </button>
+              </Link>
             );
           })}
+          <button
+            type="button"
+            onClick={openResume}
+            {...resumeHandlers}
+            className="group flex px-5 lg:px-7 items-center gap-[10px] border-l border-ink bg-ink text-paper font-mono text-xs uppercase tracking-[0.08em] transition-colors duration-150 hover:bg-ink-3"
+          >
+            Résumé
+            <span className="text-base transition-transform duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span>
+          </button>
         </nav>
       </header>
 
-      {/* Mobile menu drawer */}
+      {/* Mobile menu drawer. `inert` keeps it out of the tab order while it's off-screen
+          (spread in because React 18's types don't know the attribute). */}
       <div
+        id="mobile-menu"
+        aria-hidden={!menuOpen}
+        {...(menuOpen ? {} : { inert: '' })}
         className={`md:hidden fixed inset-0 bg-paper z-[60] flex flex-col border-t-4 border-ink transition-transform duration-200 ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="flex justify-between items-stretch border-b-4 border-ink">
-          <div className="flex items-center px-[28px] py-[18px] border-r border-ink flex-1">
+          <div className="flex items-center px-5 py-[18px] flex-1">
             <div aria-hidden="true" className="h-11 w-11"></div>
           </div>
           <button
@@ -165,32 +152,37 @@ const Header = () => {
             × Close
           </button>
         </div>
-        <nav className="flex-1 flex flex-col pt-[18px]">
+        <nav className="flex-1 flex flex-col overflow-y-auto" aria-label="Main">
           {navItems.map((item) => (
-            <button
-              key={item.label}
-              type="button"
-              onClick={() => handleClick(item)}
-              className="border-b border-ink px-[28px] py-9 text-left flex justify-between items-end group active:bg-paper-2 transition-colors"
+            <Link
+              key={item.id}
+              to={`/#${item.id}`}
+              onClick={() => setMenuOpen(false)}
+              className="border-b border-ink px-5 py-7 text-left flex justify-between items-end active:bg-paper-2 transition-colors"
             >
-              <span className="font-serif font-normal text-[56px] leading-[0.85] tracking-[-0.02em] uppercase">
+              <span className="font-serif font-normal text-[48px] leading-[0.85] tracking-[-0.02em] uppercase">
                 {item.label}
               </span>
               <span className="font-mono text-sm opacity-60 mb-1 uppercase tracking-[0.1em]">{item.num}</span>
-            </button>
+            </Link>
           ))}
         </nav>
-        <div className="mt-auto">
-          <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=buildwithwasih@gmail.com&su=Hello%20Wasih"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setMenuOpen(false)}
-            className="flex justify-between items-center w-full bg-ink text-paper px-[28px] py-[28px] font-mono uppercase tracking-[0.16em] text-[13px] active:bg-ink-3 transition-colors"
+        <div className="mt-auto border-t border-ink">
+          <div className="px-5 py-5">
+            <CopyEmail emailClassName="font-serif text-[20px]" />
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              setMenuOpen(false);
+              openResume();
+            }}
+            {...resumeHandlers}
+            className="flex justify-between items-center w-full bg-ink text-paper px-5 py-[26px] font-mono uppercase tracking-[0.16em] text-[13px] active:bg-ink-3 transition-colors"
           >
-            <span>Get in touch</span>
-            <span>→</span>
-          </a>
+            <span>View Résumé</span>
+            <span>↗</span>
+          </button>
         </div>
       </div>
     </>

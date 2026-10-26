@@ -23,6 +23,10 @@ export const ResumeModalProvider = ({ children }: { children: React.ReactNode })
   const [open, setOpen] = useState(false);
   const [failed, setFailed] = useState(false);
   const warmed = useRef(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  // Whatever opened the preview gets focus back when it closes.
+  const returnFocus = useRef<HTMLElement | null>(null);
 
   // Prefetch the preview image ahead of the actual click for an instant open.
   const prefetchResume = useCallback(() => {
@@ -36,6 +40,7 @@ export const ResumeModalProvider = ({ children }: { children: React.ReactNode })
   }, []);
 
   const openResume = useCallback(() => {
+    returnFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     prefetchResume();
     setFailed(false);
     setOpen(true);
@@ -64,18 +69,39 @@ export const ResumeModalProvider = ({ children }: { children: React.ReactNode })
     }
   }, []);
 
-  // Close on Escape and lock background scroll while the preview is open.
+  // While the preview is open: close on Escape, keep Tab inside it, lock background scroll.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape") {
+        close();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const items = panelRef.current?.querySelectorAll<HTMLElement>("a[href], button");
+      if (!items?.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+      if (!panelRef.current?.contains(active)) {
+        e.preventDefault();
+        first.focus();
+      } else if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
+    closeRef.current?.focus();
     return () => {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
+      returnFocus.current?.focus();
     };
   }, [open, close]);
 
@@ -84,20 +110,22 @@ export const ResumeModalProvider = ({ children }: { children: React.ReactNode })
       {children}
       {open && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/80 backdrop-blur-sm p-4 sm:p-8"
+          className="modal-fade fixed inset-0 z-[100] flex items-center justify-center bg-ink/80 backdrop-blur-sm p-4 sm:p-8"
           onClick={close}
           role="dialog"
           aria-modal="true"
           aria-label="Résumé preview"
         >
           <div
-            className="flex w-full max-w-[920px] h-[90vh] sm:h-[88vh] flex-col border-4 border-ink bg-paper shadow-[8px_8px_0_0_#000]"
+            ref={panelRef}
+            className="modal-pop flex w-full max-w-[920px] h-[90vh] sm:h-[88vh] flex-col border-4 border-ink bg-paper shadow-[8px_8px_0_0_#000]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex shrink-0 items-center justify-between bg-ink px-4 sm:px-5 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-paper">
+            <div className="on-ink flex shrink-0 items-center justify-between bg-ink px-4 sm:px-5 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-paper">
               <span>Résumé — Abdul Wasih</span>
               <button
+                ref={closeRef}
                 type="button"
                 onClick={close}
                 aria-label="Close résumé preview"
@@ -137,19 +165,19 @@ export const ResumeModalProvider = ({ children }: { children: React.ReactNode })
             <div className="flex shrink-0 items-center justify-end gap-3 border-t-4 border-ink px-4 sm:px-5 py-3">
               <a
                 href={RESUME_URL}
-                download="Abdul-Wasih-Resume.pdf"
-                onClick={downloadResume}
-                className="inline-flex items-center gap-2 border border-ink px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink hover:bg-paper-2 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-ink px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink hover:bg-paper-2 active:translate-y-px transition-colors"
               >
-                Download <span className="text-sm">↓</span>
+                Open in new tab <span className="text-sm">↗</span>
               </a>
               <a
                 href={RESUME_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-ink px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-paper hover:bg-ink-3 transition-colors"
+                download="Abdul-Wasih-Resume.pdf"
+                onClick={downloadResume}
+                className="inline-flex items-center gap-2 border border-ink bg-ink px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-paper hover:bg-ink-3 active:translate-y-px transition-colors"
               >
-                Open in new tab <span className="text-sm">↗</span>
+                Download <span className="text-sm">↓</span>
               </a>
             </div>
           </div>
