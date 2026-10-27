@@ -19,6 +19,19 @@ export interface Project {
     challenge: string;
     approach: string;
     impact: ProjectStats[];
+
+    // Optional fields for the home page "Selected Work" entries (Projects.tsx / WorkEntry.tsx).
+    // Everything falls back gracefully when a field is missing.
+    /** One line, problem → outcome. Falls back to `description`. */
+    outcome?: string;
+    /** One line on the hardest decision or trade-off ("The hard part"). Hidden when missing. */
+    hardPart?: string;
+    /** At most two short, verifiable fact chips. */
+    facts?: string[];
+    /** Stack tags shown on the entry. Falls back to the first three of `tech`. */
+    tags?: string[];
+    /** Headline stats (2–3). Falls back to `impact` without "Status" entries. */
+    stats?: ProjectStats[];
 }
 
 // Shared slug helper — single source of truth for project URLs (/projects/:slug).
@@ -36,7 +49,8 @@ export const projects: Project[] = [
         description:
             "WhatsApp-first AI energy advisor for MESCOM consumers in coastal Karnataka. Send one photo of your electricity bill and get a personalized analysis, a Kannada voice note, and an infographic back in seconds, voice-first, zero literacy required.",
         tech: [
-            "Flask",
+            "Python",
+            "FastAPI",
             "Gemini 2.5 Flash",
             "Groq Llama 3.3 70B",
             "Sarvam AI (Kannada TTS)",
@@ -46,9 +60,9 @@ export const projects: Project[] = [
         ],
         image: "/vidyutmitra-thumbnail.png",
         imageWebP: "/vidyutmitra-thumbnail.webp",
-        link: "https://vidyut-mitra.wasih.tech/",
+        link: "https://vidyut-mitra.wasihh.tech/",
         githubUrl: "https://github.com/AbdulWasih05/vidyut-mitra",
-        websiteUrl: "https://vidyut-mitra.wasih.tech/",
+        websiteUrl: "https://vidyut-mitra.wasihh.tech/",
         year: "2026",
         goal: "Help MESCOM households uncover the money they quietly lose to bill traps (Fixed Charge over-provisioning, Gruha Jyothi cliffs, and missed solar subsidies) through a zero-typing, zero-literacy WhatsApp advisor in their own language.",
         features: [
@@ -62,10 +76,15 @@ export const projects: Project[] = [
         challenge: "22.6 lakh MESCOM households pay an electricity bill every month with no idea they are losing money to traps the bill never explains. The KERC tariff order runs 47 pages, bills mix Kannada and English, and many consumers cannot read either fluently.",
         approach: "A WhatsApp-first pipeline: Gemini 2.5 Flash extracts every bill field, three deterministic Python modules run the math in parallel, and Groq Llama 3.3 70B adds only two personalized lines, validated verbatim against the analysis. Sarvam synthesizes a Kannada voice note and Twilio dispatches text, voice, and infographic in ~12 seconds.",
         impact: [
-            { label: "Saved / Household", value: "₹1,740/yr" },
-            { label: "At MESCOM Scale", value: "₹39 Cr/yr" },
+            { label: "Saved / Example Household", value: "₹1,740/yr" },
+            { label: "At MESCOM Scale, Projected", value: "₹39 Cr/yr" },
             { label: "Cost / Bill", value: "~₹1.7" }
-        ]
+        ],
+        // DRAFT copy: owner to review (home page Selected Work fields)
+        outcome: "Confusing power bills → one WhatsApp photo gets a Kannada voice note on what to fix.",
+        hardPart: "Every number in an AI reply is regex-checked against a deterministic fact-pack before it sends.",
+        facts: ["WhatsApp-first", "Kannada voice"],
+        tags: ["FastAPI", "Gemini 2.5 Flash", "Groq Llama 3.3 70B"]
     },
     {
         title: "To the Moon",
@@ -100,10 +119,15 @@ export const projects: Project[] = [
         challenge: "Placement prep is scattered across mock-interview sites, DSA sheets, resume docs, application spreadsheets, and random notes that never talk to each other, so it is easy to lose track of what to revise and what is due.",
         approach: "Built a local-first Next.js 15 and Express/Prisma app over SQLite that unifies every prep workflow into one dashboard, with a rate-limited Gemini service (Bottleneck) powering interviews and resume analysis and a spaced-repetition engine deciding what to revisit next.",
         impact: [
-            { label: "Prep Modules", value: "14" },
-            { label: "AI", value: "Gemini" },
+            { label: "API Endpoints", value: "112" },
+            { label: "Data Models", value: "22" },
             { label: "Status", value: "Self-hosted" }
-        ]
+        ],
+        // DRAFT copy: owner to review (home page Selected Work fields)
+        outcome: "Placement prep scattered across tabs and sheets → one local-first app for all of it.",
+        hardPart: "Gemini calls run through a rate-limited queue, so mock interviews slow down instead of failing at the quota.",
+        facts: ["Local-first", "Spaced repetition"],
+        tags: ["Next.js", "React", "TypeScript"]
     },
     {
         title: "IJESTM Journal Platform",
@@ -141,7 +165,53 @@ export const projects: Project[] = [
             { label: "API Endpoints", value: "55+" },
             { label: "User Roles", value: "5 (RBAC)" },
             { label: "Status", value: "Live" }
-        ]
+        ],
+        // DRAFT copy: owner to review (home page Selected Work fields)
+        outcome: "Running a peer-reviewed journal → one platform from submission to DOI, indexed by Google Scholar.",
+        hardPart: "Access is enforced down to per-paper ownership and reviewer assignment, not just by role.",
+        facts: ["Double-blind review", "Scholar-indexed"],
+        tags: ["React", "Node.js", "MySQL"]
+    },
+    {
+        // Facts from the repo README (github.com/AbdulWasih05/Viva). Screenshot: local dev build, home screen.
+        title: "Viva",
+        description:
+            "A mock technical interview about your own project, for the AI-coding era. Viva reads your repo, finds the parts an AI agent wrote, and questions you about them the way a placement panel would, then ends with a scored report.",
+        tech: [
+            "Next.js",
+            "React",
+            "TypeScript",
+            "Mastra",
+            "Gemma",
+            "Ollama",
+            "LibSQL",
+            "Vitest"
+        ],
+        image: "/viva-thumbnail.png",
+        imageWebP: "/viva-thumbnail.webp",
+        link: "",
+        githubUrl: "https://github.com/AbdulWasih05/Viva",
+        year: "2026",
+        goal: "Help students explain code they shipped with an AI agent's help, before an interviewer asks about it.",
+        features: [
+            "Reads a public GitHub repo (or a local folder) and writes a short brief; invented file paths are dropped",
+            "Uses Entire checkpoints to find which files an AI agent wrote, and the prompt that started it",
+            "Runs a five-stage interview; the agent opens files itself with a readFile tool",
+            "Every follow-up must quote the candidate's answer, and code checks the quote is real",
+            "Scores each answer 0 to 4 in code; Gemma writes the coaching text",
+            "Local mode remembers weak spots across sessions and can run fully offline on Ollama"
+        ],
+        challenge: "Students now ship projects an AI agent half-wrote, and interviewers know it. Generic mock interviews don't ask about the code you actually have.",
+        approach: "A Mastra agent on Gemma, an open-weight model, with model output checked in code: file paths against the real file list, follow-up quotes against the answer, and scores computed outside the model.",
+        impact: [
+            { label: "Interview stages", value: "5" },
+            { label: "Score scale", value: "0–4" },
+            { label: "Modes", value: "Hosted + local" }
+        ],
+        // DRAFT copy: owner to review
+        outcome: "Projects an AI half-wrote → a mock interview that asks you about exactly those parts, then scores you.",
+        hardPart: "The model never grades itself: follow-ups must quote your real answer, and scores are computed in code.",
+        tags: ["Next.js", "Mastra", "Gemma", "TypeScript"]
     },
     {
         title: "Fake Review Detector",
@@ -175,7 +245,12 @@ export const projects: Project[] = [
             { label: "Accuracy", value: "94%" },
             { label: "Platform Coverage", value: "10+" },
             { label: "Reviews Analyzed", value: "10k+" }
-        ]
+        ],
+        // DRAFT copy: owner to review (home page Selected Work fields)
+        outcome: "Fake reviews mislead shoppers → a browser extension flags them live on 10+ sites.",
+        hardPart: "Scores in the browser first (TensorFlow.js); only hard cases hit the DistilBERT backend. Speed and privacy over peak accuracy.",
+        facts: ["Chrome extension", "In-browser ML"],
+        tags: ["React", "TypeScript", "TensorFlow.js"]
     },
     {
         title: "Real Estate Platform",
@@ -195,8 +270,8 @@ export const projects: Project[] = [
         image: "/real-estate-thumbnail.jpg",
         imageWebP: "/real-estate-thumbnail.webp",
         githubUrl: "https://github.com/AbdulWasih05",
-        websiteUrl:"https://square.wasih.tech/",
-        link: "https://square.wasih.tech/",
+        websiteUrl:"https://square.wasihh.tech/",
+        link: "https://square.wasihh.tech/",
         goal: "Architected production-grade real estate platform with cross-platform mobile apps (iOS/Android), web admin dashboard, and 70+ RESTful APIs secured by JWT auth, RBAC, and Docker. Enables real-time property sync across platforms..",
         features: [
             "Real-Time Auction Bidding System using Socket.IO with live countdown timers and WebSocket connections for instant bid updates",
@@ -213,22 +288,32 @@ export const projects: Project[] = [
             { label: "Latency", value: "<100ms" },
             { label: "API Endpoints", value: "70+" },
             { label: "Uptime", value: "99.9%" }
-        ]
+        ],
+        // DRAFT copy: owner to review (home page Selected Work fields)
+        outcome: "Property auctions on web and mobile → live bids that sync across every screen.",
+        hardPart: "Bids travel as Socket.IO events instead of polling, keeping updates under 100ms on web and mobile.",
+        facts: ["iOS · Android · Web", "Live auctions"],
+        tags: ["React", "React Native", "Node.js"]
     },
     {
         title: "SiteSaathi",
         description:
             "Live WhatsApp voice agent on AWS Bedrock, helping construction workers track materials, log labour, and answer site queries in Hindi.",
         tech: [
+            "Node.js",
             "AWS Bedrock",
-            "FastAPI",
-            "WhatsApp Cloud API",
-            "Python"
+            "Amazon Transcribe",
+            "Amazon Polly",
+            "Amazon Textract",
+            "DynamoDB",
+            "Step Functions",
+            "WhatsApp Cloud API"
         ],
         image: "/nirman-mitra-thumbnail.png",
         imageWebP: "/nirman-mitra-thumbnail.webp",
         link: "https://main.d26uqawil4ygv7.amplifyapp.com",
-        githubUrl: "",
+        // Repo is named after the hackathon (README: "Nirman Mitra").
+        githubUrl: "https://github.com/AbdulWasih05/AI-for-Bharat",
         websiteUrl: "https://main.d26uqawil4ygv7.amplifyapp.com",
         goal: "Build an accessible, voice-first AI agent for Indian construction foremen to manage sites without typing.",
         features: [
@@ -243,7 +328,10 @@ export const projects: Project[] = [
             { label: "Platform", value: "WhatsApp" },
             { label: "Input", value: "Voice" },
             { label: "Target User", value: "Foremen" }
-        ]
+        ],
+        // DRAFT copy: owner to review
+        outcome: "Site logs kept by hand → foremen send a Hindi voice note on WhatsApp and it's logged.",
+        tags: ["Node.js", "AWS Bedrock", "Amazon Transcribe", "WhatsApp Cloud API"]
     },
     {
         title: "SlotSwapper",
@@ -266,7 +354,7 @@ export const projects: Project[] = [
         image: "/slotswapper-thumbnail.jpg",
         imageWebP: "/slotswapper-thumbnail.webp",
         link: "#",
-        githubUrl: "https://github.com/AbdulWasih05",
+        githubUrl: "https://github.com/AbdulWasih05/SlotSwapper",
         // websiteUrl: "https://github.com/AbdulWasih05",
         goal: "Create a real-time peer-to-peer swap marketplace empowering patients while giving administrators complete oversight without compromising security or performance.",
         features: [
@@ -281,6 +369,47 @@ export const projects: Project[] = [
             { label: "Admin Time Saved", value: "70%" },
             { label: "Swap Processing", value: "<5s" },
             { label: "API Endpoints", value: "20+" }
-        ]
+        ],
+        // DRAFT copy: owner to review
+        outcome: "Clinic no-shows and manual rescheduling → patients swap appointments with each other in real time.",
+        tags: ["React", "Node.js", "Socket.io", "MySQL"]
     }
 ];
+
+// The projects shown on the home page and the 404 page, in this order.
+const FEATURED = ['VidyutMitra', 'Viva', 'IJESTM Journal Platform'];
+export const featuredProjects = FEATURED.map((title) => {
+    const found = projects.find((p) => p.title === title);
+    if (!found) throw new Error(`featuredProjects: no project titled "${title}"`);
+    return found;
+});
+
+// Helpers for the home page entries: optional fields with fallbacks.
+// A lone number in a full-width box reads as a mistake, so the strip needs at least two.
+export const projectStats = (project: Project) => {
+    const stats = (project.stats?.length ? project.stats : project.impact.filter((s) => s.label.toLowerCase() !== 'status')).slice(0, 3);
+    return stats.length >= 2 ? stats : [];
+};
+export const projectTags = (project: Project) => (project.tags?.length ? project.tags : project.tech.slice(0, 3));
+
+// Year is shown only when it's set; no guessed fallback.
+export const projectYear = (project: Project) => project.year || undefined;
+
+// Copy still in [brackets] is a placeholder for the owner to fill in; it never renders.
+export const isFilled = (text?: string): text is string => !!text && !/^\[.*\]$/.test(text.trim());
+
+const hasUrl = (u?: string) => !!u && u !== '#';
+
+export const liveUrl = (project: Project) =>
+    hasUrl(project.websiteUrl) ? project.websiteUrl! : hasUrl(project.link) ? project.link : '';
+
+// githubUrl only counts when it points at a repository, not the profile root.
+export const repoUrl = (project: Project) => {
+    const url = project.githubUrl;
+    if (!hasUrl(url)) return '';
+    try {
+        return new URL(url!).pathname.split('/').filter(Boolean).length >= 2 ? url! : '';
+    } catch {
+        return '';
+    }
+};

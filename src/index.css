@@ -17,6 +17,87 @@
   51%, 100% { opacity: 0; }
 }
 
+/* Résumé modal entrance */
+@keyframes modal-fade {
+  from { opacity: 0; }
+}
+@keyframes modal-pop {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+}
+.modal-fade { animation: modal-fade 160ms ease-out; }
+.modal-pop { animation: modal-pop 200ms cubic-bezier(0.2, 0.9, 0.3, 1); }
+
+/* Scroll reveal, applied by hooks/useReveal.ts */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+}
+.reveal.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Text link whose underline draws in on hover */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  padding-bottom: 2px;
+  transition: background-size 220ms ease-out;
+}
+.link-underline:hover,
+.link-underline:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* Outline buttons fill with ink from the left on hover (and while pressed on touch).
+   --fill sets the colour and --fill-text the text on it, for buttons that sit on ink. */
+.ink-fill {
+  --fill: #000;
+  --fill-text: #F2F0EB;
+  background-image: linear-gradient(var(--fill), var(--fill));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 100%;
+}
+/* Doubled class so it beats Tailwind's transition-colors / duration-* on the same element. */
+.ink-fill.ink-fill {
+  transition: background-size 320ms cubic-bezier(0.4, 0, 0.2, 1), color 160ms 100ms, border-color 160ms,
+    transform 150ms;
+}
+@media (hover: hover) {
+  .ink-fill:hover {
+    background-size: 100% 100%;
+    color: var(--fill-text);
+  }
+}
+.ink-fill:focus-visible,
+.ink-fill:active {
+  background-size: 100% 100%;
+  color: var(--fill-text);
+}
+
+/* "How it works" panels open and close smoothly where the browser can animate <details>.
+   Auto-close (off-screen) adds .work-details-instant so its height change is immediate. */
+@supports (interpolate-size: allow-keywords) {
+  .work-details {
+    interpolate-size: allow-keywords;
+  }
+  .work-details::details-content {
+    height: 0;
+    overflow: hidden;
+    transition: height 280ms cubic-bezier(0.4, 0, 0.2, 1), content-visibility 280ms allow-discrete;
+  }
+  .work-details[open]::details-content {
+    height: auto;
+  }
+  .work-details.work-details-instant::details-content {
+    transition: none;
+  }
+}
+
 /* Image responsive max-width */
 img {
   max-width: 100%;
@@ -28,170 +109,13 @@ img {
 @tailwind utilities;
 
 @layer base {
-  html, body {
-    background: #F2F0EB;
-    color: #000;
-    font-family: "Inter", sans-serif;
-  }
-  body {
-    min-height: 100vh;
-    overflow-x: hidden;
-    max-width: 100vw;
-  }
-  ::selection { background: #000; color: #F2F0EB; }
-}
-
-@layer components {
-  .blink-dot { animation: blink 1.6s infinite; }
-}
-
-@layer base {
   :root {
-    /* Muted Grayscale Palette */
-    --neutral-50: 50 20% 97%;
-    /* Light beige/gray background */
-    --neutral-100: 40 15% 94%;
-    /* Lighter gray */
-    --neutral-200: 30 10% 89%;
-    /* Light gray containers */
-    --neutral-300: 25 8% 82%;
-    /* Muted gray borders */
-    --neutral-400: 20 6% 65%;
-    /* Medium gray text */
-    --neutral-500: 15 5% 45%;
-    /* Dark gray text */
-    --neutral-600: 10 4% 35%;
-    /* Darker gray */
-    --neutral-700: 8 3% 25%;
-    /* Very dark gray */
-    --neutral-800: 5 2% 15%;
-    /* Near black */
-    --neutral-900: 0 0% 8%;
-    /* Deep black */
-    --neutral-white: 0 0% 100%;
-    /* Pure white */
-
-    /* Accent Colors */
-    --accent-warm: 25 15% 85%;
-    /* Warm beige accent */
-    --accent-cool: 200 10% 85%;
-    /* Cool gray accent */
-    --accent-primary: 210 8% 45%;
-    /* Primary action color */
-
-    /* Semantic Design Tokens */
-    --background: var(--neutral-50);
-    --surface: var(--neutral-white);
-    --surface-muted: var(--neutral-100);
-    --border: var(--neutral-300);
-    --text-primary: var(--neutral-900);
-    --text-secondary: var(--neutral-600);
-    --text-muted: var(--neutral-500);
-    --text-inverse: var(--neutral-white);
-
-    /* Header */
-    --header-bg: var(--neutral-100);
-    --header-text: var(--neutral-900);
-    --header-border: var(--neutral-200);
-
-    /* Hero */
-    --hero-bg: var(--neutral-50);
-    --hero-text: var(--neutral-900);
-    --hero-accent: var(--accent-primary);
-
-    /* About */
-    --about-bg: var(--accent-warm);
-    --about-text: var(--neutral-800);
-
-    /* Portfolio */
-    --portfolio-bg: var(--neutral-50);
-
-    /* Footer */
-    --footer-bg: var(--neutral-900);
-    --footer-text: var(--neutral-400);
-
-    /* Interactive States */
-    --hover-light: var(--neutral-200);
-    --hover-dark: var(--neutral-700);
-    --focus-ring: var(--accent-primary);
-
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-
-    /* Animations */
-    --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
-    --transition-fast: 200ms var(--ease-out-quad);
-    --transition-normal: 300ms var(--ease-out-quad);
-    --transition-slow: 500ms var(--ease-out-quart);
-
-    /* Spacing System */
-    --space-1: 0.25rem;
-    --space-2: 0.5rem;
-    --space-3: 0.75rem;
-    --space-4: 1rem;
-    --space-5: 1.25rem;
-    --space-6: 1.5rem;
-    --space-8: 2rem;
-    --space-10: 2.5rem;
-    --space-12: 3rem;
-    --space-16: 4rem;
-    --space-20: 5rem;
-    --space-24: 6rem;
-    --space-32: 8rem;
-
-    /* Layout */
-    --max-width: 1440px;
-    --container-padding: 5%;
-    --section-spacing: var(--space-24);
-    --section-spacing-lg: var(--space-32);
-
-    /* Typography */
-    --font-sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-serif: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
-
-    /* Font Sizes */
-    --text-xs: 0.75rem;
-    --text-sm: 0.875rem;
-    --text-base: 1rem;
-    --text-lg: 1.125rem;
-    --text-xl: 1.25rem;
-    --text-2xl: 1.5rem;
-    --text-3xl: 1.875rem;
-    --text-4xl: 2.25rem;
-    --text-5xl: 3rem;
-    --text-6xl: 3.75rem;
-    --text-7xl: 4.5rem;
-
-    /* Line Heights */
-    --leading-tight: 1.25;
-    --leading-normal: 1.5;
-    --leading-relaxed: 1.75;
-
+    /* Read by the shadcn colour mappings in tailwind.config.ts (toast). */
+    --background: 50 20% 97%;
+    --border: 25 8% 82%;
     --radius: 0.75rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
-}
 
-@layer base {
   * {
     margin: 0;
     padding: 0;
@@ -200,28 +124,36 @@ img {
 
   html {
     scroll-behavior: smooth;
-    font-family: var(--font-sans);
-    background: hsl(var(--background));
+  }
+
+  html, body {
+    background: #F2F0EB;
+    color: #000;
+    font-family: "Inter", sans-serif;
   }
 
   body {
-    font-family: var(--font-sans);
-    line-height: var(--leading-normal);
-    color: hsl(var(--text-primary));
-    background: hsl(var(--background));
+    min-height: 100vh;
+    overflow-x: hidden;
+    max-width: 100vw;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
+  ::selection { background: #000; color: #F2F0EB; }
+
   /* Focus styles for accessibility */
   *:focus-visible {
-    outline: 2px solid hsl(var(--focus-ring));
+    outline: 2px solid #000;
     outline-offset: 2px;
+  }
+  /* On ink surfaces the ring flips to paper */
+  .on-ink :focus-visible {
+    outline-color: #F2F0EB;
   }
 }
 
-/* Content visibility for below-fold sections */
-#about, #projects {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
+@layer components {
+  .blink-dot { animation: blink 1.6s infinite; }
 }
