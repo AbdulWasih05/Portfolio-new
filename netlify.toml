@@ -45,11 +45,18 @@
   [headers.values]
     Content-Type = "image/png"
 
-# Redirect rules
+# Every real page is prerendered to its own HTML file (scripts/prerender.mjs), and Netlify
+# serves those first. Anything else is a real 404, so search engines don't index a copy of
+# the home page at made-up URLs.
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "/404.html"
+  status = 404
+
+[[headers]]
+  for = "/llms*.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
 
 # Build settings
 [build]

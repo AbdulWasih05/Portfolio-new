@@ -7,8 +7,8 @@ A high-performance personal portfolio website built with modern web technologies
 
 - Clean, professional interface with monochrome aesthetics
 - Intuitive navigation structure
-- Project showcase with detailed modal views
-- Contact form with toast notifications
+- Project showcase with a case-study page per project
+- Résumé preview with one-click download, and a copyable email address
 - Accessible design following WCAG guidelines
 
 ## Performance

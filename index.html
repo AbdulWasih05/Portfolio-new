@@ -2,7 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <!-- data-rh marks a tag as owned by react-helmet, so SEO.tsx replaces it per page
+         instead of adding a second copy. -->
+    <!-- Icons stay out of react-helmet (no data-rh) so they're never swapped per page. -->
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#F2F0EB" />
 
@@ -17,8 +22,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 
     <!-- Preload critical above-the-fold font files in parallel with the CSS
-         to eliminate the FOUT swap on the hero ("Build. Break. Ship.", "A.W.")
-         and the projects heading. Note: gstatic URLs are version-pinned by Google
+         to eliminate the FOUT swap on the hero name and the projects heading. Note: gstatic URLs are version-pinned by Google
          and may need updating if the font version bumps. -->
     <link
       rel="preload"
@@ -59,71 +63,18 @@
         href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap"
     /></noscript>
 
-    <!-- Preload LCP image — matches Hero <picture> srcset so the browser picks the same variant -->
-    <link
-      rel="preload"
-      as="image"
-      imagesrcset="/wasih-img-400w.webp 400w, /wasih-img-800w.webp 800w, /wasih-img-1200w.webp 1200w"
-      imagesizes="(max-width: 980px) 100vw, 340px"
-      type="image/webp"
-      fetchpriority="high"
-    />
 
-    <title>Abdul Wasih | Portfolio</title>
+    <!-- Fallback head for the dev server. Production pages are prerendered (scripts/prerender.mjs):
+         these data-rh tags are replaced with each page's own title, description, canonical,
+         social tags and JSON-LD from SEO.tsx. -->
+    <title>Abdul Wasih — Software Engineer</title>
     <meta
       name="description"
-      content="Portfolio of Abdul Wasih. Software Engineer."
+      content="Abdul Wasih is a software engineer in Bangalore who builds products end to end, from web apps and payments to AI features."
+      data-rh="true"
     />
-    <link rel="canonical" href="https://wasih.tech/" />
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Abdul Wasih | Portfolio" />
-    <meta property="og:description" content="Software Engineer." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://wasih.tech/" />
-    <meta property="og:image" content="https://wasih.tech/og-image.jpg" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Abdul Wasih | Portfolio" />
-    <meta name="twitter:description" content="Software Engineer." />
-    <meta name="twitter:image" content="https://wasih.tech/og-image.jpg" />
-
-    <!-- JSON-LD structured data (Person) — static so it's crawlable without JS
-         and visible in View Source. Single source of truth (not duplicated in SEO.tsx). -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Abdul Wasih",
-        "jobTitle": "Software Engineer",
-        "url": "https://wasih.tech/",
-        "image": "https://wasih.tech/og-image.jpg",
-        "sameAs": [
-          "https://github.com/AbdulWasih05",
-          "https://www.linkedin.com/in/iamwasih"
-        ],
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Freelance Developer"
-        },
-        "knowsAbout": [
-          "React.js",
-          "Next.js",
-          "Node.js",
-          "Express.js",
-          "JavaScript",
-          "TypeScript",
-          "MySQL",
-          "Docker",
-          "Git",
-          "Full Stack Development",
-          "API Integration",
-          "REST APIs",
-          "Responsive Web Design"
-        ]
-      }
-    </script>
+    <link rel="canonical" href="https://www.wasihh.tech/" data-rh="true" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable profile" />
   </head>
 
   <body>

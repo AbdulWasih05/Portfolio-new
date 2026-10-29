@@ -5,7 +5,7 @@ import viteCompression from 'vite-plugin-compression';
 
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode, isSsrBuild }) => ({
   server: {
     host: "::",
     port: 8080,
@@ -50,7 +50,8 @@ export default defineConfig(({ mode }) => ({
     },
     // Optimize chunk size
     chunkSizeWarningLimit: 1000,
-    rollupOptions: {
+    // The SSR build (prerender only) keeps Vite's defaults so the script can import entry-server.js.
+    rollupOptions: isSsrBuild ? {} : {
       output: {
         // Ensure all files have proper extensions
         entryFileNames: 'assets/[name]-[hash].js',
@@ -89,6 +90,10 @@ export default defineConfig(({ mode }) => ({
     },
     // Source maps only in dev
     sourcemap: mode === 'development',
+  },
+  // react-helmet-async ships CommonJS; bundle it into the SSR build so Node can import it.
+  ssr: {
+    noExternal: ['react-helmet-async'],
   },
   // Optimize dependencies
   optimizeDeps: {
