@@ -3,17 +3,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ProjectCard from '../components/ProjectCard';
 import Pixel404, { type Mood } from '../components/Pixel404';
 import { useResumeModal } from '../components/ResumeModal';
-import { projects, slugify, type Project } from '../data/projects';
-
-// Hand-picked escape routes for dead links, by project slug. Edit to change what the 404 recommends.
-const QUICK_LINK_SLUGS = ['ijestm-journal-platform', 'vidyutmitra', 'real-estate-platform'];
-
-const quickLinks = QUICK_LINK_SLUGS
-  .map((slug) => projects.find((p) => slugify(p.title) === slug))
-  .filter((p): p is Project => Boolean(p));
+import { featuredProjects as quickLinks, projects, slugify } from '../data/projects';
 
 const pad = (n: number) => n.toString().padStart(2, '0');
 
@@ -26,7 +18,7 @@ const NotFound = () => {
   const navigate = useNavigate();
   const { openResume, prefetchResume } = useResumeModal();
   // React Router stores the history index in history.state; 0 means this tab landed here directly.
-  const canGoBack = (window.history.state?.idx ?? 0) > 0;
+  const canGoBack = typeof window !== 'undefined' && (window.history.state?.idx ?? 0) > 0;
 
   // The face looks surprised when the page opens, then settles; it smiles while a way out is hovered or focused.
   const [mood, setMood] = useState<Mood>('surprised');
@@ -42,10 +34,6 @@ const NotFound = () => {
     return () => window.clearTimeout(t);
   }, [pathname]);
 
-  useEffect(() => {
-    console.error('404 Error: User attempted to access non-existent route:', pathname);
-  }, [pathname]);
-
   return (
     <>
       <Helmet>
@@ -56,7 +44,7 @@ const NotFound = () => {
       <div className="min-h-screen bg-paper text-ink">
         <Header />
 
-        <main id="main-content">
+        <main id="main-content" tabIndex={-1} className="focus:outline-none">
           <section className="px-5 sm:px-8 py-10 sm:py-14 border-b border-ink flex flex-col items-center text-center bg-[radial-gradient(#B8B5AD_1px,transparent_1px)] [background-size:18px_18px]">
             <div className="w-full max-w-[440px] text-ink">
               <Pixel404 mood={mood} />
@@ -83,7 +71,7 @@ const NotFound = () => {
                 onPointerEnter={prefetchResume}
                 onFocus={prefetchResume}
                 onTouchStart={prefetchResume}
-                className={`${ctaBase} ${canGoBack ? ctaDivider : ''} hover:bg-ink hover:text-paper`}
+                className={`${ctaBase} ${canGoBack ? ctaDivider : ''} ink-fill`}
               >
                 <span>View Résumé</span>
                 <span className="text-base">↗</span>
@@ -92,7 +80,7 @@ const NotFound = () => {
                 <button
                   type="button"
                   onClick={() => navigate(-1)}
-                  className={`${ctaBase} hover:bg-ink hover:text-paper`}
+                  className={`${ctaBase} ink-fill`}
                 >
                   <span>Go Back</span>
                   <span className="text-base">←</span>
@@ -101,34 +89,66 @@ const NotFound = () => {
             </div>
           </section>
 
-          {/* Best work — same cards as the landing page */}
-          <section className="px-5 sm:px-8 pt-8 sm:pt-10 pb-0">
-            <div className="flex flex-col items-center text-center gap-3 border-b-4 border-ink pb-[14px]">
+          {/* A way back in: the top projects as compact rows (same look as /projects). */}
+          <section aria-labelledby="try-title" className="px-5 sm:px-8 pt-10 sm:pt-12 pb-10 sm:pb-12 border-b border-ink">
+            <div className="max-w-[760px] mx-auto">
               <h2
-                className="font-serif font-normal leading-none tracking-[-0.02em]"
-                style={{ fontSize: 'clamp(28px, 5vw, 56px)' }}
+                id="try-title"
+                className="font-mono text-[11px] uppercase tracking-[0.18em] text-mute flex items-center gap-[10px]"
               >
-                Try <span className="text-ink-3">these</span> instead.
+                <span className="w-6 h-px bg-ink" />
+                Or start with one of these
               </h2>
+              <ol {...cheer} className="mt-4 border-t border-ink">
+                {quickLinks.map((project) => (
+                  <li key={project.title} className="border-b border-ink">
+                    <Link
+                      to={`/projects/${slugify(project.title)}`}
+                      className="group grid grid-cols-[96px_minmax(0,1fr)] sm:grid-cols-[160px_minmax(0,1fr)] gap-4 sm:gap-6 items-center py-4 transition-colors duration-150 hover:bg-paper-2"
+                    >
+                      <span className="block bg-paper-2 border border-ink p-[3px]">
+                        {project.image && (
+                          <picture>
+                            {project.imageWebP && <source type="image/webp" srcSet={project.imageWebP} />}
+                            <img
+                              src={project.image}
+                              alt=""
+                              width={1280}
+                              height={610}
+                              loading="lazy"
+                              decoding="async"
+                              className="block w-full aspect-[2.1/1] object-contain border border-ink bg-paper"
+                            />
+                          </picture>
+                        )}
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block font-serif text-[22px] sm:text-[26px] leading-[1.1] tracking-[-0.02em] group-hover:underline decoration-1 underline-offset-[5px]">
+                          {project.title}
+                          <span
+                            className="ml-2 inline-block text-[0.7em] text-ink-3 transition-transform duration-150 group-hover:translate-x-1"
+                            aria-hidden="true"
+                          >
+                            →
+                          </span>
+                        </span>
+                        <span className="mt-1 text-[14px] sm:text-[15px] leading-[1.5] text-ink-2 line-clamp-2">
+                          {project.outcome ?? project.description}
+                        </span>
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
               <Link
                 to="/projects"
-                className="font-mono text-xs uppercase tracking-[0.16em] border-b border-ink pb-1 hover:text-ink-3"
+                className="group mt-2 inline-flex items-center gap-2 min-h-[44px] font-mono text-xs uppercase tracking-[0.16em] border-b border-ink hover:text-ink-3"
               >
-                All projects ({pad(projects.length)}) →
+                All projects ({pad(projects.length)})
+                <span className="transition-transform duration-150 group-hover:translate-x-1">→</span>
               </Link>
             </div>
           </section>
-
-          <div {...cheer} className="grid grid-cols-1 md:grid-cols-3 border-b border-ink">
-            {quickLinks.map((project, i) => (
-              <ProjectCard
-                key={project.title}
-                project={project}
-                num={pad(projects.indexOf(project) + 1)}
-                className={i < quickLinks.length - 1 ? 'md:border-r border-ink border-b md:border-b-0' : ''}
-              />
-            ))}
-          </div>
         </main>
 
         <Footer />
