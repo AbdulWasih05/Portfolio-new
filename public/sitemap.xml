@@ -40,4 +40,19 @@
     <lastmod>2026-06-24</lastmod>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://www.wasihh.tech/blogs</loc>
+    <lastmod>2026-10-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.wasihh.tech/blogs/github-connector-for-cognee</loc>
+    <lastmod>2026-10-31</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.wasihh.tech/blogs/shopify-connector-for-cognee</loc>
+    <lastmod>2026-10-31</lastmod>
+    <priority>0.7</priority>
+  </url>
 </urlset>

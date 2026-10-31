@@ -9,6 +9,8 @@ import SectionLoader from "./components/SectionLoader";
 
 const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
 const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage"));
+const BlogsPage = lazy(() => import("./pages/BlogsPage"));
+const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
 
 // implemented createBrowserrouter+router instead of traditional browserrouter+route for v7 react-router upgrade
 const router = createBrowserRouter(
@@ -30,6 +32,22 @@ const router = createBrowserRouter(
       element: (
         <Suspense fallback={<SectionLoader />}>
           <ProjectDetailPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/blogs",
+      element: (
+        <Suspense fallback={<SectionLoader />}>
+          <BlogsPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/blogs/:slug",
+      element: (
+        <Suspense fallback={<SectionLoader />}>
+          <BlogPostPage />
         </Suspense>
       ),
     },
