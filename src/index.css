@@ -80,6 +80,7 @@
 }
 
 /* "How it works" panels open and close smoothly where the browser can animate <details>.
+   (The phone folds in Experience and About animate in JS instead — see Fold.tsx.)
    Auto-close (off-screen) adds .work-details-instant so its height change is immediate. */
 @supports (interpolate-size: allow-keywords) {
   .work-details {

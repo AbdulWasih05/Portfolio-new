@@ -59,7 +59,15 @@ const ProjectDetailPage = () => {
     ? [
         { id: 'problem', label: 'The problem', short: 'Problem' },
         { id: 'built', label: 'What I built', short: 'Built' },
-        ...(project.hardPart ? [{ id: 'hard-part', label: 'The hard part', short: 'Hard part' }] : []),
+        ...(project.hardPart
+          ? [
+              {
+                id: 'hard-part',
+                label: project.hardPartLabel ?? 'The hard part',
+                short: project.hardPartLabel ?? 'Hard part',
+              },
+            ]
+          : []),
         ...(project.impact.length ? [{ id: 'results', label: 'Results', short: 'Results' }] : []),
         { id: 'stack', label: 'Stack', short: 'Stack' },
       ]

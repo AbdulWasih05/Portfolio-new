@@ -13,4 +13,4 @@ User-agent: Google-Extended
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://www.wasihh.tech/sitemap.xml
+Sitemap: https://wasihh.tech/sitemap.xml

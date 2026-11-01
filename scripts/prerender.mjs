@@ -83,6 +83,7 @@ ${site.name} is a ${site.role.toLowerCase()} based in Bangalore, India, studying
 - X: ${site.x}
 - Email: ${site.email}
 - Résumé (PDF): ${site.url}/abdul-wasih-resume.pdf
+- How he works with coding agents (a sample of the CLAUDE.md he hands them): ${site.claudeMd}
 
 ## Experience
 
@@ -115,7 +116,7 @@ ${p.description}
 Problem: ${p.challenge}
 
 Approach: ${p.approach}
-${p.hardPart ? `\nThe hard part: ${p.hardPart}\n` : ''}
+${p.hardPart ? `\n${p.hardPartLabel ?? 'The hard part'}: ${p.hardPart}\n` : ''}
 Features:
 ${p.features.map((f) => `- ${f}`).join('\n')}
 ${p.impact.length ? `\nResults: ${p.impact.map((s) => `${s.value} ${s.label.toLowerCase()}`).join('; ')}\n` : ''}`,

@@ -181,7 +181,7 @@ const WorkEntry = forwardRef<HTMLLIElement, WorkEntryProps>(({ project, index, e
 
         {project.hardPart && (
           <div className="mt-7 md:mt-8 max-w-[62ch] border-l-4 border-ink py-1 pl-4">
-            <p className="font-mono text-[10px] font-medium leading-[1.2] uppercase tracking-[0.16em]">The hard part</p>
+            <p className="font-mono text-[10px] font-medium leading-[1.2] uppercase tracking-[0.16em]">{project.hardPartLabel ?? 'The hard part'}</p>
             <p className="mt-2 font-serif text-[19px] min-[390px]:text-[20px] md:text-[21px] leading-[1.35]">{project.hardPart}</p>
           </div>
         )}

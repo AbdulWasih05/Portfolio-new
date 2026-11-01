@@ -1,5 +1,8 @@
 import { useResumeModal } from './ResumeModal';
 import CopyEmail from './CopyEmail';
+import Fold from './Fold';
+import { usePhone } from '@/hooks/usePhone';
+import { site } from '@/data/site';
 
 // What I can own: each capability, the tools behind it, and where it was proven (projects and
 // roles on this page). Tools without a proof point were dropped. DRAFT copy: owner to review.
@@ -59,20 +62,84 @@ const howIWork = [
   },
 ];
 
+const howLabel = (
+  <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-mute flex items-center gap-[10px]">
+    <span className="w-6 h-px bg-ink" />
+    How I build with AI
+  </h3>
+);
+
+// Full-width framed rows: on phones the CLAUDE.md link and the résumé button stack flush
+// against each other, so the fold ends on one block instead of two stray buttons.
+const rowButton =
+  'group flex items-center justify-between gap-3 w-full min-h-[56px] px-5 font-mono text-xs uppercase tracking-[0.14em] transition-colors duration-150';
+
+const claudeMdLink = (compact: boolean) => (
+  <a
+    href={site.claudeMd}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={
+      compact
+        ? `${rowButton} border border-ink ink-fill`
+        : 'group mt-5 inline-flex items-center gap-[10px] min-h-[44px] px-4 border border-ink font-mono text-xs uppercase tracking-[0.12em] ink-fill transition-colors duration-150'
+    }
+  >
+    My CLAUDE.md
+    <span
+      aria-hidden="true"
+      className="text-base transition-transform duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+    >
+      ↗
+    </span>
+    <span className="sr-only">on GitHub (opens in a new tab)</span>
+  </a>
+);
+
+const howIBuild = (compact: boolean) => (
+  <>
+    <ol className="w-full border-t border-rule">
+      {howIWork.map((item, i) => (
+        <li key={item.habit} className="grid grid-cols-[28px_1fr] gap-2 py-4 lg:py-3 border-b border-rule">
+          <span className="pt-[6px] font-mono text-[11px] tracking-[0.1em] text-mute" aria-hidden="true">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <div>
+            <p className="font-serif text-[21px] sm:text-[22px] leading-[1.2] text-ink">{item.habit}</p>
+            <p className="mt-1 text-[14px] leading-[1.55] text-ink-2">{item.proof}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+    <p className="mt-6 font-serif text-[20px] sm:text-[21px] leading-[1.4] text-ink max-w-[34ch]">
+      AI speeds up the writing. Owning the design and the flow is still my job.
+    </p>
+    {/* The file behind habit 01, on GitHub. On phones it joins the résumé button below. */}
+    {!compact && claudeMdLink(false)}
+  </>
+);
+
 const About = () => {
   const { openResume, prefetchResume } = useResumeModal();
+  const phone = usePhone();
 
   // Email + résumé. Desktop: under the story, so both columns end level. Below lg: after the list.
+  // Phones drop the address — it is already in the hero and the footer — and keep the résumé.
   const followUp = (
-    <div className="flex flex-col items-start">
-      <CopyEmail className="mt-8" emailClassName="font-serif text-[20px]" />
+    <div className={phone ? 'w-full mt-8' : 'flex flex-col items-start'}>
+      {!phone && <CopyEmail className="mt-8" emailClassName="font-serif text-[20px]" />}
+      {phone && claudeMdLink(true)}
       <button
         type="button"
         onClick={openResume}
         onPointerEnter={prefetchResume}
         onFocus={prefetchResume}
         onTouchStart={prefetchResume}
-        className="group mt-3 w-full sm:w-auto justify-between sm:justify-start inline-flex items-center gap-[14px] px-6 py-4 bg-ink text-paper font-mono text-xs uppercase tracking-[0.16em] hover:bg-ink-3 active:translate-y-px transition-colors duration-150"
+        className={
+          phone
+            ? `${rowButton} -mt-px border border-ink bg-ink text-paper hover:bg-ink-3 active:translate-y-px`
+            : 'group mt-3 w-full sm:w-auto justify-between sm:justify-start inline-flex items-center gap-[14px] px-6 py-4 bg-ink text-paper font-mono text-xs uppercase tracking-[0.16em] hover:bg-ink-3 active:translate-y-px transition-colors duration-150'
+        }
       >
         View Résumé
         <span className="text-base transition-transform duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span>
@@ -108,29 +175,28 @@ const About = () => {
           <div className="hidden lg:block mt-auto pt-2">{followUp}</div>
         </div>
         {/* Right side: how the curiosity on the left builds today, then the two ways to follow up. */}
-        <aside className="px-5 sm:px-8 py-12 sm:py-10 bg-paper-2 flex flex-col items-start">
-          <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-mute mb-6 sm:mb-5 flex items-center gap-[10px]">
-            <span className="w-6 h-px bg-ink" />
-            How I build with AI
-          </h3>
-          <ol className="w-full border-t border-rule">
-            {howIWork.map((item, i) => (
-              <li key={item.habit} className="grid grid-cols-[28px_1fr] gap-2 py-4 lg:py-3 border-b border-rule">
-                <span className="pt-[6px] font-mono text-[11px] tracking-[0.1em] text-mute" aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <p className="font-serif text-[21px] sm:text-[22px] leading-[1.2] text-ink">{item.habit}</p>
-                  <p className="mt-1 text-[14px] leading-[1.55] text-ink-2">{item.proof}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <p className="mt-6 font-serif text-[20px] sm:text-[21px] leading-[1.4] text-ink max-w-[34ch]">
-            AI speeds up the writing. Owning the design and the flow is still my job.
-          </p>
-          {/* Phones and tablets: the follow-up closes the column. */}
-          <div className="lg:hidden w-full">{followUp}</div>
+        <aside className="px-5 sm:px-8 py-9 sm:py-10 bg-paper-2 flex flex-col items-start">
+          {/* Phones: the whole column folds behind its label — only a reader who cares opens it. */}
+          {phone ? (
+            <Fold
+              label="how I build with AI"
+              className="w-full"
+              summaryClassName="text-ink-2 py-2 -my-2"
+              markClassName="mt-[2px]"
+              bodyClassName="pt-6"
+              summary={howLabel}
+            >
+              {howIBuild(true)}
+              {followUp}
+            </Fold>
+          ) : (
+            <>
+              <div className="mb-6 sm:mb-5">{howLabel}</div>
+              {howIBuild(false)}
+              {/* Tablets: the follow-up closes the column. */}
+              <div className="lg:hidden w-full">{followUp}</div>
+            </>
+          )}
         </aside>
       </div>
 
