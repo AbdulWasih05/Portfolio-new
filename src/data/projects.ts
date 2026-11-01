@@ -26,6 +26,8 @@ export interface Project {
     outcome?: string;
     /** One line on the hardest decision or trade-off ("The hard part"). Hidden when missing. */
     hardPart?: string;
+    /** Heading over that line, when "The hard part" is the wrong framing (e.g. "Why it won"). */
+    hardPartLabel?: string;
     /** At most two short, verifiable fact chips. */
     facts?: string[];
     /** Stack tags shown on the entry. Falls back to the first three of `tech`. */
@@ -82,7 +84,7 @@ export const projects: Project[] = [
         ],
         // DRAFT copy: owner to review (home page Selected Work fields)
         outcome: "Confusing power bills → one WhatsApp photo gets a Kannada voice note on what to fix.",
-        hardPart: "Every number in an AI reply is regex-checked against a deterministic fact-pack before it sends.",
+        hardPart: "Vision, three analyses, an LLM and a Kannada voice note, all back as one WhatsApp reply in under 15 seconds.",
         facts: ["WhatsApp-first", "Kannada voice"],
         tags: ["FastAPI", "Gemini 2.5 Flash", "Groq Llama 3.3 70B"]
     },
@@ -210,7 +212,8 @@ export const projects: Project[] = [
         ],
         // DRAFT copy: owner to review
         outcome: "Projects an AI half-wrote → a mock interview that asks you about exactly those parts, then scores you.",
-        hardPart: "The model never grades itself: follow-ups must quote your real answer, and scores are computed in code.",
+        hardPartLabel: "Why it won",
+        hardPart: "Best Use of Entire at DEV's Hacktoberfest 2026: it reads an agent's checkpoints to find the files the AI wrote, then interviews you on exactly those.",
         tags: ["Next.js", "Mastra", "Gemma", "TypeScript"]
     },
     {

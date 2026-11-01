@@ -15,7 +15,7 @@ interface SEOProps {
 // Per-page head tags. Prerendered into static HTML at build time (scripts/prerender.mjs),
 // so crawlers that don't run JavaScript still get the right title, description and links.
 const SEO = ({
-  title = `${site.name} — ${site.role}`,
+  title = `${site.name} | ${site.role}`,
   description = site.summary,
   path = '/',
   image = `${site.url}/og-image.jpg`,

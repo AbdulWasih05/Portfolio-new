@@ -3,10 +3,12 @@
 export const site = {
   name: 'Abdul Wasih',
   /** The canonical address; every SEO tag, the sitemap and llms.txt build URLs from it. */
-  url: 'https://www.wasihh.tech',
+  url: 'https://wasihh.tech',
   role: 'Software Engineer',
   email: 'buildwithwasih@gmail.com',
   github: 'https://github.com/AbdulWasih05',
+  /** The sample agents file linked from "How I build with AI". */
+  claudeMd: 'https://github.com/AbdulWasih05/Portfolio-new/blob/main/docs/sample-claude-md.md',
   linkedin: 'https://www.linkedin.com/in/iamwasih',
   x: 'https://x.com/iamwasih',
   xHandle: '@iamwasih',
