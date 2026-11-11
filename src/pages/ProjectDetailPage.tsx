@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent, type RefObject } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { liveUrl as liveUrlOf, projects, projectYear, repoUrl, slugify } from '../data/projects';
+import { liveUrl as liveUrlOf, projects, projectYear, repoUrl, slugify, thumbSrcSet } from '../data/projects';
 import { useActiveEntry } from '@/hooks/useActiveEntry';
 import { useResumeModal } from '../components/ResumeModal';
 import { site } from '@/data/site';
@@ -259,7 +259,13 @@ const ProjectDetailPage = () => {
             {project.image && (
               <div className="mt-8 sm:mt-10 lg:mt-0 max-w-[1000px] bg-paper-2 border border-ink p-[6px] md:p-[14px]">
                 <picture>
-                  {project.imageWebP && <source type="image/webp" srcSet={project.imageWebP} />}
+                  {project.imageWebP && (
+                    <source
+                      type="image/webp"
+                      srcSet={thumbSrcSet(project.imageWebP)}
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                    />
+                  )}
                   <img
                     src={project.image}
                     alt={`${project.title} screenshot`}

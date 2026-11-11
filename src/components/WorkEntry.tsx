@@ -7,6 +7,7 @@ import {
   projectYear,
   repoUrl,
   slugify,
+  thumbSrcSet,
   type Project,
 } from '../data/projects';
 
@@ -117,7 +118,13 @@ const WorkEntry = forwardRef<HTMLLIElement, WorkEntryProps>(({ project, index, e
             {num} · {status}
           </span>
           <picture>
-            {project.imageWebP && <source type="image/webp" srcSet={project.imageWebP} />}
+            {project.imageWebP && (
+              <source
+                type="image/webp"
+                srcSet={thumbSrcSet(project.imageWebP)}
+                sizes="(min-width: 768px) 50vw, calc(100vw - 56px)"
+              />
+            )}
             <img
               src={project.image}
               alt={`${project.title} screenshot`}
