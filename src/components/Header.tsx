@@ -73,12 +73,12 @@ const Header = () => {
         Skip to content
       </a>
 
-      {/* Nav */}
+      {/* Nav. The home link's accessible name is its visible text plus a screen-reader-only
+          ", home", so voice-control users can say what they see. */}
       <header className="flex items-stretch justify-between border-b-4 border-ink bg-paper sticky top-0 z-50">
         <Link
           to="/"
           className="flex items-center gap-[14px] px-5 sm:px-[28px] py-3 sm:py-[18px] text-left min-w-0"
-          aria-label={`${site.name}, home`}
         >
           {/* Same mark as the favicon (public/icon.svg). */}
           <img src="/icon.svg" alt="" width={44} height={44} className="w-11 h-11 shrink-0" />
@@ -89,6 +89,7 @@ const Header = () => {
               {site.role}
             </small>
           </span>
+          <span className="sr-only">, home</span>
         </Link>
 
         <button

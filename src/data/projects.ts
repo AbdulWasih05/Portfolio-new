@@ -389,6 +389,15 @@ export const featuredProjects = FEATURED.map((title) => {
 
 // Helpers for the home page entries: optional fields with fallbacks.
 // A lone number in a full-width box reads as a mistake, so the strip needs at least two.
+// Every *-thumbnail.webp has -640 and -960 copies in public/, so phones and narrow columns
+// download a smaller file. The full-size original stays the largest candidate.
+// Originals are 1280px wide unless listed here.
+const THUMB_WIDTH: Record<string, number> = { '/to-the-moon-thumbnail.webp': 1600 };
+export const thumbSrcSet = (webp: string) => {
+  const base = webp.replace(/\.webp$/, '');
+  return `${base}-640.webp 640w, ${base}-960.webp 960w, ${webp} ${THUMB_WIDTH[webp] ?? 1280}w`;
+};
+
 export const projectStats = (project: Project) => {
     const stats = (project.stats?.length ? project.stats : project.impact.filter((s) => s.label.toLowerCase() !== 'status')).slice(0, 3);
     return stats.length >= 2 ? stats : [];

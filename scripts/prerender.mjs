@@ -82,7 +82,7 @@ ${site.name} is a ${site.role.toLowerCase()} based in Bangalore, India, studying
 - LinkedIn: ${site.linkedin}
 - X: ${site.x}
 - Email: ${site.email}
-- Résumé (PDF): ${site.url}/abdul-wasih-resume.pdf
+- Résumé (PDF): ${site.url}/resume
 - How he works with coding agents (a sample of the CLAUDE.md he hands them): ${site.claudeMd}
 
 ## Experience

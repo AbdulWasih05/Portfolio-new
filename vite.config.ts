@@ -2,6 +2,18 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import viteCompression from 'vite-plugin-compression';
+import type { Connect, Plugin } from 'vite';
+
+// Mirror the /resume rewrite from netlify.toml in `vite` and `vite preview`.
+const rewriteResume: Connect.NextHandleFunction = (req, _res, next) => {
+  if (req.url === '/resume' || req.url === '/resume/') req.url = '/abdul-wasih-resume.pdf';
+  next();
+};
+const resumeRoute = (): Plugin => ({
+  name: 'resume-route',
+  configureServer: (server) => { server.middlewares.use(rewriteResume); },
+  configurePreviewServer: (server) => { server.middlewares.use(rewriteResume); },
+});
 
 
 // https://vitejs.dev/config/
@@ -14,6 +26,7 @@ export default defineConfig(({ mode, isSsrBuild }) => ({
   },
   plugins: [
     react(),
+    resumeRoute(),
     // Gzip compression
     viteCompression({
       verbose: true,

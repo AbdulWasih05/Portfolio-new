@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Pixel404, { type Mood } from '../components/Pixel404';
 import { useResumeModal } from '../components/ResumeModal';
-import { featuredProjects as quickLinks, projects, slugify } from '../data/projects';
+import { featuredProjects as quickLinks, projects, slugify, thumbSrcSet } from '../data/projects';
 
 const pad = (n: number) => n.toString().padStart(2, '0');
 
@@ -109,7 +109,13 @@ const NotFound = () => {
                       <span className="block bg-paper-2 border border-ink p-[3px]">
                         {project.image && (
                           <picture>
-                            {project.imageWebP && <source type="image/webp" srcSet={project.imageWebP} />}
+                            {project.imageWebP && (
+                              <source
+                                type="image/webp"
+                                srcSet={thumbSrcSet(project.imageWebP)}
+                                sizes="(min-width: 640px) 160px, 96px"
+                              />
+                            )}
                             <img
                               src={project.image}
                               alt=""

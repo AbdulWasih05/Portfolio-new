@@ -11,58 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#F2F0EB" />
 
-    <!-- Resource Hints for Performance -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-
-    <!-- Preload critical assets -->
-    <!-- Note: Image preload removed - only preload above-the-fold images that are actually in the HTML -->
-
-    <!-- Brutalist editorial font stack -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-
-    <!-- Preload critical above-the-fold font files in parallel with the CSS
-         to eliminate the FOUT swap on the hero name and the projects heading. Note: gstatic URLs are version-pinned by Google
-         and may need updating if the font version bumps. -->
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      crossorigin
-      href="https://fonts.gstatic.com/s/instrumentserif/v5/jizHRFtNs2ka5fXjeivQ4LroWlx-6zAjjH7Motmp5g.woff2"
-    />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      crossorigin
-      href="https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjnTLgNs.woff2"
-    />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      crossorigin
-      href="https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2"
-    />
-
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap"
-    /></noscript>
-
+    <!-- Fonts are self-hosted (src/fonts.css). Preload the latin files the first screen uses so
+         they arrive with the CSS instead of after it: hero serif, mono labels, body. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/instrument-serif-latin.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/jetbrains-mono-latin.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/inter-latin.woff2" />
 
     <!-- Fallback head for the dev server. Production pages are prerendered (scripts/prerender.mjs):
          these data-rh tags are replaced with each page's own title, description, canonical,

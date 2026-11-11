@@ -1,6 +1,8 @@
+import { Helmet } from 'react-helmet-async';
 import SEO from '@/components/SEO';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import { portraitSizes, portraitSrcSet } from '@/data/portrait';
 import Projects from '@/components/Projects';
 import Experience from '@/components/Experience';
 import About from '@/components/About';
@@ -65,12 +67,26 @@ const homeJsonLd = {
   ],
 };
 
+// Preload the hero portrait (Hero.tsx) so it arrives with the first batch of requests. Lowercase
+// keys: react-helmet writes them as-is, and they're the real HTML attribute names.
+const portraitPreload = {
+  rel: 'preload',
+  as: 'image',
+  type: 'image/webp',
+  imagesrcset: portraitSrcSet('webp'),
+  imagesizes: portraitSizes,
+  fetchpriority: 'high',
+} as Record<string, string>;
+
 const Index = () => {
   useReveal();
 
   return (
     <>
       <SEO jsonLd={homeJsonLd} />
+      <Helmet>
+        <link {...portraitPreload} />
+      </Helmet>
       <div className="min-h-screen bg-paper text-ink">
         <Header />
         <main id="main-content" tabIndex={-1} className="focus:outline-none">

@@ -1,4 +1,5 @@
-/* Fonts loaded async in index.html - removed render-blocking @imports */
+/* Fonts are self-hosted (src/fonts.css, files in public/fonts) and bundled into this stylesheet. */
+@import "./fonts.css";
 
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {

@@ -10,7 +10,9 @@ import {
   type RefObject,
 } from "react";
 
-export const RESUME_URL = "/abdul-wasih-resume.pdf";
+// Short public address. The file stays at /abdul-wasih-resume.pdf (old links keep working);
+// /resume is a rewrite to it in netlify.toml, and in vite.config.ts for dev/preview.
+export const RESUME_URL = "/resume";
 // Pre-rendered preview images (see scripts/render-resume.mjs) — load instantly, no PDF engine.
 export const RESUME_PREVIEW_URL = "/abdul-wasih-resume-preview.webp";
 // Only fetched when a phone reader is zoomed in, where the small render would go soft.

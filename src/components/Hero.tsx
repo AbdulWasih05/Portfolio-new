@@ -4,6 +4,7 @@ import { GithubMark, LinkedinMark } from './BrandIcons';
 import { site } from '@/data/site';
 import { isFilled } from '@/data/projects';
 import { useResumeModal } from './ResumeModal';
+import { portraitSizes, portraitSrcSet } from '@/data/portrait';
 import CopyEmail from './CopyEmail';
 
 // Right-column card content (desktop). PLACEHOLDERS: swap in real details before shipping.
@@ -22,6 +23,12 @@ const quickFacts: [string, string, string?][] = [
   ['Speaks', 'English, Hindi, Urdu, Arabic'],
 ];
 
+// The portrait is above the fold: fetch it with the first batch of requests (also preloaded in
+// pages/Index.tsx) and paint it in the same frame as the text. Both portraits are in the DOM (one
+// hidden by CSS) and hidden images still download, so they share one srcset and sizes.
+// React 18 doesn't know the camelCase prop yet, so pass the lowercase HTML attribute through.
+const avatarPriority = { fetchpriority: 'high', decoding: 'sync' } as Record<string, string>;
+
 const Hero = memo(() => {
   const { openResume, prefetchResume } = useResumeModal();
 
@@ -37,14 +44,17 @@ const Hero = memo(() => {
       <div className="px-5 pt-10 pb-12 sm:py-10 sm:px-8 lg:border-r border-ink flex flex-col justify-center max-sm:gap-8 min-w-0 border-b lg:border-b-0">
         <div className="lg:hidden flex items-center gap-4 sm:mb-8">
           <picture>
-            <source type="image/webp" srcSet="/portrait/avatar.webp" />
+            <source type="image/webp" srcSet={portraitSrcSet('webp')} sizes={portraitSizes} />
             <img
               src="/portrait/avatar.jpg"
+              srcSet={portraitSrcSet('jpg')}
+              sizes={portraitSizes}
               alt="Abdul Wasih"
               width={256}
               height={256}
               className="w-14 h-14 shrink-0 border border-ink object-cover"
-              decoding="async"
+              loading="eager"
+              {...avatarPriority}
             />
           </picture>
           <div className="min-w-0 font-mono text-[12px] sm:text-[11px] uppercase tracking-[0.16em]">
@@ -123,14 +133,17 @@ const Hero = memo(() => {
       <aside className="hidden lg:flex flex-col px-8 py-10">
         <div className="flex items-start gap-5">
           <picture>
-            <source type="image/webp" srcSet="/portrait/avatar.webp" />
+            <source type="image/webp" srcSet={portraitSrcSet('webp')} sizes={portraitSizes} />
             <img
               src="/portrait/avatar.jpg"
+              srcSet={portraitSrcSet('jpg')}
+              sizes={portraitSizes}
               alt="Abdul Wasih"
               width={256}
               height={256}
               className="w-[88px] h-[88px] shrink-0 border border-ink object-cover"
-              decoding="async"
+              loading="eager"
+              {...avatarPriority}
             />
           </picture>
           <div className="min-w-0">
